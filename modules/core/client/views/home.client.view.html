@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+         <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600' rel='stylesheet' type='text/css'>
+    </head>
+    
+    <body id="landing-page">
+ 
+        <div class="container" ng-controller="HomeController as ctrl" layout="column" ng-cloak>
+            <div class="body-main">
+                <img class="confident-logo" itemprop="logo" src="http://confidentdentalcare.in/images/confident_logo.png" alt="Confident Dental Care" title="Confident Dental Care">
+               
+                <h3 class="bookapt"> Book an appointment </h3>
+            </div><br>
+            <div class="md-padding">
+                <form ng-submit="$event.preventDefault()" name="searchForm " >
+                <div layout-gt-sm="row" class="panel panel-body panel-search">
+                    <div class="input-search " flex>
+                        <md-autocomplete  
+                        md-min-length="0"
+                        ng-disabled="ctrl.isDisabled"
+                        md-no-cache="ctrl.noCache"
+                        md-selected-item="ctrl.selectedAppt"
+                        md-selected-item-change="ctrl.selectedApptChange(item)"
+                        md-search-text="ctrl.searchAppt"
+                        md-items="item in ctrl.queryApptSearch(ctrl.searchAppt)"
+                        md-item-text="item.description"
+                        placeholder="Search treatment">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.searchAppt">{{item.description}}</span>
+                        </md-item-template>
+                        <md-not-found >
+                            <div class="patientcolor">
+                          No Treatment matching "{{ctrl.searchAppt}}" were found.
+                            </div>
+                        </md-not-found>
+                        </md-autocomplete>
+                    </div>
+                     <div class="input-search " flex>
+                        <md-autocomplete 
+                        ng-disabled="ctrl.isDisabled"
+                        md-min-length="0"
+                        md-no-cache="ctrl.noCache"
+                        md-selected-item="ctrl.selectedPrsnl"
+                        md-selected-item-change="ctrl.selectedPrsnlChange(prsnl)"
+                        md-search-text="ctrl.searchPrsnl"
+                        md-items="prsnl in ctrl.queryPrsnlSearch(ctrl.searchPrsnl)"
+                        md-item-text="prsnl.fName  + ' ' + prsnl.lName"
+                        placeholder="Search dentist">
+                        <md-item-template>
+              <img class="img-circle" ng-src="modules/personals/img/buttons/{{prsnl.image}}" on-error-src="modules/personals/img/buttons/default.png" style="width:40px;height:35px;">
+                           <!-- <i class="glyphicon glyphicon-user user-cust-list"></i >-->
+                            <span md-highlight-text="ctrl.searchPrsnl"> {{ prsnl.fName + ' ' + prsnl.lName + ' , ' +prsnl.qualification + ' , ' +prsnl.speciality}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <div class="patientcolor">
+                          No Doctors matching "{{ctrl.searchPrsnl}}" were found.
+                            </div>
+                        </md-not-found>
+                        </md-autocomplete>
+                     </div>
+                   <!--<div class="search">
+                            <button id="ss" class="btn-danger" type="submit"><i class="glyphicon glyphicon-search"></i> </button>
+                   </div>-->
+                   <!-- <md-button class="md-raised md-primary"  aria-label="book"> More Doctors </md-button>-->
+                </div>
+                </form>
+            </div>
+            
+             <p class="search-keyword"> You can search treatments and doctors with required keywords </p>
+            
+                <div class="book">
+                 <md-button class="md-raised book-now" style="background-color:#2b3d4f; color:white;" aria-label="book" ng-click="nextPage()"> BOOK  APPOINTMENT <i class="glyphicon glyphicon-arrow-right"></i></md-button>
+                 
+                </div>
+        </div>
+        
+    </body>
+    
+        
+   <!-- <footer class=" footer-distributed">
+        <div class="footer-left">
+            <div class="hidden-xs">
+                <p class="footer-company-name">
+                    Copyright © 2016 RTWO HealthCare Solutions | All Rights Reserved.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-center">
+            <p>
+            <a href="http://confidentdentalcare.in/php/about_confident.php" target="_blank">About Us</a> |
+            <a href="">Terms and Conditions</a> |
+            <a href="http://confidentdentalcare.in/php/contact_us.php" target="_blank">Contact Us</a>
+            </p>
+        </div>
+
+        <div class="footer-right">
+            
+            <div class="footer-icons">
+
+                <a class="fa fa-2x fa-google-plus" href="https://plus.google.com/+ConfidentdentalcareInBestDentalClinic/posts" target="_blank"></a>
+                <a class="fa fa-2x fa-facebook" href="http://www.facebook.com/ConfidentDentalCareIndia" target="_blank"></a>
+                <a class="fa fa-2x fa-twitter" href="https://twitter.com/Confident_care" target="_blank"></a>
+                <a class="fa fa-2x fa-youtube" href="http://www.youtube.com/user/Confidentalhospital" target="_blank"></a>
+                <a class="fa fa-2x fa-tags" href="http://confidentdental.blogspot.com/" target="_blank"></a>
+                <a class="fa fa-2x fa-pinterest" href="http://www.pinterest.com/confidentdental/dental-care/" target="_blank"></a>
+                <a class="fa fa-2x fa-envelope" href="mailto:pro@confidentdentalcare.in?cc=saphal@confidentdentalcare.in,administrator@confidentdentalcare.in" target="_blank"></a>      
+            </div>
+
+        </div>
+    </footer>-->
+</html>

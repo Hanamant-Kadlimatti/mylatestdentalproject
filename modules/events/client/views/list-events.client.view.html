@@ -1,0 +1,23 @@
+
+
+<section data-ng-controller="EventsController as eventCtrl">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+            <th>Dentist Name</th>
+            <th>When</th>
+            <th>Patient Details</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr ng-repeat="event in events | filter:searchText | orderBy: 'start.dateTime'">
+                <td>{{event.summary}}</td>
+                <td>{{event.start.dateTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}} to {{event.end.dateTime | amDateFormat: 'h:mm:ss a'}}</td>
+                <td>{{event.description.split('\n')[0]}}<br/>{{event.description.split('\n')[1]}}<br/>{{event.description.split('\n')[2]}}</td>
+            </tr>
+        </tbody>
+    
+    </table>
+
+</section>

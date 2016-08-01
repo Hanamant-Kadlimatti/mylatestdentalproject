@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link href='lib/fullcalendar-scheduler/dist/scheduler.css' rel='stylesheet' />
+<script src='lib/fullcalendar-scheduler/dist/scheduler.js'></script>
+
+</head>
+<section  ng-controller="EventsController as eventCtrl">
+
+    <div class= "row">
+        <div class="row pad-bottom "    ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+        
+          <!-- <div class="row pad-bottom "  id='calendar'  ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>-->
+
+        <md-sidenav flex="70" md-component-id="right" md-is-open="isSidenavOpen" class="md-sidenav-right">
+            <div class="well side-well" ng-show="currentEvent">
+                <strong>Dentist Name:</strong><pre> {{currentEvent.title}}<br/></pre>
+                <strong>When:</strong> <br/>
+                <pre>{{currentEvent.start | amDateFormat: 'dddd, MMMM Do YYYY'}} <br>{{currentEvent.start | amDateFormat: 'h:mm:ss a'}} to {{currentEvent.end | amDateFormat: 'h:mm:ss a'}}</pre>
+                <strong>Patient Details:</strong> 
+                <pre>{{currentEvent.description.split('\n')[0]}}<br/>{{currentEvent.description.split('\n')[1]}}<br/>{{currentEvent.description.split('\n')[2]}}<br/></pre>
+            </div>
+        </md-sidenav>
+    </div>
+
+
+</section>
+
+</html>

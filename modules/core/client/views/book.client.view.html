@@ -1,0 +1,120 @@
+
+<form class="form-vertical" name="myForm" ng-controller="HomeController">
+    <section ng-controller="EventsCreateController as createEventCtrl" data-ng-init="load()">
+        <div class="">
+            <h3 class="page-title">Book an Appointment</h3>
+        </div>
+        <div class="center-div">
+            <fieldset ng-show="step == 1" ng-controller="PersonalsController as personalsCtrl">
+                <legend>Select a Doctor</legend>
+                <div class="dentist-list panel panel-default">
+                    
+                    <div class="panel-heading">
+                        <input class="form-control" ng-model="search.fName" placeholder="Search Name.."/>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <md-list ng-cloak>
+                            <md-list-item ng-repeat="contact in personalsCtrl.personals | filter:search | orderBy:'fName'"
+                                            ng-click="createEventCtrl.updateDentist(contact)">
+                                <i class="glyphicon glyphicon-user user-cust-list"></i>
+                                <p class="fName pad-right"><strong>{{ contact.fName + ' ' + contact.lName}}</strong></p>
+                                <br><div class="speciality text-muted">{{ contact.speciality }}</div>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                    
+                </div>
+
+            </fieldset>
+            <fieldset ng-show="step == 2">
+                <legend>Select a Treatment</legend>
+                <div class="treatment-list panel panel-default">
+                    
+                    <div class="panel-heading">
+                        <input class="form-control" ng-model="search.description" placeholder="Search Name.."/>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <md-list ng-cloak>
+                            <md-list-item ng-repeat="treatment in createEventCtrl.selectedDentist.treatments | filter:search | orderBy:'description'"
+                                            ng-click="createEventCtrl.updateTreatment(treatment)">
+                                <p class="description pad-right"><strong>{{ treatment.description }}</strong></p>
+                            </md-list-item>
+                        </md-list>
+                    </div>
+                    
+                </div>
+                <md-button class="md-raised md-warn" ng-click="prevStep()">Previous step</md-button>
+            </fieldset>
+            <fieldset ng-show="step == 3">
+                <form name="dateForm">
+                    <legend>Select Appointment Date and Time</legend>
+                    <div class="panel-body">
+                        <md-content class="pad-bottom">
+                            <md-datepicker ng-model="$parent.event.startDate" md-placeholder="Appointment date" 
+                                    ng-change="createEventCtrl.updateTime()" md-min-date="minDate" md-max-date="maxDate">
+                            </md-datepicker> 
+                            <div ng-message="required">
+                                {{notavailable}}
+                            </div>
+                        </md-content> 
+                                    
+                        <md-input-container class="md-icon-float md-icon-right md-block">
+                            <label class="control-label col-sm-3" for="startTime">Appointment Time</label>
+                            <md-icon><i class="text-muted glyphicon glyphicon-time time-icon"></i></md-icon>
+                            <div class="form-group" id="timePick">
+                                <input name="startTime" type="text" class="form-control time start" 
+                                    ng-model="$parent.event.startTime" id="startTime" ng-required="true">
+                                <div ng-messages="dateForm.startTime.$error">
+                                    <div ng-message="required">Appointment time is required.</div>
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    
+                    <md-button class="md-raised md-warn" ng-click="prevStep()">Previous step</md-button>
+                    <md-button class="md-raised md-primary" ng-click="nextStep()" ng-disabled="dateForm.$invalid || dateForm.$pending">Next step</md-button>
+                </form>
+            </fieldset>
+            <fieldset ng-show="step == 4">
+                <form name="patientForm">
+                    <legend>Patient Information</legend>
+                    <div class="panel-body">
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Patient Name</label>
+                            <md-icon><i class="text-muted glyphicon glyphicon-user time-icon"></i></md-icon>
+                            <input required name="patientName" ng-model="$parent.event.patientName" type="text" ng-required="true">
+                        </md-input-container>
+                        
+                        <md-input-container md-no-float class="md-block">
+                            <label>Phone Number</label>
+                            <md-icon><i class="text-muted glyphicon glyphicon-phone time-icon"></i></md-icon>
+                            <input required name="patientPhoneNumber" ng-model="$parent.event.patientPhoneNumber" type="text" ng-required="true">
+                        </md-input-container>
+                        
+                        <md-input-container class="md-block">
+                            <label>Email (required)</label>
+                            <md-icon><i class="text-muted glyphicon glyphicon-envelope time-icon"></i></md-icon>
+                            <input required name="patientEmail" ng-model="$parent.event.patientEmail" type="email" ng-required="true">
+                        </md-input-container>
+                    </div>
+                    
+                    <md-button class="md-raised md-warn" ng-click="prevStep()">Previous step</md-button>
+                    <md-button class="md-primary" ng-click="createEventCtrl.addEvent()" ng-disabled="patientForm.$invalid || patientForm.$pending">Submit</md-button>
+                </form>
+            </fieldset>
+            <fieldset ng-show="step == 5">
+                <form name="successForm">
+                <legend>Booking Information</legend>
+                    <p>Your booking request has been <strong>received.</strong></p>
+                    <p>Please check your inbox for confirmation.</p><br>
+                    <p><strong>Your booking:</strong></p>
+                    Dentist Name: {{ createEventCtrl.selectedDentist.fName + ' ' + createEventCtrl.selectedDentist.lName}} <br>
+                    Patient Name: {{$parent.event.patientName}} <br>
+                    Appointment Date and Time: {{$parent.event.startDate | date: 'medium'}}
+                </form>
+            </fieldset>
+        </div>
+    </section>
+</form>

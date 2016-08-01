@@ -1,0 +1,639 @@
+.content {
+  margin-top: 40px;
+}
+body{margin:0px; padding:0px;font-family: 'Roboto', sans-serif !important;
+ 
+}
+
+h1,h2,h3,h4,h5,h6{margin-top:10px; margin-bottom:10px; padding: 1%;font-family: 'Raleway', sans-serif !important;
+}
+.undecorated-link:hover {
+  text-decoration: none;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+.ng-invalid.ng-dirty {
+  border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+  border-color: #78FA89;
+}
+
+.header-profile-image {
+  opacity: 0.8;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.open .header-profile-image,
+a:hover .header-profile-image {
+  opacity: 1;
+}
+
+.user-header-dropdown-toggle {
+  padding-top: 11px !important;
+  padding-bottom: 11px !important;
+}
+
+.user-cust-list{
+    font-size: 50px;
+    color: blueviolet;
+    padding: 10px 10px 10px 0px;
+}
+
+.center-div {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.pad-right {
+    padding-right: 30px;
+}
+
+.pad-bottom {
+    margin: 0 auto;
+    padding-bottom: 10px;
+}
+
+.time-icon{
+    font-size: 20px;
+}
+
+.md-datepicker-input-container{
+    margin-left: 0;
+}
+.md-datepicker-button.md-icon-button {
+    margin-right: 0;
+}
+.md-button.md-icon-button {
+    /* margin: 0 6px; */
+    height: 40px;
+    min-width: 0;
+    line-height: 24px;
+    padding: 8px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.md-button.md-icon-button {
+    margin: 0px;
+}
+
+.book-now{
+    padding-left: 30px;
+    padding-right: 30px;
+   
+}
+
+.body-main {
+	color:  #ffffff;
+  	background-color:#fff;
+ 
+    padding-top: 40px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.confident-logo {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+
+.navbar-brand {
+  
+    margin-left: 30px;
+    font-family: 'Raleway', sans-serif !important;
+    margin-top: 5px;
+    font-size:20px !important;
+
+}
+
+a.active,.navbar-brand:hover {
+    text-decoration: none;
+    background-color: #eee;}
+    
+.navbar-nav > li > a{font-family: 'Raleway', sans-serif !important;}
+
+.navbar-items {
+    margin: 5px 15px;
+    margin-right: 40px;
+     
+}
+
+.navbar-toggle {
+    color:  black;
+}
+
+.page-title {
+    text-align: center;
+    font: normal 26px 'Cookie';
+}
+
+
+md-autocomplete, md-autocomplete md-autocomplete-wrap{height: 50px;}
+
+md-autocomplete input:not(.md-input){    line-height: 50px;
+    height: 50px;
+}
+ .autocomplete-custom-template li {
+  border-bottom: 1px solid #ccc;
+  height: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  white-space: normal; }
+ .autocomplete-custom-template li:last-child {
+  border-bottom-width: 0; }
+ .autocomplete-custom-template .item-title,
+ .autocomplete-custom-template .item-metadata {
+  display: block;
+  line-height: 2; 
+  }
+ .autocomplete-custom-template .item-title i {
+    height: 18px;
+    width: 18px; 
+  }
+.autocomplete-custom-template .user-title{
+    color: blueviolet;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+ .panel-search {
+     margin: 0 auto;
+     max-width: 1100px;  /* 900px */
+ }
+ 
+.input-search {
+     padding: 5px 5px 5px 5px;
+ 
+ }
+ 
+ .panel-left {
+   background: #f1f4f8;
+   padding-top: 0px;
+   width:57%;
+   margin-left: 22%;
+   height:40%;
+   
+   -webkit-box-shadow:  0 1px 4px black;
+   -moz-box-shadow:  0 1px 4px black;
+    box-shadow:  0 1px 4px black;
+}
+
+
+      /* Media query  */
+ 
+@media only screen and (min-width: 880px)  {
+   
+.bookapt{
+    color:#248dc9;
+}
+ #ss{
+    margin-top: 5px;
+    float: right;
+    height: 40px;
+    font-size: 28px;
+    border-color: transparent;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+    }
+    
+ .navbar-fixed-top  {
+    -webkit-box-shadow: 0 1px 1px #BDBDBD;
+    -moz-box-shadow: 0 1px 1px #BDBDBD;
+    box-shadow: 0 1px 1px #BDBDBD;
+}
+
+.container{
+    -webkit-box-shadow: 0 1px 1px #BDBDBD;
+    -moz-box-shadow: 0 1px 1px #BDBDBD;
+     box-shadow: 0 1px 1px #BDBDBD;
+     height:auto;
+}  
+ 
+.dropdown-menu{
+    margin-right: 25px;
+ }
+    
+.book{
+    margin-top: 50px;
+    margin-bottom: 290px;
+    padding-left: 450px;
+    padding-right: 70px;
+}
+
+.search-keyword{
+    margin-bottom: 20px;
+    color:grey;
+    text-align: center;
+}   
+ 
+#head1{
+    background-color:#fff; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main {
+    padding-top: 10px;
+    padding-bottom: 0px;
+    text-align: center;
+    color:#248dc9;
+}
+
+.form{
+    margin-right: -110px;
+    margin-left: -15px;
+}
+
+
+.md-datepicker-button.md-icon-button{
+    margin-left: -11px;
+}
+.md-datepicker-input-container{
+    margin-left: 11px;
+    width:68%;
+}
+
+.time-icon{
+   margin-left: -2px; 
+}
+
+.complaint{
+    width:66%;
+}
+
+.patient{
+    margin-right: -10px;
+    margin-left: 10px;
+    }
+    
+.md-block{
+    width:92%;
+    }
+    
+.date-time{
+    width:82%;
+}
+#date-time{
+    width:82%;
+    padding-top: 37px;
+}
+.heading{
+  color:#248dc9;
+  font-language-override: 24px;
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.time{
+    width:81%;
+}
+.pname{
+    width: 75%;
+}
+.age{
+    width:25%;
+    margin-top: -10px;
+}
+
+.gender{
+    margin-left: 6%;
+    margin-top: -10px;
+}
+.age-gender{
+      margin-top:  -15px;
+}
+.phonenumber{
+   width: 46%;
+}
+.email{
+    margin-top:  -12px;
+}
+   
+.place{
+    width: 43%;
+    margin-right: 2%;
+ }
+    
+.selected-doctor{
+    margin-left: 19.5%;
+    margin-top: -18px;
+}
+  
+.fill-more{
+     margin-bottom: -16px;
+     color:#248dc9;
+     text-align: center;
+}
+ 
+ .submit{
+     margin-left:474px;
+     margin-top: -50px;
+     width: 150px;
+   
+    }
+    
+.patientcolor{
+     color:red;
+ }
+  
+.all-colors{
+    color:grey;
+} 
+.qualification{
+    padding-top: -20px;
+}
+
+md-checkbox{
+    margin-bottom: 8px;
+}
+   input.ng-invalid.ng-dirty{
+    background: #ffdddd;
+}
+input.ng-valid.ng-dirty{
+    background: #ddffdd;
+}
+ }
+ 
+ 
+ @media only screen and (max-width: 768px)  {
+     
+   
+     
+      .navbar-fixed-top .navbar-collapse{background: rgb(0, 168, 156);}
+      
+      .navbar-nav > li > a, .dropdown-menu > li > a,  .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{color:#fff;}
+      
+      .nav>li>a:focus, .nav>li>a:hover, .nav .open>a, .nav .open>a:focus, .nav .open>a:hover, .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {background-color: #12CCBE}
+    
+      /*.book{margin: 0 auto;}*/
+     
+ }
+ /* My response */
+ @media  screen and (max-width: 895px){
+     .all-colors{
+       color:grey;
+     }
+     .fill-more{
+            color:#248dc9;
+       }
+     .heading{
+           color:#248dc9; 
+       }
+     .patientcolor{
+     color:red;
+ }
+       
+     .md-datepicker-button.md-icon-button{
+    margin-left: -9px;
+}
+         
+     .submit {
+         margin-left: 39%;
+         margin-right: 40%;
+         margin-bottom: 60px;
+         margin-top: -57px;
+      }
+     .main{
+        color:#248dc9;
+        text-align: center;
+      }
+   
+    .navbar-collapse.collapse  {
+    box-shadow: 0 1px 1px #BDBDBD;
+  
+       }
+    #head1 {
+    background-color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+ }
+ 
+  @media only screen and (max-width: 1248px){
+         .submit{
+          margin-left:478px;
+         }
+  }
+  
+  
+ 
+  @media only screen and (max-width: 1216px){
+         .submit{
+          margin-left:382px;
+         }
+  }
+   @media only screen and (max-width: 1023px){
+         .submit{
+          margin-left:384px;
+         }
+  }
+  
+   @media only screen and (max-width: 1007px){
+         
+         .complaint1{
+          margin-bottom: 33px;
+         }
+        .submit {
+         margin-left: 296px;
+}
+  }
+  
+    @media only screen and (max-width: 935px){
+       .main{
+        padding-top: 76px;
+       }
+    }
+  
+ 
+   @media only screen and (max-width: 785px){
+          .navbar-header {
+    box-shadow: 0 1px 1px #BDBDBD;
+  
+       }
+      #head1 {
+    background-color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+       
+   }
+   
+  
+    
+   
+ 
+ /* Book  Apppt Button   */
+   @media only screen and (max-width: 1215px){
+       .book{
+           padding-left: 356px;
+       }
+    }
+    
+      @media only screen and (max-width: 1263px){
+       .book{
+         padding-left: 40%;
+       }
+    }
+    
+     @media only screen and (max-width: 1215px){
+       .book{
+         padding-left: 38%;
+       }
+    }
+    
+      @media only screen and (max-width: 1007px){
+       .book{
+         padding-left: 33%;
+       }
+    }
+    
+     @media only screen and (max-width: 895px){
+         
+         .bookapt{
+           color:#248dc9;
+           margin-bottom: -40px;
+       }  
+       .book{
+         padding-left: 33%;
+       }
+       .search-keyword{
+           margin-left: 22%;
+       }
+    }
+    
+    @media only screen and (max-width: 911px){
+       .bookapt{
+          color:#248dc9;
+       }
+    }
+    
+     @media only screen and (max-width: 943px){
+       .bookapt{
+          margin-bottom: 20px;
+       }
+      
+    }
+    
+      @media only screen and (max-width: 961px){
+       .h3, .main{
+          margin-top: 70px
+       }
+    }
+    
+     @media only screen and (max-width: 1925px){
+       .book{
+          margin-bottom: 350px;
+       }
+       
+       .submit{
+           margin-top: -80px;
+            margin-bottom: -30px;
+       }
+    }
+    
+      @media only screen and (max-width: 1061px){
+          .submit{
+            margin-bottom: -10px;
+       }
+     }
+    
+     @media only screen and (max-width: 783px){
+        
+          .search-keyword{
+           margin-left: 6%;
+       }
+       .book-now{
+          margin-left: 20%;
+       }
+    }
+    
+     
+     @media only screen and (max-width: 784px){
+         .main{
+                 margin-top: -60px;
+         }
+      
+    }
+    
+     @media only screen and (max-width: 799px){
+          .book-now{
+          margin-left: 0%;
+       }
+     }
+   /*validation color  */
+   .red{
+       color:red;
+       font-weight: bold;
+   }
+   .reds{
+       margin-left: 26%;
+   }
+     @media only screen and (max-width: 783px){
+    .reds{
+       margin-left: 0%;
+        }
+     }
+      @media only screen and (max-width: 556px){
+    .reds{
+       margin-left: 27%;
+        }
+     }
+    
+     
+   /* 480 screen below  all fontsize for mobile */
+/*@media only screen and (max-width: 480px){
+      .confident-logo {
+            width:60%;
+    margin-top: -110px;
+    }
+    
+    .selected-doctor{
+        font-size: 13px;
+    }
+      .h3, .main{
+          margin-top: -110px;
+      } 
+    .fill-more{
+        text-align: center;
+    }
+    .search-keyword{
+         text-align: center;
+    }
+        
+       .row, .all-colors {
+           font-size: 14px;
+       }
+        h3{
+            font-size: 16px;
+        }
+        .heading{
+            font-size: 16px;
+        }
+    }*/
+ 
+ @media only screen and (max-width: 650px){}
+ @media only screen and (max-width: 480px){}
+ @media only screen and (max-width: 320px){}
+ 
+/*md-input-container.md-icon-right {
+    margin-left: 54%;
+    margin-top: -46px;
+    width: 35%;
+}
+.md-datepicker-input-container {
+    
+    width: 35%;
+}
+.heading{
+    margin-top: -50px;
+}*/

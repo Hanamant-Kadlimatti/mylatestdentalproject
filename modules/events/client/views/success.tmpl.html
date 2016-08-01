@@ -1,0 +1,35 @@
+<md-dialog aria-label="Success" ng-cloak class="success">
+   <!-- <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Confirmed</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="glyphicon glyphicon-remove"></i>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2 class="text text-center bookapt">Thank you !!</h2>
+        <p class="text text-center">Your Appointment is Confirmed</p>
+        <md-divider></md-divider>
+        <div class="panel panel-body popup">
+            <p>Your appointment request has been <strong>received.</strong> Please check your email for confirmation.</p>
+       <div class="center">
+   <img class="img-circle poto" ng-src="modules/personals/img/buttons/{{selectedDentist.image}}" on-error-src="modules/personals/img/buttons/default.png" style="width:100px;height:100px;">
+          <!-- <p><strong>Your booking details</strong></p>-->
+           <p class="confirm-detail"><strong>Dentist Name:</strong> {{ selectedDentist.fName + ' ' + selectedDentist.lName + ' ' + selectedDentist.qualification}} </p>
+           <p class="confirm-detail"><strong>Treatment: </strong>{{ selectedTreatment.description }}</p>
+           <p class="confirm-detail"><strong>Patient Name:</strong> {{ $scope.event.patientName }} </p>
+           <p class="confirm-detail"><strong> Appointment Date and Time: </strong>{{$scope.event.startDate | date: 'medium'}}</p>
+      </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button style="background-color:#2b3d4f; color:white;" ng-click="answer('okay')">
+         Close
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
