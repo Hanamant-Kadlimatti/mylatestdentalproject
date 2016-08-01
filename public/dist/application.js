@@ -15,7 +15,6 @@ var ApplicationConfiguration = (function () {
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'angular-multi-select',
     'mgcrea.ngStrap',
     'ui.timepicker',
     'ngMaterial',
