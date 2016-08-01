@@ -67,8 +67,7 @@
     "phantomjs": "^2.1.7",
     "serve-favicon": "*",
     "socket.io": "*",
-    "swig": "*",    
-    "twilio": "^2.9.1",
+    "swig": "*",
     "underscore": "*",
     "validator": "^5.5.0",
     "xmlhttprequest": "*"

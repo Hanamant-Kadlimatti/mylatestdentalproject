@@ -11,7 +11,7 @@
     "angular-bootstrap": "latest",
     "angular-ui-utils": "bower",
     "angular-ui-router": "latest",
-    "angular-file-upload": "2.3.4",
+    "angular-file-upload": "~2.3.4",
     "angular-cookies": "latest",
     "angular-motion": "latest",
     "jquery-ui": "latest",
@@ -28,9 +28,9 @@
     "fullcalendar": "~2.9.0",
     "fullcalendar-scheduler": "latest",
     "angular-ui-calendar": "latest"
-    },
+  },
   "resolutions": {
-    "angular": "~1.5.8",
+    "angular": "1.5.8",
     "fullcalendar": ">=2.7.3"
   }
 }
