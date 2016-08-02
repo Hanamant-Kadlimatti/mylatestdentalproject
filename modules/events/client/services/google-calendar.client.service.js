@@ -8,12 +8,12 @@ angular.module('GoogleCalendarService', [], function($provide){
 		var $scope = angular.element(document).scope();
 
 		//the url where our node.js application is located
-		var domain =  window.location;
-		 var baseUrl = domain.protocol +'//'+ domain.hostname +':'+domain.port; //  var baseUrl = 'http://192.168.1.14:3000';// var baseUrl = 'http://localhost:3000';
+		//var domain =  window.location;
+		 //var baseUrl = domain.protocol +'//'+ domain.hostname +':'+domain.port; //  var baseUrl = 'http://192.168.1.14:3000';// var baseUrl = 'http://localhost:3000';
 		
-		 console.log('MY URL===>' +baseUrl);
+		// console.log('MY URL===>' +baseUrl);
 		 
-		//var baseUrl = 'http://localhost:3000';
+		var baseUrl = ' https://mylatestdentalproject.herokuapp.com/';
  
 		return {
 			load: function(){
