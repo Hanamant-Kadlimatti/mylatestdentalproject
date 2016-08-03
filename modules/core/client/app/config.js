@@ -10,6 +10,7 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
+    'ui.utils', 
     'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
@@ -18,7 +19,8 @@ var ApplicationConfiguration = (function () {
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars'
+    'angular-input-stars',
+    'multipleSelect'
     ];
 
   // Add a new vertical module
