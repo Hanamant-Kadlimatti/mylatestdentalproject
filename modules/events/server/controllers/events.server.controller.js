@@ -6,7 +6,7 @@ var User = require('mongoose').model('User');
 var path = require('path');
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-       // Load the twilio module
+  // Load the twilio module
          var twilio = require('twilio');
  
         // Create a new REST API client to make authenticated requests against the
@@ -48,6 +48,7 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
         
         
 
+
 var userProfile=null;
 
 exports.login = function(req, res, next) {
@@ -60,6 +61,16 @@ exports.login = function(req, res, next) {
 
 exports.list = function (req, res, next) {
   
+  
+  User.findOne({ username: 'bhuvansalanke' }, function (err, user) {
+        if (err) {
+            return next(err);
+        } else if (!user) {
+            return next(new Error('Failed to load User '));
+        }
+
+        userProfile = user;
+        
     var accessToken = req.session.accessToken;
     var calendarId = req.user._doc.email;
     var calendar = new gcal.GoogleCalendar(accessToken);
@@ -79,6 +90,10 @@ exports.list = function (req, res, next) {
         }
         
     });
+    
+    });
+    
+    
 };
 
 
