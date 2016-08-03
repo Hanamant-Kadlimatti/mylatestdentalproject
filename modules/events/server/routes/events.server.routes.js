@@ -4,10 +4,10 @@ module.exports = function (app) {
   // Root routing
   var event = require('../controllers/events.server.controller');
 
-  app.route('/eventload').get(event.load);
+  app.route('/api/loadprofile').get(event.loadprofile);
 
-  app.route('/events').get(event.list);
+  app.route('/api/events').get(event.list);
 
-  app.route('/event').post(event.create);
+  app.route('/api/event').post(event.create);
 
 };
