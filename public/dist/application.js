@@ -997,20 +997,14 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
 		var $scope = angular.element(document).scope();
 
-		//the url where our node.js application is located
-		//var domain =  window.location;
-		 //var baseUrl = domain.protocol +'//'+ domain.hostname +':'+domain.port; //  var baseUrl = 'http://192.168.1.14:3000';// var baseUrl = 'http://localhost:3000';
-		
-		// console.log('MY URL===>' +baseUrl);
-		
-		 
+		//the url where our node.js application is located 
 		var baseUrl = 'https://mylatestdentalproject.herokuapp.com';
  
 		return {
 			load: function(){
 				var defer = $q.defer();
 
-				$http.get(baseUrl+'/eventload').then(function(response){
+				$http.get(baseUrl+'/api/loadprofile').then(function(response){
 
 					if(response.status === 200){
 						$scope.$broadcast('GoogleEventsReceived', response.data.items);
@@ -1029,11 +1023,12 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 			getEvents: function(){
 				var defer = $q.defer();
 
-				$http.get(baseUrl+'/events').then(function(response){
+				$http.get(baseUrl+'/api/events').then(function(response){
 
 					if(response.status === 200){
 						$scope.$broadcast('GoogleEventsReceived', response.data.items);
 						defer.resolve(response.data.items);
+						console.log(response.data.items);
 					}
 
 					else{
@@ -1055,7 +1050,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
                     patient: patientInfo
 				};
 
-				$http.post(baseUrl+'/event', postData, {'Content-Type':  'application/json'})
+				$http.post(baseUrl+'/api/events', postData, {'Content-Type':  'application/json'})
                 .then(function(response){
 
 					if(response.status === 200){
