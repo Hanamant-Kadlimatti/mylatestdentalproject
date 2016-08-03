@@ -12,6 +12,7 @@ angular.module('GoogleCalendarService', [], function($provide){
 		 //var baseUrl = domain.protocol +'//'+ domain.hostname +':'+domain.port; //  var baseUrl = 'http://192.168.1.14:3000';// var baseUrl = 'http://localhost:3000';
 		
 		// console.log('MY URL===>' +baseUrl);
+		
 		 
 		var baseUrl = 'https://mylatestdentalproject.herokuapp.com';
  
