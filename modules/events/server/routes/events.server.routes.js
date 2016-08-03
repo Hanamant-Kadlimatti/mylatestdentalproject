@@ -8,6 +8,6 @@ module.exports = function (app) {
 
   app.route('/api/events').get(event.list);
 
-  app.route('/api/event').post(event.create);
+  app.route('/api/events').post(event.create);
 
 };
