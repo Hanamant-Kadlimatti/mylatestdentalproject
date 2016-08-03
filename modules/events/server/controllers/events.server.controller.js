@@ -62,7 +62,7 @@ exports.login = function(req, res, next) {
 exports.list = function (req, res, next) {
   
   
-  User.findOne({ username: 'bhuvansalanke' }, function (err, user) {
+  User.findOne({ username: 'hanamantrkadlimatti' }, function (err, user) {
         if (err) {
             return next(err);
         } else if (!user) {
@@ -71,9 +71,9 @@ exports.list = function (req, res, next) {
 
         userProfile = user;
         
-    var accessToken = req.session.accessToken;
-    var calendarId = req.user._doc.email;
-    var calendar = new gcal.GoogleCalendar(accessToken);
+        var accessToken = userProfile.providerData.accessToken;
+        var calendarId = userProfile.email;
+        var calendar = new gcal.GoogleCalendar(accessToken);
     
     calendar.events.list(calendarId, {'timeMin': new Date().toISOString()}, function(err, eventList) {
         
