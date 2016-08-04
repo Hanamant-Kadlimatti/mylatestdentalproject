@@ -10,7 +10,6 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    'ui.utils', 
     'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
@@ -19,8 +18,7 @@ var ApplicationConfiguration = (function () {
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars',
-    'multipleSelect'
+    'angular-input-stars'
     ];
 
   // Add a new vertical module
@@ -998,7 +996,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 		var $scope = angular.element(document).scope();
 
 		//the url where our node.js application is located 
-		var baseUrl = 'https://mylatestdentalproject.herokuapp.com';
+		var baseUrl = 'https://mylatestdentalproject.herokuapp.com/';
  
 		return {
 			load: function(){
