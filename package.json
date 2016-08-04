@@ -67,6 +67,7 @@
     "serve-favicon": "*",
     "socket.io": "*",
     "swig": "*",
+    "twilio": "^2.9.1",
     "underscore": "*",
     "validator": "^5.5.0",
     "xmlhttprequest": "*"
