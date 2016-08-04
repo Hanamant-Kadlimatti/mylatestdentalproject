@@ -996,7 +996,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 		var $scope = angular.element(document).scope();
 
 		//the url where our node.js application is located 
-	  var baseUrl = 'https://mylatestdentalproject.herokuapp.com/';
+	  var baseUrl = 'https://mylatestdentalproject.herokuapp.com';
  
 		return {
 			load: function(){
