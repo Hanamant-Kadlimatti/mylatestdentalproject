@@ -17,7 +17,6 @@
   "dependencies": {
     "acl": "*",
     "angular-filter": "*",
-    "angular-multi-select": "^7.4.6",
     "async": "^2.0.1",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
