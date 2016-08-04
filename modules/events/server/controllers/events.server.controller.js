@@ -169,7 +169,7 @@ exports.create = function (req, res, next) {
 
 };
 
-exports.load = function (req, res, next) { 
+exports.loadprofile = function (req, res, next) { 
   User.findOne({
     username: 'hanamantrkadlimatti'
   }, function (err, user) {
