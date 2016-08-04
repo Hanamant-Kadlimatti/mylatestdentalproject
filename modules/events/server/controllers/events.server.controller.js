@@ -13,7 +13,11 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
         // twilio back end
           var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85cfa30f29acb55e21fd179db977');
 
+   
+        
         var sendSms = function(){
+
+       
 
         // Pass in parameters to the REST API using an object literal notation. The
          // REST client will handle authentication and response serialzation for you.
@@ -42,7 +46,9 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
            });
          }
         
-       
+        
+
+
 var userProfile=null;
 
 exports.login = function(req, res, next) {
