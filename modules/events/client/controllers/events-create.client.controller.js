@@ -80,8 +80,6 @@ eventCreateApp.controller('EventsCreateController',
                     contact: $scope.event.patientPhoneNumber,
                     emailId: $scope.event.patientEmail
                 };
-                 console.log('Patient Info:', $scope.event.patientName);
-                 console.log('Data is coming');
 
 
                 $googleCalendar.addEvent($scope.event.startDate, endDate, this.selectedDentist, $scope.patientInfo)
