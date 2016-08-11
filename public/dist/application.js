@@ -10,7 +10,7 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    'angularFileUpload',
+    //'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
@@ -997,7 +997,9 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
 		//the url where our node.js application is located 
 		
-	  var baseUrl = 'https://mylatestdentalproject.herokuapp.com';
+		//var baseUrl = 'http://localhost:3000';
+		
+	  var baseUrl = 'https://mylatestdentalproject.herokuapp.com'; 
  
 		return {
 			load: function(){

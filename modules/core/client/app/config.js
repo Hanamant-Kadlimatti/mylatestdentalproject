@@ -10,7 +10,7 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    'angularFileUpload',
+    //'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
