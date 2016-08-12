@@ -32,8 +32,8 @@ module.exports = {
     callbackURL: '/api/auth/twitter/callback'
   },
   google: {
-    clientID: process.env.GOOGLE_ID || '275726791878-8kluod34q65nocqoit1rj0g7hn8c1cb2.apps.googleusercontent.com',
-    clientSecret: process.env.GOOGLE_SECRET || 'UxB6w5RGWI_8Q4e0kCO9l3IY',
+    clientID: process.env.GOOGLE_ID ||  '811176186598-getgapa8npm2n2100hk85f9ql8gh5146.apps.googleusercontent.com',//'275726791878-8kluod34q65nocqoit1rj0g7hn8c1cb2.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || '-lkjurAPzzFJ7JSOpSvQuvLX', //'UxB6w5RGWI_8Q4e0kCO9l3IY',
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {
