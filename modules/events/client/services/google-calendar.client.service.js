@@ -13,7 +13,7 @@ angular.module('GoogleCalendarService', [], function($provide){
 		
 	   var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
  
-		return {
+		 return {
 			load: function(){
 				var defer = $q.defer();
 
@@ -31,7 +31,7 @@ angular.module('GoogleCalendarService', [], function($provide){
 
 				});
 
-				return defer.promise;
+				 return defer.promise;
 			},
 			getEvents: function(){
 				var defer = $q.defer();
