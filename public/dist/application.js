@@ -986,15 +986,13 @@ angular.module('EventUtil', [])
 
 angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
-	$provide.factory('$googleCalendar', ["$http", "$q", function($http, $q){
+	$provide.factory('$googleCalendar', ["$http", "$q", "$location", function($http, $q, $location){
 
 		var $scope = angular.element(document).scope();
 
 		//the url where our node.js application is located 
 		
-	  //var baseUrl = 'http://localhost:3000';
-		
-	   var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
+	  var baseUrl = $location.protocol() + "://" + location.host; 
  
 		 return {
 			getEvents: function(){
