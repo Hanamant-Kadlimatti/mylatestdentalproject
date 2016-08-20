@@ -16,7 +16,7 @@ angular.module('core').controller('HomeController',
         if(prsnl.selectedPrsnl && appt.selectedAppt){
             $location.path('/booklast');
              }else{
-              alert("Please select both Treatment & Doctor")
+              alert('Please select both Treatment & Doctor');
             }
     };
     

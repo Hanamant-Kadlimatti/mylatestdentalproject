@@ -9,30 +9,11 @@ angular.module('GoogleCalendarService', [], function($provide){
 
 		//the url where our node.js application is located 
 		
-		//var baseUrl = 'http://localhost:3000';
+	  //var baseUrl = 'http://localhost:3000';
 		
 	   var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
  
 		 return {
-			load: function(){
-				var defer = $q.defer();
-
-				$http.get(baseUrl+'/api/loadprofile').then(function(response){
-
-					if(response.status === 200){
-						$scope.$broadcast('GoogleEventsReceived', response.data.items);
-						defer.resolve(response.data.items);
-					}
-
-					else{
-						$scope.$broadcast('GoogleError', response.data);
-						defer.reject(response.data);
-					}
-
-				});
-
-				 return defer.promise;
-			},
 			getEvents: function(){
 				var defer = $q.defer();
 

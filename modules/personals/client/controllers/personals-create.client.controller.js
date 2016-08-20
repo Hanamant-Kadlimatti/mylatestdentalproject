@@ -55,7 +55,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
 ]);
 
 // Choose image
-function readURL(input) {
+/*function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
@@ -71,4 +71,4 @@ function readURL(input) {
     }
     $("#imgInp").change(function(){
     readURL(this);
-});
+});*/

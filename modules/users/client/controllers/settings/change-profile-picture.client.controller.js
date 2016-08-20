@@ -20,7 +20,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
         binary += String.fromCharCode(bytes[i]);
       }
       return window.btoa(binary);
-    }
+    };
 
     // Set file uploader image filter
     $scope.uploader.filters.push({

@@ -109,7 +109,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     'resourceId': event.summary,
                    
                 };
-                  console.log(event.summary)
+                  console.log(event.summary);
             }
 
 		});

@@ -44,7 +44,7 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
                  console.log('Oops! There was an error.');
              }
            });
-         }
+         };
         
         
 
@@ -169,18 +169,4 @@ exports.create = function (req, res, next) {
 
 };
 
-exports.loadprofile = function (req, res, next) { 
-  User.findOne({
-    username: 'hanamantrkadlimatti'
-  }, function (err, user) {
-    if (err) {
-      return next(err);
-    } else if (!user) {
-      return next(new Error('Failed to load User '));
-    }
-
-    userProfile = user;
-
-  });
-};
 

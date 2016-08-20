@@ -6,9 +6,8 @@ module.exports = {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap.min.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
         'public/lib/fullcalendar/dist/fullcalendar.css',
         'public/lib/angular-motion/dist/angular-motion.css',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.css',

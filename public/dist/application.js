@@ -231,7 +231,7 @@ angular.module('core').controller('HomeController',
         if(prsnl.selectedPrsnl && appt.selectedAppt){
             $location.path('/booklast');
              }else{
-              alert("Please select both Treatment & Doctor")
+              alert('Please select both Treatment & Doctor');
             }
     };
     
@@ -695,30 +695,30 @@ eventCreateApp.controller('EventsCreateController',
             this.addEvent = function() {
                 
                 // Validation
-                if(dateid.value==""){
-                    alert('Please enter appointment Date')
-                }else if(timeid.value == ""){
-                    alert('please enter appointment Time')
-                }else if(patientid.value == ""){
-                    alert('please enter patient name')
-                }else if(ageid.value == ""){
-                    alert('please enter patient age')
-                }                
-                else if(genderid.value == ""){
-                    alert('please select gender ')
-                }
-                else if(placeid.value == ""){
-                    alert('please enter patient place')
-                }else if(phoneid.value == ""){
-                    alert('please enter phone number')
-                }else if(emalid.value == ""){
-                    alert('please enter patient emailId')
-                }else if(checkboxid.value == ""){
-                    alert('please select Medical Condition')
-                }else if(complaintid.value == ""){
-                    alert('please enter chief complaint')
-                }
-                 else {
+                // if(dateid.value === ''){
+                //     alert('Please enter appointment Date');
+                // }else if(timeid.value === ''){
+                //     alert('please enter appointment Time');
+                // }else if(patientid.value === ''){
+                //     alert('please enter patient name');
+                // }else if(ageid.value === ''){
+                //     alert('please enter patient age');
+                // }                
+                // else if(genderid.value === ''){
+                //     alert('please select gender ');
+                // }
+                // else if(placeid.value === ''){
+                //     alert('please enter patient place');
+                // }else if(phoneid.value === ''){
+                //     alert('please enter phone number');
+                // }else if(emalid.value === ''){
+                //     alert('please enter patient emailId');
+                // }else if(checkboxid.value === ''){
+                //     alert('please select Medical Condition');
+                // }else if(complaintid.value === ''){
+                //     alert('please enter chief complaint');
+                // }
+                //  else {
                 console.log('Start Time:', $scope.event.startTime);
 
                 var time = $scope.event.startTime.match(/(\d+)(?::(\d\d))?\s*(p?)/);
@@ -749,7 +749,7 @@ eventCreateApp.controller('EventsCreateController',
                         $scope.showFailed();
                     });
                    
-                 }
+                // }
             };
 
             this.updateTime = function() {
@@ -955,7 +955,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     'resourceId': event.summary,
                    
                 };
-                  console.log(event.summary)
+                  console.log(event.summary);
             }
 
 		});
@@ -997,30 +997,11 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
 		//the url where our node.js application is located 
 		
-		//var baseUrl = 'http://localhost:3000';
+	  //var baseUrl = 'http://localhost:3000';
 		
 	   var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
  
 		 return {
-			load: function(){
-				var defer = $q.defer();
-
-				$http.get(baseUrl+'/api/loadprofile').then(function(response){
-
-					if(response.status === 200){
-						$scope.$broadcast('GoogleEventsReceived', response.data.items);
-						defer.resolve(response.data.items);
-					}
-
-					else{
-						$scope.$broadcast('GoogleError', response.data);
-						defer.reject(response.data);
-					}
-
-				});
-
-				 return defer.promise;
-			},
 			getEvents: function(){
 				var defer = $q.defer();
 
@@ -1391,7 +1372,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
 ]);
 
 // Choose image
-function readURL(input) {
+/*function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
@@ -1407,7 +1388,7 @@ function readURL(input) {
     }
     $("#imgInp").change(function(){
     readURL(this);
-});
+});*/
 'use strict';
 
 // Personals update controller
@@ -1445,12 +1426,12 @@ personalsApp.directive('onErrorSrc', function() {
     return {
         link: function(scope, element, attrs) {
           element.bind('error', function() {
-            if (attrs.src != attrs.onErrorSrc) {
+            if (attrs.src !== attrs.onErrorSrc) {
               attrs.$set('src', attrs.onErrorSrc);
             }
           });
         }
-    }
+    };
 });
 
 personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Personals', '$uibModal', '$log', '$q', 'slotService',
@@ -2061,7 +2042,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
         binary += String.fromCharCode(bytes[i]);
       }
       return window.btoa(binary);
-    }
+    };
 
     // Set file uploader image filter
     $scope.uploader.filters.push({
