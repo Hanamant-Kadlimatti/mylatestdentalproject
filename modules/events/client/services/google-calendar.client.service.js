@@ -9,9 +9,9 @@ angular.module('GoogleCalendarService', [], function($provide){
 
 		//the url where our node.js application is located 
 		
-	  //var baseUrl = 'http://localhost:3000';
+	  var baseUrl = 'http://localhost:3000';
 		
-	   var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
+	   //var baseUrl = 'https://mylatestdentalproject.herokuapp.com';  
  
 		 return {
 			getEvents: function(){
