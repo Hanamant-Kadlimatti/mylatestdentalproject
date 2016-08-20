@@ -684,12 +684,7 @@ eventCreateApp.controller('EventsCreateController',
                 buttonImage: 'calendar.gif',
                 buttonText: 'Calendar'
             });
-
-            $scope.load = function() {
-                $googleCalendar.load();
-            };
-          
-          
+               
 
             //Book an appointment            
             this.addEvent = function() {
