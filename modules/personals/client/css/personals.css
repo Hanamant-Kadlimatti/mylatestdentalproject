@@ -45,12 +45,13 @@
          margin-left: 15px;
      }
      
-     @import "compass/css3";
+    /* @import "compass/css3";*/
 
 .star-rating {
   margin: 0;
   padding: 0;
   display: inline-block;
+}
   
   .star {
     padding: 1px;
@@ -60,16 +61,17 @@
     list-style-type: none;
     display: inline-block;
     cursor: pointer;
+  }
 
-    &.filled {
+    .filled {
       color: #fd0;
     }
-  }
+  
 
-  &.readonly .star.filled {
+  .readonly .star.filled {
     color: #666;
   }
-}
+
 
 
 @media only screen and (max-width: 768px)  {
