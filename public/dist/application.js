@@ -10,7 +10,7 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-   // 'angularFileUpload',
+    //'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
@@ -687,31 +687,31 @@ eventCreateApp.controller('EventsCreateController',
             //Book an appointment            
             this.addEvent = function() {
                 
-                // Validation
-                // if(dateid.value === ''){
-                //     alert('Please enter appointment Date');
-                // }else if(timeid.value === ''){
-                //     alert('please enter appointment Time');
-                // }else if(patientid.value === ''){
-                //     alert('please enter patient name');
-                // }else if(ageid.value === ''){
-                //     alert('please enter patient age');
-                // }                
-                // else if(genderid.value === ''){
-                //     alert('please select gender ');
-                // }
-                // else if(placeid.value === ''){
-                //     alert('please enter patient place');
-                // }else if(phoneid.value === ''){
-                //     alert('please enter phone number');
-                // }else if(emalid.value === ''){
-                //     alert('please enter patient emailId');
-                // }else if(checkboxid.value === ''){
-                //     alert('please select Medical Condition');
-                // }else if(complaintid.value === ''){
-                //     alert('please enter chief complaint');
-                // }
-                //  else {
+               // Validation
+                if(dateid.value === ''){
+                    alert('Please enter appointment Date');
+                }else if(timeid.value === ''){
+                    alert('please enter appointment Time');
+                }else if(patientid.value === ''){
+                    alert('please enter patient name');
+                }else if(ageid.value === ''){
+                    alert('please enter patient age');
+                }                
+                else if(genderid.value === ''){
+                    alert('please select gender ');
+                }
+                else if(placeid.value === ''){
+                    alert('please enter patient place');
+                }else if(phoneid.value === ''){
+                    alert('please enter phone number');
+                }else if(emalid.value === ''){
+                    alert('please enter patient emailId');
+                }else if(checkboxid.value === ''){
+                    alert('please select Medical Condition');
+                }else if(complaintid.value === ''){
+                    alert('please enter chief complaint');
+                }
+                 else {
                 console.log('Start Time:', $scope.event.startTime);
 
                 var time = $scope.event.startTime.match(/(\d+)(?::(\d\d))?\s*(p?)/);
@@ -742,7 +742,7 @@ eventCreateApp.controller('EventsCreateController',
                         $scope.showFailed();
                     });
                    
-                // }
+                 }
             };
 
             this.updateTime = function() {

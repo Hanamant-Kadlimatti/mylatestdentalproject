@@ -31,7 +31,7 @@ eventCreateApp.controller('EventsCreateController',
             //Book an appointment            
             this.addEvent = function() {
                 
-                Validation
+               // Validation
                 if(dateid.value === ''){
                     alert('Please enter appointment Date');
                 }else if(timeid.value === ''){

@@ -18,7 +18,7 @@ var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85
 
 var sendSms = function () {
 
-// Pass in parameters to the REST API using an object literal notation. The
+    // Pass in parameters to the REST API using an object literal notation. The
     // REST client will handle authentication and response serialzation for you.
     client.sms.messages.create({
         // to:'+919663398669',
@@ -132,8 +132,8 @@ exports.login = function (req, res, next) {
 };
 
 exports.list = function (req, res, next) {
-
-   getAccessToken().then(function (user) {
+    
+    getAccessToken().then(function (user) {
 
         userProfile = user;
 
@@ -165,7 +165,7 @@ exports.list = function (req, res, next) {
 exports.create = function (req, res, next) {
     //map request body to google calendar data structure
 
-      getAccessToken().then(function (user) {
+    getAccessToken().then(function (user) {
 
 
         var profile = user._doc;
@@ -220,7 +220,7 @@ exports.create = function (req, res, next) {
             ]
         };
 
-        var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
+         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
         calendar.events.insert(profile.email, addEventBody, function (err, response) {
 
