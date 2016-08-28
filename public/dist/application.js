@@ -5,16 +5,15 @@ var ApplicationConfiguration = (function () {
   // Init module configuration options
   var applicationModuleName = 'mean';
   var applicationModuleVendorDependencies = [
-   'ngResource', 
+  'ngResource', 
     'ngAnimate', 
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    //'angularFileUpload',
+    'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'mgcrea.ngStrap',
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
@@ -663,7 +662,6 @@ eventCreateApp.controller('EventsCreateController',
     ['$scope', '$googleCalendar', '$location', '$log', '$filter', '$compile', 'prsnlService', '$mdDialog', '$mdMedia',
         function($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia) {
 
-
             $scope.events = [];
 
             this.selectedDentist = prsnlService.getDentist();
@@ -774,7 +772,7 @@ eventCreateApp.controller('EventsCreateController',
                         });
                     }
                     else {
-                       $scope.notavailable = ''; //$scope.notavailable = 'No Slots Available for the selected date';
+                       $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
 
                 }
@@ -990,11 +988,29 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
 		var $scope = angular.element(document).scope();
 
-		//the url where our node.js application is located 
-		
-	  var baseUrl = $location.protocol() + "://" + location.host; 
- 
-		 return {
+		//the url where our node.js application is located
+		var baseUrl = $location.protocol() + '://' + location.host;
+
+		return {
+			load: function(){
+				var defer = $q.defer();
+
+				$http.get(baseUrl+'/api/loadprofile').then(function(response){
+
+					if(response.status === 200){
+						$scope.$broadcast('GoogleEventsReceived', response.data.items);
+						defer.resolve(response.data.items);
+					}
+
+					else{
+						$scope.$broadcast('GoogleError', response.data);
+						defer.reject(response.data);
+					}
+
+				});
+
+				return defer.promise;
+			},
 			getEvents: function(){
 				var defer = $q.defer();
 

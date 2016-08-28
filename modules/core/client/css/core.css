@@ -5,7 +5,7 @@ body{margin:0; padding:0;font-family: 'Roboto', sans-serif !important;
  
 }
 
-h1,h2,h3,h4,h5,h6{margin-top:10px; margin-bottom:10px; padding: 1%;font-family: 'Raleway', sans-serif !important;
+h1,h2,h3,h4,h5,h6{margin-top:10px; margin-bottom:10px; padding: 1%;font-family: 'Raleway', sans-serif !important; overflow-x: hidden;
 }
 .undecorated-link:hover {
   text-decoration: none;
@@ -590,24 +590,73 @@ input.ng-valid.ng-dirty{
      }
     
      
-   /* 480 screen below  all fontsize for mobile */
-/*@media only screen and (max-width: 480px){
+     
+      /* 480 screen below  all fontsize for mobile */
+      
+@media only screen and (max-width: 480px){
+   
       .confident-logo {
-            width:60%;
-    margin-top: -110px;
+          width: 57%;
+          margin-top: -131px;
+          margin-left: -13px;
     }
     
-    .selected-doctor{
+    .navbar-brand {
+    margin-left: 20px;
+    font-family: 'Raleway', sans-serif !important;
+    margin-top: -62px;
+    font-size: 23px !important;
+   
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: -12px;
+    margin-bottom: 10px;
+    padding: 1%;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif !important;
+    margin-left: -5%;
+}
+
+md-autocomplete input:not(.md-input) {
+    line-height: 47px;
+    height: 32px;
+    font-size: 12px;
+  
+}
+
+md-autocomplete, md-autocomplete md-autocomplete-wrap {
+    height: 32px; 
+  width: 232px;
+}
+
+.panel-search {
+    margin-top: -35px;
+}
+
+.search-keyword {
+    margin-left: 2.5%;
+    margin-right: 7.5%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.book {
+    font-size: 14px;
+    margin-left: -30px;
+}
+
+.footer-distributed{
+    display:none
+}
+
+/* patient details */
+ .selected-doctor{
         font-size: 13px;
     }
-      .h3, .main{
-          margin-top: -110px;
-      } 
+     
     .fill-more{
         text-align: center;
-    }
-    .search-keyword{
-         text-align: center;
     }
         
        .row, .all-colors {
@@ -619,7 +668,13 @@ input.ng-valid.ng-dirty{
         .heading{
             font-size: 16px;
         }
-    }*/
+   .submit {
+    margin-left: 83px;
+}
+   
+    }
+     
+     
  
  @media only screen and (max-width: 650px){}
  @media only screen and (max-width: 480px){}

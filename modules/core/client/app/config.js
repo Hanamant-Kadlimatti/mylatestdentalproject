@@ -5,16 +5,15 @@ var ApplicationConfiguration = (function () {
   // Init module configuration options
   var applicationModuleName = 'mean';
   var applicationModuleVendorDependencies = [
-   'ngResource', 
+  'ngResource', 
     'ngAnimate', 
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    //'angularFileUpload',
+    'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'mgcrea.ngStrap',
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',

@@ -7,11 +7,29 @@ angular.module('GoogleCalendarService', [], function($provide){
 
 		var $scope = angular.element(document).scope();
 
-		//the url where our node.js application is located 
-		
-	  var baseUrl = $location.protocol() + "://" + location.host; 
- 
-		 return {
+		//the url where our node.js application is located
+		var baseUrl = $location.protocol() + '://' + location.host;
+
+		return {
+			load: function(){
+				var defer = $q.defer();
+
+				$http.get(baseUrl+'/api/loadprofile').then(function(response){
+
+					if(response.status === 200){
+						$scope.$broadcast('GoogleEventsReceived', response.data.items);
+						defer.resolve(response.data.items);
+					}
+
+					else{
+						$scope.$broadcast('GoogleError', response.data);
+						defer.reject(response.data);
+					}
+
+				});
+
+				return defer.promise;
+			},
 			getEvents: function(){
 				var defer = $q.defer();
 

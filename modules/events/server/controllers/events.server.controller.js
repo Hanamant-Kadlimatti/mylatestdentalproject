@@ -4,6 +4,9 @@ var _ = require('underscore');
 var gcal = require('google-calendar');
 var User = require('mongoose').model('User');
 var path = require('path');
+var q = require('q');
+var oauth = require('oauth');
+var config = require(path.resolve('./config/config'));
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 // Load the twilio module
@@ -13,13 +16,9 @@ var twilio = require('twilio');
 // twilio back end
 var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85cfa30f29acb55e21fd179db977');
 
-
-
 var sendSms = function () {
 
-
-
-    // Pass in parameters to the REST API using an object literal notation. The
+// Pass in parameters to the REST API using an object literal notation. The
     // REST client will handle authentication and response serialzation for you.
     client.sms.messages.create({
         // to:'+919663398669',
@@ -46,10 +45,83 @@ var sendSms = function () {
     });
 };
 
-
-
-
 var userProfile = null;
+var oa;
+
+function authorize(refreshToken)
+{
+  var deferred = q.defer();
+
+  oa = new oauth.OAuth2(config.google.clientID,
+            config.google.clientSecret,
+            'https://accounts.google.com/o',
+            '/oauth2/auth',
+            '/oauth2/token');
+
+  if(refreshToken)
+  {
+      oa.getOAuthAccessToken(refreshToken, {grant_type:'refresh_token', client_id: config.google.clientID, client_secret: config.google.clientSecret}, 
+            function(err, access_token, refresh_token, res){
+
+      //lookup settings from database
+      User.findOne({ username: 'bhuvansalanke' }, function(findError, settings){
+
+          var expiresIn = parseInt(res.expires_in);
+          var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
+
+          //add refresh token if it is returned
+          if(refresh_token !== undefined) settings.providerData.refreshToken = refresh_token;
+
+          //update access token in database
+          settings.providerData.accessToken = access_token;
+          settings.google_access_token_expiration = accessTokenExpiration;
+
+          settings.save();
+
+          deferred.resolve(settings);
+        });
+      });
+
+  }
+  else
+  {
+    deferred.reject({error: 'Application needs authorization.'});
+  }
+
+  return deferred.promise;
+}
+
+function getAccessToken()
+{
+  var deferred = q.defer();
+  var accessToken;
+
+
+    User.findOne({ username: 'bhuvansalanke' }, function(findError, settings){
+      //check if access token is still valid
+      var today = new Date();
+      var currentTime = today.getTime();
+      if(currentTime < settings.google_access_token_expiration)
+      {
+         deferred.resolve(settings);
+      }
+      else
+      {
+        //refresh the access token
+        authorize(settings.providerData.refreshToken).then(function(settings){
+
+          deferred.resolve(settings);
+
+        }, function(error){
+
+          deferred.reject(error);
+
+        });
+      }
+    });
+
+  return deferred.promise;
+}
 
 exports.login = function (req, res, next) {
     if (!req.session.accessToken) {
@@ -61,13 +133,7 @@ exports.login = function (req, res, next) {
 
 exports.list = function (req, res, next) {
 
-
-    User.findOne({ username: 'hanamantrkadlimatti' }, function (err, user) {
-        if (err) {
-            return next(err);
-        } else if (!user) {
-            return next(new Error('Failed to load User '));
-        }
+   getAccessToken().then(function (user) {
 
         userProfile = user;
 
@@ -96,16 +162,11 @@ exports.list = function (req, res, next) {
 
 };
 
-
 exports.create = function (req, res, next) {
     //map request body to google calendar data structure
 
-    User.findOne({ username: 'hanamantrkadlimatti' }, function (err, user) {
-        if (err) {
-            return next(err);
-        } else if (!user) {
-            return next(new Error('Failed to load User '));
-        }
+      getAccessToken().then(function (user) {
+
 
         var profile = user._doc;
 

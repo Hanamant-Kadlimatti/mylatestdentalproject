@@ -6,7 +6,6 @@ eventCreateApp.controller('EventsCreateController',
     ['$scope', '$googleCalendar', '$location', '$log', '$filter', '$compile', 'prsnlService', '$mdDialog', '$mdMedia',
         function($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia) {
 
-
             $scope.events = [];
 
             this.selectedDentist = prsnlService.getDentist();
@@ -117,7 +116,7 @@ eventCreateApp.controller('EventsCreateController',
                         });
                     }
                     else {
-                       $scope.notavailable = ''; //$scope.notavailable = 'No Slots Available for the selected date';
+                       $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
 
                 }
