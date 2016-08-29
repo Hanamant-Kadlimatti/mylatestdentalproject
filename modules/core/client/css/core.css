@@ -602,11 +602,11 @@ input.ng-valid.ng-dirty{
     }
     
     
-    .navbar-brand {
-  /*  margin-left: 17px;*/
+ /* .navbar-brand {
+      margin-left: 17px;
       margin-top: -60px;
    
-}
+}*/
 
 h1, h2, h3, h4, h5, h6 {
     margin-top: 11px;
@@ -708,7 +708,13 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
  
  @media only screen and (max-width: 650px){}
  @media only screen and (max-width: 480px){}
- @media only screen and (max-width: 320px){}
+ @media only screen and (max-width: 320px){
+      .navbar-brand {
+      margin-left: 17px;
+      margin-top: -60px;
+   
+}
+ }
  
 /*md-input-container.md-icon-right {
     margin-left: 54%;
