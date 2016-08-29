@@ -604,7 +604,7 @@ input.ng-valid.ng-dirty{
     
     .navbar-brand {
     margin-left: 17px;
-    margin-top: -60px;
+   /* margin-top: -60px;*/
    
 }
 
@@ -682,7 +682,7 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
 }
 
 .md-input-container, .pname, .age, .gender, .place, .phonenumber, .email {
-    width: 85%;
+    width: 110%;
     
 }
     
