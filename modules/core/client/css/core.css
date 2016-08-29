@@ -602,14 +602,14 @@ input.ng-valid.ng-dirty{
     }
     
     .navbar-brand {
-    margin-left: 20px;
-    font-family: 'Raleway', sans-serif !important;
-    margin-top: -62px;
+    margin-left: 40px;
+   /* margin-top: -62px;*/
+    font-size: 23px !important;
    
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-top: -12px;
+    margin-top: -11px;
     margin-bottom: 10px;
     padding: 1%;
     font-size: 14px;
@@ -650,10 +650,17 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
 }
 
 /* patient details */
+.main{
+    margin-top: -100px;
+}
  .selected-doctor{
         font-size: 13px;
     }
      
+     .panel-body{
+         width: 100%;
+         margin-left: 0;
+     }
     .fill-more{
         text-align: center;
     }
@@ -674,6 +681,8 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
     }
      
      
+     
+
  
  @media only screen and (max-width: 650px){}
  @media only screen and (max-width: 480px){}
