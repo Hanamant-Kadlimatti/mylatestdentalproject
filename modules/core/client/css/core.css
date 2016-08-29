@@ -603,8 +603,8 @@ input.ng-valid.ng-dirty{
     
     
     .navbar-brand {
-    margin-left: 30px;
-    margin-top: -62px;
+    margin-left: 40px;
+   /* margin-top: -62px;*/
    
 }
 
@@ -651,30 +651,20 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
 
 /* patient details */
 .main{
-    margin-top: -115px;
+    margin-top: -100px;
 }
  .selected-doctor{
-        font-size: 12px;
+        font-size: 13px;
        
     }
      .panel-body{
          width: 100%;
-         margin-left: 0%;
-     }
-     
-     
-     .fname{
-          font-size: 12px;
+    margin-left: 0%;
      }
      
     .fill-more{
         text-align: center;
     }
-    
-   
-.heading {
-    width: 115%;
-}
     
    .md-datepicker-input-container {
     position: relative;
@@ -682,11 +672,11 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     display: inline-block;
-    width: 65%;
+    width: 72%;
     margin-left: 12px;
 }
 
-.md-input-container, .pname, .age, .place, .phonenumber, .email {
+.md-input-container, .pname, .age, .gender, .place, .phonenumber, .email {
     width: 85%;
     
 }
