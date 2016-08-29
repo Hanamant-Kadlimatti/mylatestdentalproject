@@ -6,7 +6,7 @@
         
       
     <div flex-gt-sm="60" flex="100" layout-margin class="panel panel-body panel-left all-colors">
-       <p class="fName pad-right"><h3>
+       <p class="fName pad-right"><h3 class="fname">
             <img class="img-circle" ng-src="modules/personals/img/buttons/{{dentist.image}}" on-error-src="modules/personals/img/buttons/default.png" style="width:80px;height:80px;">
            <!-- <i class="glyphicon glyphicon-user user-cust-list"></i >-->
            &nbsp;&nbsp;&nbsp;&nbsp; {{ dentist.fName + ' ' + dentist.lName + ', ' + dentist.qualification }}</h3></p>
@@ -32,7 +32,7 @@
             <legend class="date-time heading">Appointment Date and Time</legend>
 
             <md-content  class="pad-bottom">
-               <b> <md-datepicker id="dateid" class="all-colors" name="startDate" ng-model="$parent.event.startDate" md-placeholder="Select Date" 
+               <b> <md-datepicker id="dateid" class="all-colors select-date" name="startDate" ng-model="$parent.event.startDate" md-placeholder="Select Date" 
                         ng-change="createEventCtrl.updateTime()" md-min-date="minDate" md-max-date="maxDate">
                 </md-datepicker> </b>
                 <div ng-message="required" >

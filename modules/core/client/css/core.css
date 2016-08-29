@@ -601,15 +601,15 @@ input.ng-valid.ng-dirty{
           margin-left: -13px;
     }
     
+    
     .navbar-brand {
-    margin-left: 40px;
-   /* margin-top: -62px;*/
-    font-size: 23px !important;
+    margin-left: 30px;
+    margin-top: -62px;
    
 }
 
 h1, h2, h3, h4, h5, h6 {
-    margin-top: -11px;
+    margin-top: 11px;
     margin-bottom: 10px;
     padding: 1%;
     font-size: 14px;
@@ -651,20 +651,46 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
 
 /* patient details */
 .main{
-    margin-top: -100px;
+    margin-top: -115px;
 }
  .selected-doctor{
-        font-size: 13px;
+        font-size: 12px;
+       
     }
-     
      .panel-body{
          width: 100%;
-         margin-left: 0;
+         margin-left: 0%;
      }
+     
+     
+     .fname{
+          font-size: 12px;
+     }
+     
     .fill-more{
         text-align: center;
     }
-        
+    
+   
+.heading {
+    width: 115%;
+}
+    
+   .md-datepicker-input-container {
+    position: relative;
+    padding-bottom: 5px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    display: inline-block;
+    width: 65%;
+    margin-left: 12px;
+}
+
+.md-input-container, .pname, .age, .place, .phonenumber, .email {
+    width: 85%;
+    
+}
+    
        .row, .all-colors {
            font-size: 14px;
        }
