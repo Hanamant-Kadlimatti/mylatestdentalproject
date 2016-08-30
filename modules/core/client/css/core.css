@@ -686,16 +686,16 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
     
 }
     
-       .row, .all-colors {
-           font-size: 14px;
+  .row, .all-colors {
+     font-size: 14px;
+    }
+  h3{
+     font-size: 16px;
+     }
+   .heading{
+      font-size: 16px;
+      width: 108%;
        }
-        h3{
-            font-size: 16px;
-        }
-        .heading{
-            font-size: 16px;
-                width: 108%;
-        }
    .submit {
     margin-left: 83px;
 }

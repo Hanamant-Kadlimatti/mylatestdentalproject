@@ -200,8 +200,7 @@ md-dialog md-dialog-actions .md-button{
 }
 
    /* 480 screen below  all fontsize for mobile */
-   
-   
+  
    @media only screen and (max-width: 480px){
      
  /* success dialog  */
