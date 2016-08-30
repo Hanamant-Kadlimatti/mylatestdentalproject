@@ -132,7 +132,10 @@ md-dialog md-dialog-actions .md-button{
      margin-right: 270px;
     margin-top: 8px;
 }
-
+.img-circle poto{
+  width:100px;
+  height:100px;
+}
 
 /*     App slot size in Month,Week and Day    
 .fc-event[href], .fc-event.fc-draggable {
@@ -196,27 +199,63 @@ md-dialog md-dialog-actions .md-button{
   
 }
 
-
-
-
- /*@media only screen and (max-width: 910px)  {
-     .navbar-nav>li>a{
-         background-color:  #00A89C;
-         color: #fff;
-     }
+   /* 480 screen below  all fontsize for mobile */
+   
+   
+   @media only screen and (max-width: 480px){
+     
+ /* success dialog  */
+   
+    #success-confirm1 {
+      margin-top: -91px;
+    }
+     #success-confirm2 {
+      margin-top: -18px;
+      font-size: 12px;
+    }
+    .success-popup {
+        width: 0 auto;
+        font-size: 12px;
+        margin-bottom: 32px;
+    }
+    .center {
+        margin-left: -50px;
+    margin-right: -8px;
+     font-size: 12px;
+    }
     
- }*/
-/*.pad-bottom{
-    width:75%;
-    }*/
-/*.pad-bottom{
-    height:50%;
-    width:65%;
-    margin-right: -15px;
-     margin-left: 15px;
-}*/
+   img-circle, .poto{
+        width: 33px;
+    height: 33px;
+    margin-top: -12px;
+    }
+    .confirm-detail{
+       font-size: 12px;
+    }
+    
+    /*  failed dialog  */
 
-
+    .failed{
+        margin-top: -80px;
+    margin-bottom: -67px;
+    }
+    .failed1{
+        margin-bottom: -75px;
+    }
+    .not-confirm {
+        margin-top: -10px;
+    }
+   md-dialog md-dialog-actions .md-button {
+    margin-bottom: 88px;
+    margin-left: 8px;
+    margin-right: 97px;
+    margin-top: 9px;
+}
+    .fail-popup{
+       margin-bottom: -18px;
+        
+    }
+}
 
 /* this is fullcalendar-scheduler   */
  /*  Column Wise Doctor fontsize  12px or 16px   */

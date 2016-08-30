@@ -1,5 +1,5 @@
 <md-dialog aria-label="Failed"  ng-cloak>
-  <form>
+  <form class="failed">
    <!-- <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Failed</h2>
@@ -17,10 +17,10 @@
     
      <md-dialog-content>
       <div class="md-dialog-content">
-        <h2 class="text text-center bookapt">Failed!</h2>
-        <p class="text text-center">Your Appointment is not Confirmed</p>
+        <h2 class="text text-center bookapt failed1">Failed!</h2>
+        <p class="text text-center not-confirm">Your Appointment is not Confirmed</p>
         <md-divider></md-divider>
-        <div class="panel panel-body popup">
+        <div class="panel panel-body popup fail-popup">
           <h2>Server is down. Please try again later</h2>  
         </div>
       </div>
@@ -29,7 +29,7 @@
     
     <md-dialog-actions>
         
-      <md-button  style="background-color:#2b3d4f; color:white;"  ng-click="answer('okay')">
+      <md-button class="fail-close" style="background-color:#2b3d4f; color:white;"  ng-click="answer('okay')">
          Close
       </md-button>
        

@@ -1,4 +1,5 @@
-<md-dialog aria-label="Success" ng-cloak class="success">
+<md-dialog aria-label="Success" ng-cloak>
+  <form class="success">
    <!-- <md-toolbar>
       <div class="md-toolbar-tools">
         <h2>Confirmed</h2>
@@ -10,13 +11,15 @@
     </md-toolbar>-->
     <md-dialog-content>
       <div class="md-dialog-content">
-        <h2 class="text text-center bookapt">Thank you !!</h2>
-        <p class="text text-center">Your Appointment is Confirmed</p>
-        <md-divider></md-divider>
-        <div class="panel panel-body popup">
+        <div id="success-confirm1">
+        <h2 class="text text-center bookapt thank-you">Thank you !!</h2>
+        <p id="success-confirm2" class="text text-center ">Your Appointment is Confirmed</p>
+        </div>
+        <!--<md-divider></md-divider>-->
+        <div class="panel panel-body popup success-popup">
             <p>Your appointment request has been <strong>received.</strong> Please check your email for confirmation.</p>
        <div class="center">
-   <img class="img-circle poto" ng-src="modules/personals/img/buttons/{{selectedDentist.image}}" on-error-src="modules/personals/img/buttons/default.png" style="width:100px;height:100px;">
+   <img class="img-circle poto" ng-src="modules/personals/img/buttons/{{selectedDentist.image}}" on-error-src="modules/personals/img/buttons/default.png">
           <!-- <p><strong>Your booking details</strong></p>-->
            <p class="confirm-detail"><strong>Dentist Name:</strong> {{ selectedDentist.fName + ' ' + selectedDentist.lName + ' ' + selectedDentist.qualification}} </p>
            <p class="confirm-detail"><strong>Treatment: </strong>{{ selectedTreatment.description }}</p>
@@ -26,8 +29,8 @@
         </div>
       </div>
     </md-dialog-content>
-    <md-dialog-actions layout="row">
-      <md-button style="background-color:#2b3d4f; color:white;" ng-click="answer('okay')">
+    <md-dialog-actions layout="row" class="success-close">
+      <md-button  style="background-color:#2b3d4f; color:white;  margin-top: 40px;" ng-click="answer('okay')">
          Close
       </md-button>
     </md-dialog-actions>
