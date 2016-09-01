@@ -76,7 +76,7 @@ eventCreateApp.controller('EventsCreateController',
                 };
                 
                 $rootScope.patient = $scope.patientInfo.patientName;
-                $rootScope.dateTime = $scope.event.startDate,endDate;
+                $rootScope.dateTime = $scope.event.startDate;
 
 
                 $googleCalendar.addEvent($scope.event.startDate, endDate, this.selectedDentist, $scope.patientInfo)

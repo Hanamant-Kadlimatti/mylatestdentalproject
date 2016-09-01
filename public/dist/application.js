@@ -659,8 +659,8 @@ angular.module('events').config(['$stateProvider',
 var eventCreateApp = angular.module('events');
 
 eventCreateApp.controller('EventsCreateController',
-    ['$scope', '$googleCalendar', '$location', '$log', '$filter', '$compile', 'prsnlService', '$mdDialog', '$mdMedia',
-        function($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia) {
+    ['$scope', '$googleCalendar', '$location', '$log', '$filter', '$compile', 'prsnlService', '$mdDialog', '$mdMedia', '$rootScope',
+        function($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia, $rootScope) {
 
             $scope.events = [];
 
@@ -730,6 +730,9 @@ eventCreateApp.controller('EventsCreateController',
                     contact: $scope.event.patientPhoneNumber,
                     emailId: $scope.event.patientEmail
                 };
+                
+                $rootScope.patient = $scope.patientInfo.patientName;
+                $rootScope.dateTime = $scope.event.startDate;
 
 
                 $googleCalendar.addEvent($scope.event.startDate, endDate, this.selectedDentist, $scope.patientInfo)
@@ -791,6 +794,10 @@ eventCreateApp.controller('EventsCreateController',
                 };
                 $scope.selectedDentist = prsnlService.getDentist();
                 $scope.selectedTreatment = prsnlService.getTreatment();
+                
+                $scope.displayName = $rootScope.patient;
+                $scope.displayDateTime = $rootScope.dateTime;
+               
             }
             DialogController.$inject = ["$scope", "$mdDialog", "prsnlService"];
 
