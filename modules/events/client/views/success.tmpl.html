@@ -23,8 +23,8 @@
           <!-- <p><strong>Your booking details</strong></p>-->
            <p class="confirm-detail"><strong>Dentist Name:</strong> {{ selectedDentist.fName + ' ' + selectedDentist.lName + ' ' + selectedDentist.qualification}} </p>
            <p class="confirm-detail"><strong>Treatment: </strong>{{ selectedTreatment.description }}</p>
-           <p class="confirm-detail"><strong>Patient Name:</strong> {{ $scope.event.patientName }} </p>
-           <p class="confirm-detail"><strong> Appointment Date and Time: </strong>{{$scope.event.startDate | date: 'medium'}}</p>
+           <p class="confirm-detail"><strong>Patient Name:</strong> {{ displayName}} </p>
+           <p class="confirm-detail"><strong> Appointment Date and Time: </strong>{{displayDateTime  | date: 'medium'}}</p>
       </div>
         </div>
       </div>
