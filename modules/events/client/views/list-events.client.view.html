@@ -9,9 +9,10 @@
             <th>Patient Details</th>
             </tr>
         </thead>
-        
+         
         <tbody>
-            <tr ng-repeat="event in events | filter:searchText | orderBy: 'start.dateTime'">
+            <tr ng-repeat="event in events | filter:event | orderBy: 'start.dateTime'">
+                <input type="text" class="form-control" ng-model="event.description" placeholder="Search...">
                 <td>{{event.summary}}</td>
                 <td>{{event.start.dateTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}} to {{event.end.dateTime | amDateFormat: 'h:mm:ss a'}}</td>
                 <td>{{event.description.split('\n')[0]}}<br/>{{event.description.split('\n')[1]}}<br/>{{event.description.split('\n')[2]}}</td>

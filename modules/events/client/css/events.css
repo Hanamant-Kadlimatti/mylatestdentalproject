@@ -183,7 +183,7 @@ md-dialog md-dialog-actions .md-button{
     height: auto;
 }
  .panel-default{
-    margin-top: 0px;
+    margin-top: 0;
   }
  
 }

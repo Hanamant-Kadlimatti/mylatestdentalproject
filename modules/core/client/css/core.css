@@ -664,7 +664,7 @@ md-autocomplete, md-autocomplete md-autocomplete-wrap {
     }
      .panel-body{
          width: 100%;
-    margin-left: 0%;
+    margin-left: 0;
      }
      
     .fill-more{
