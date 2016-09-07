@@ -143,26 +143,24 @@
  
  
 /* 480 screen below  all fontsize for Mobile */
-    @media only screen and (max-width: 480px){
-		
-		.footer-distributed .footer-center p a {
+ @media only screen and (max-width: 480px){
+	.footer-distributed .footer-center p a {
 			font-size:12px;
 			margin-left: -4px;
-		}
+	}
 		 
-		.footer-distributed .footer-center {
-   
-          margin-bottom: -3px;
-          margin-top: -23px;
+	.footer-distributed .footer-center {
+           margin-bottom: -3px;
+           margin-top: -23px;
 }
 		
 	.footer-distributed .footer-icons a { 
-    width: 30px;
+          width: 30px;
 
 }
-.footer-distributed .footer-right {
-    margin-right: 4px;
-	margin-bottom: 0px;
+   .footer-distributed .footer-right {
+        margin-right: 4px;
+    	margin-bottom: 0px;
 }
         
  
