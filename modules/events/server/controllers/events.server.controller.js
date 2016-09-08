@@ -12,17 +12,15 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
 // Load the twilio module
 var twilio = require('twilio');
 
-// Create a new REST API client to make authenticated requests against the
-// twilio back end
+// Create a new REST API client to make authenticated requests against the twilio back end
 var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85cfa30f29acb55e21fd179db977');
 
-var sendSms = function () {
+function sendSms(contactNumber) {
 
     // Pass in parameters to the REST API using an object literal notation. The
     // REST client will handle authentication and response serialzation for you.
-    client.sms.messages.create({
-        // to:'+919663398669',
-        to: '+918792955198',   // This is my original number
+        client.sms.messages.create({
+        to: '+91' + contactNumber,   // This is my original number
         from: '+17865286119', //I got this number from twilio
         body: ' Your Appointment is Confirmed  Thank You'
     }, function (error, message) {
@@ -45,82 +43,73 @@ var sendSms = function () {
     });
 };
 
-var userProfile = null;
-var oa;
+function authorize(refreshToken) {
+    var deferred = q.defer();
 
-function authorize(refreshToken)
-{
-  var deferred = q.defer();
+    var oa = new oauth.OAuth2(config.google.clientID,
+        config.google.clientSecret,
+        'https://accounts.google.com/o',
+        '/oauth2/auth',
+        '/oauth2/token');
 
-  oa = new oauth.OAuth2(config.google.clientID,
-            config.google.clientSecret,
-            'https://accounts.google.com/o',
-            '/oauth2/auth',
-            '/oauth2/token');
+    if (refreshToken) {
+        oa.getOAuthAccessToken(refreshToken, { grant_type: 'refresh_token', client_id: config.google.clientID, client_secret: config.google.clientSecret },
+            function (err, access_token, refresh_token, res) {
 
-  if(refreshToken)
-  {
-      oa.getOAuthAccessToken(refreshToken, {grant_type:'refresh_token', client_id: config.google.clientID, client_secret: config.google.clientSecret}, 
-            function(err, access_token, refresh_token, res){
+                //lookup settings from database
+                User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
 
-      //lookup settings from database
-      User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings){
+                    var expiresIn = parseInt(res.expires_in);
+                    var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
 
-          var expiresIn = parseInt(res.expires_in);
-          var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
+                    //add refresh token if it is returned
+                    if (refresh_token !== undefined) settings.providerData.refreshToken = refresh_token;
 
-          //add refresh token if it is returned
-          if(refresh_token !== undefined) settings.providerData.refreshToken = refresh_token;
+                    //update access token in database
+                    settings.providerData.accessToken = access_token;
+                    settings.google_access_token_expiration = accessTokenExpiration;
 
-          //update access token in database
-          settings.providerData.accessToken = access_token;
-          settings.google_access_token_expiration = accessTokenExpiration;
+                    settings.save();
 
-          settings.save();
+                    deferred.resolve(settings);
+                });
+            });
 
-          deferred.resolve(settings);
-        });
-      });
+    }
+    else {
+        deferred.reject({ error: 'Application needs authorization.' });
+    }
 
-  }
-  else
-  {
-    deferred.reject({error: 'Application needs authorization.'});
-  }
-
-  return deferred.promise;
+    return deferred.promise;
 }
 
-function getAccessToken()
-{
-  var deferred = q.defer();
-  var accessToken;
+function getAccessToken() {
+    var deferred = q.defer();
+    var accessToken;
 
 
-    User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings){
-      //check if access token is still valid
-      var today = new Date();
-      var currentTime = today.getTime();
-      if(currentTime < settings.google_access_token_expiration)
-      {
-         deferred.resolve(settings);
-      }
-      else
-      {
-        //refresh the access token
-        authorize(settings.providerData.refreshToken).then(function(settings){
+    User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
+        //check if access token is still valid
+        var today = new Date();
+        var currentTime = today.getTime();
+        if (currentTime < settings.google_access_token_expiration) {
+            deferred.resolve(settings);
+        }
+        else {
+            //refresh the access token
+            authorize(settings.providerData.refreshToken).then(function (settings) {
 
-          deferred.resolve(settings);
+                deferred.resolve(settings);
 
-        }, function(error){
+            }, function (error) {
 
-          deferred.reject(error);
+                deferred.reject(error);
 
-        });
-      }
+            });
+        }
     });
 
-  return deferred.promise;
+    return deferred.promise;
 }
 
 exports.login = function (req, res, next) {
@@ -132,13 +121,11 @@ exports.login = function (req, res, next) {
 };
 
 exports.list = function (req, res, next) {
-    
+
     getAccessToken().then(function (user) {
 
-        userProfile = user;
-
-        var accessToken = userProfile.providerData.accessToken;
-        var calendarId = userProfile.email;
+        var accessToken = user.providerData.accessToken;
+        var calendarId = user.email;
         var calendar = new gcal.GoogleCalendar(accessToken);
 
         calendar.events.list(calendarId, { 'timeMin': new Date().toISOString() }, function (err, eventList) {
@@ -220,7 +207,7 @@ exports.create = function (req, res, next) {
             ]
         };
 
-         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
+        var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
         calendar.events.insert(profile.email, addEventBody, function (err, response) {
 
@@ -230,7 +217,7 @@ exports.create = function (req, res, next) {
                 });
             } else {
                 res.send(response);
-                sendSms();
+                sendSms(req.body.patient.contact);
             }
 
         });

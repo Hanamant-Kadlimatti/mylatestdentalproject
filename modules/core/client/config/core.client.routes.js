@@ -13,13 +13,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         url: '/',
         templateUrl: 'modules/core/views/home.client.view.html'
       })
-      .state('booknow', {
-        url: '/booknow',
+      .state('bookappointment', {
+        url: '/bookappointment',
         templateUrl: 'modules/core/views/book.client.view.html'
-      })
-      .state('booklast', {
-        url: '/booklast',
-        templateUrl: 'modules/core/views/book-last.client.view.html'
       })
       .state('not-found', {
         url: '/not-found',

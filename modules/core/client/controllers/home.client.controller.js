@@ -14,15 +14,10 @@ angular.module('core').controller('HomeController',
         prsnlService.addTreatment(appt.selectedAppt);
         
         if(prsnl.selectedPrsnl && appt.selectedAppt){
-            $location.path('/booklast');
+            $location.path('/bookappointment');
              }else{
               alert('Please select both Treatment & Doctor');
             }
-    };
-    
-    $scope.data = {
-      selectedIndex: 0,
-      bottom: false
     };
     
     /**
