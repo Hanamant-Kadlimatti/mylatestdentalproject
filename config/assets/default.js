@@ -12,7 +12,7 @@ module.exports = {
         'public/lib/angular-multi-select-alexandernst/dist/angular-multi-select.css',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.css',
         'public/lib/angular-material/angular-material.css',
-        'public/lib/font-awesome/font-awesome.css', 
+        'public/lib/font-awesome/font-awesome.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
         'public/lib/angularMultipleSelect/build/multiple-select.min.css'
       ],
@@ -30,7 +30,7 @@ module.exports = {
         'public/lib/angular-ui-calendar/src/calendar.js',
         'public/lib/moment/moment.js',
         'public/lib/angular-moment/angular-moment.js',
-        'public/lib/fullcalendar/dist/fullcalendar.js',    
+        'public/lib/fullcalendar/dist/fullcalendar.js',
         'public/lib/angular-cookies/angular-cookies.js',
         'public/lib/angular-filter/dist/angular-filter.min.js',
         'public/lib/angular-multi-select-alexandernst/dist/angular-multi-select.js',
