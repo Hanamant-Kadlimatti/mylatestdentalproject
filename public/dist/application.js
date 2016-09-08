@@ -161,13 +161,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
         url: '/',
         templateUrl: 'modules/core/views/home.client.view.html'
       })
-      .state('booknow', {
-        url: '/booknow',
+      .state('bookappointment', {
+        url: '/bookappointment',
         templateUrl: 'modules/core/views/book.client.view.html'
-      })
-      .state('booklast', {
-        url: '/booklast',
-        templateUrl: 'modules/core/views/book-last.client.view.html'
       })
       .state('not-found', {
         url: '/not-found',
@@ -228,15 +224,10 @@ angular.module('core').controller('HomeController',
         prsnlService.addTreatment(appt.selectedAppt);
         
         if(prsnl.selectedPrsnl && appt.selectedAppt){
-            $location.path('/booklast');
+            $location.path('/bookappointment');
              }else{
               alert('Please select both Treatment & Doctor');
             }
-    };
-    
-    $scope.data = {
-      selectedIndex: 0,
-      bottom: false
     };
     
     /**
@@ -687,31 +678,6 @@ eventCreateApp.controller('EventsCreateController',
             //Book an appointment            
             this.addEvent = function() {
                 
-               // Validation
-                if(dateid.value === ''){
-                    alert('Please enter appointment Date');
-                }else if(timeid.value === ''){
-                    alert('please enter appointment Time');
-                }else if(patientid.value === ''){
-                    alert('please enter patient name');
-                }else if(ageid.value === ''){
-                    alert('please enter patient age');
-                }                
-                else if(genderid.value === ''){
-                    alert('please select gender ');
-                }
-                else if(placeid.value === ''){
-                    alert('please enter patient place');
-                }else if(phoneid.value === ''){
-                    alert('please enter phone number');
-                }else if(emalid.value === ''){
-                    alert('please enter patient emailId');
-                }else if(checkboxid.value === ''){
-                    alert('please select Medical Condition');
-                }else if(complaintid.value === ''){
-                    alert('please enter chief complaint');
-                }
-                 else {
                 console.log('Start Time:', $scope.event.startTime);
 
                 var time = $scope.event.startTime.match(/(\d+)(?::(\d\d))?\s*(p?)/);
@@ -745,7 +711,6 @@ eventCreateApp.controller('EventsCreateController',
                         $scope.showFailed();
                     });
                    
-                 }
             };
 
             this.updateTime = function() {
