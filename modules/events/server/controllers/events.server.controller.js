@@ -19,7 +19,7 @@ function sendSms(contactNumber) {
 
     // Pass in parameters to the REST API using an object literal notation. The
     // REST client will handle authentication and response serialzation for you.
-        client.sms.messages.create({
+    client.sms.messages.create({
         to: '+91' + contactNumber,   // This is my original number
         from: '+17865286119', //I got this number from twilio
         body: ' Your Appointment is Confirmed  Thank You'
@@ -41,7 +41,7 @@ function sendSms(contactNumber) {
             console.log('Oops! There was an error.');
         }
     });
-};
+}
 
 function authorize(refreshToken) {
     var deferred = q.defer();
@@ -92,21 +92,25 @@ function getAccessToken() {
         //check if access token is still valid
         var today = new Date();
         var currentTime = today.getTime();
-        if (currentTime < settings.google_access_token_expiration) {
-            deferred.resolve(settings);
-        }
-        else {
-            //refresh the access token
-            authorize(settings.providerData.refreshToken).then(function (settings) {
 
+        if (settings) {
+            if (currentTime < settings.google_access_token_expiration) {
                 deferred.resolve(settings);
+            }
+            else {
+                //refresh the access token
+                authorize(settings.providerData.refreshToken).then(function (settings) {
 
-            }, function (error) {
+                    deferred.resolve(settings);
 
-                deferred.reject(error);
+                }, function (error) {
 
-            });
+                    deferred.reject(error);
+
+                });
+            }
         }
+
     });
 
     return deferred.promise;

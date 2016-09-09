@@ -72,9 +72,7 @@
 	text-align: center;
 }
 
-footer, .push {
-	height: 100px; /* '.push' must be the same height as 'footer' */
-}
+
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
@@ -95,6 +93,10 @@ footer, .push {
 	.footer-distributed .footer-center i{
 		margin-left: 0;
 	}
+
+	footer, .push {
+		height: 90px; /* '.push' must be the same height as 'footer' */
+	} 
 		
 }
 
@@ -109,15 +111,18 @@ footer, .push {
 	.footer-distributed .footer-center {
            margin-bottom: 0;
            margin-top: 0;
-}
+	}
 		
 	.footer-distributed .footer-icons a { 
           width: 30px;
 
-}
+	}
    .footer-distributed .footer-right {
         margin-right: 4px;
-}
-        
+	}
+    
+	footer, .push {
+		height: 90px; /* '.push' must be the same height as 'footer' */
+	}   
  
 	} 

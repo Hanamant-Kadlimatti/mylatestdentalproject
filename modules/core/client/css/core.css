@@ -2,10 +2,7 @@
 /* Navigation Header*/
 
  .navbar-fixed-top  {
-    -webkit-box-shadow: 0 1px 1px #BDBDBD;
-    -moz-box-shadow: 0 1px 1px #BDBDBD;
-    box-shadow: 0 1px 1px #BDBDBD;
-    background-color: white;
+    background-color: ghostwhite;
 }
 
 .navbar-brand {
@@ -36,13 +33,12 @@
 }
 
 .body-main {
-    margin-top: 10px;
+    margin-top: 50px;
     text-align: center;
 }
 
 .book{
-    background-color:#2b3d4f; 
-    color:white;
+    background-color:#2b3d4f !important;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -53,11 +49,18 @@
      text-align: center;
  }
 
+.book-text {
+    margin: 0 auto;
+    max-width: 1100px;  /* 900px */
+    text-align: center;
+    color: #2b3d4f;
+ }
+
  .input-search {
      padding: 5px;
  
  }
-    
+
 
 
 

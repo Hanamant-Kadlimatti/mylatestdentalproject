@@ -169,13 +169,6 @@ md-dialog md-dialog-actions .md-button{
 }
 }
 
-@media only screen and (max-width: 910px) {
- 
-  .container{
-    margin-top: 65px;
-  }
-}
-
 
 @media only screen and (max-width: 896px) {
  .container {

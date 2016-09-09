@@ -7,58 +7,55 @@
         <div class="body-main">
             <img class="confident-logo" itemprop="logo" src="http://confidentdentalcare.in/images/confident_logo.png" alt="Confident Dental Care"
                 title="Confident Dental Care">
-        </div><br>
-        <div class="panels">
-            <form ng-submit="$event.preventDefault()" name="searchForm">
-                <div layout-gt-sm="row" class="panel-heading">
-                    <h4 class="panel-search"> Book an appointment </h4>
-                </div>
-                <div layout-gt-sm="row" class="panel-body panel-search">
-                    <div class="input-search" flex>
-                        <md-autocomplete md-min-length="0" ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedAppt"
-                            md-selected-item-change="ctrl.selectedApptChange(item)" md-search-text="ctrl.searchAppt" md-items="item in ctrl.queryApptSearch(ctrl.searchAppt)"
-                            md-item-text="item.description" placeholder="Search treatment">
-                            <md-item-template>
-                                <span md-highlight-text="ctrl.searchAppt">{{item.description}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                <div class="patientcolor">
-                                    No Treatment matching "{{ctrl.searchAppt}}" were found.
-                                </div>
-                            </md-not-found>
-                        </md-autocomplete>
-                    </div>
-                    <div class="input-search" flex>
-                        <md-autocomplete ng-disabled="ctrl.isDisabled" md-min-length="0" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedPrsnl"
-                            md-selected-item-change="ctrl.selectedPrsnlChange(prsnl)" md-search-text="ctrl.searchPrsnl" md-items="prsnl in ctrl.queryPrsnlSearch(ctrl.searchPrsnl)"
-                            md-item-text="prsnl.fName  + ' ' + prsnl.lName" placeholder="Search dentist">
-                            <md-item-template>
-                                <img class="img-circle" ng-src="modules/personals/img/buttons/{{prsnl.image}}" on-error-src="modules/personals/img/buttons/default.png"
-                                    style="width:40px;height:35px;">
-                                <!-- <i class="glyphicon glyphicon-user user-cust-list"></i >-->
-                                <span md-highlight-text="ctrl.searchPrsnl"> {{ prsnl.fName + ' ' + prsnl.lName + ' , ' +prsnl.qualification + ' , ' +prsnl.speciality}}</span>
-                            </md-item-template>
-                            <md-not-found>
-                                <div class="patientcolor">
-                                    No Doctors matching "{{ctrl.searchPrsnl}}" were found.
-                                </div>
-                            </md-not-found>
-                        </md-autocomplete>
-                    </div>
-                </div>
-            </form>
         </div>
+        <form ng-submit="$event.preventDefault()" name="searchForm">
+            <div layout-gt-sm="row" class="panel-heading">
+                <h4 class="book-text" style="margin-top:20px"> Book an appointment </h4>
+            </div>
+            <div layout-gt-sm="row" class="panel-body panel-search">
+                <div class="input-search" flex>
+                    <md-autocomplete md-min-length="0" ng-disabled="ctrl.isDisabled" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedAppt"
+                        md-selected-item-change="ctrl.selectedApptChange(item)" md-search-text="ctrl.searchAppt" md-items="item in ctrl.queryApptSearch(ctrl.searchAppt)"
+                        md-item-text="item.description" placeholder="Search treatment">
+                        <md-item-template>
+                            <span md-highlight-text="ctrl.searchAppt">{{item.description}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <div class="patientcolor">
+                                No Treatment matching "{{ctrl.searchAppt}}" were found.
+                            </div>
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+                <div class="input-search" flex>
+                    <md-autocomplete ng-disabled="ctrl.isDisabled" md-min-length="0" md-no-cache="ctrl.noCache" md-selected-item="ctrl.selectedPrsnl"
+                        md-selected-item-change="ctrl.selectedPrsnlChange(prsnl)" md-search-text="ctrl.searchPrsnl" md-items="prsnl in ctrl.queryPrsnlSearch(ctrl.searchPrsnl)"
+                        md-item-text="prsnl.fName  + ' ' + prsnl.lName" placeholder="Search dentist">
+                        <md-item-template>
+                            <img class="img-circle" ng-src="modules/personals/img/buttons/{{prsnl.image}}" on-error-src="modules/personals/img/buttons/default.png"
+                                style="width:40px;height:35px;">
+                            <!-- <i class="glyphicon glyphicon-user user-cust-list"></i >-->
+                            <span md-highlight-text="ctrl.searchPrsnl"> {{ prsnl.fName + ' ' + prsnl.lName + ' , ' +prsnl.qualification + ' , ' +prsnl.speciality}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            <div class="patientcolor">
+                                No Doctors matching "{{ctrl.searchPrsnl}}" were found.
+                            </div>
+                        </md-not-found>
+                    </md-autocomplete>
+                </div>
+            </div>
+        </form>
 
-        <div class="body-main">
+        <div class="book-text">
             <p class="search-keyword"> You can search treatments and doctors with required keywords </p>
-            <md-button class="book" aria-label="book" ng-click="nextPage()">
+            <md-button class="md-raised md-primary book" aria-label="book" ng-click="nextPage()">
                 BOOK APPOINTMENT <i class="glyphicon glyphicon-arrow-right"></i></md-button>
-
         </div>
 
     </div>
 
-    <div data-ng-include="'/modules/core/views/footer.client.view.html'" class="navbar"></div>
+    <div data-ng-include="'/modules/core/views/footer.client.view.html'" ></div>
 
 
 </body>
