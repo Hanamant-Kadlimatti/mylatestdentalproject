@@ -1,32 +1,33 @@
 <section id="booking-page" class="container" ng-controller="BookController">
 
-    <h3 class="main"> Selected Doctor & Treatment </h3>
-
-    <div layout="column" layout-xs="column" ng-controller="EventsCreateController as createEventCtrl">
 
 
-        <div flex-gt-sm="60" flex="100" layout-margin class="panel panel-body panel-left all-colors">
-            <p class="fName pad-right">
-                <h3 class="fname">
-                    <img class="img-circle" ng-src="modules/personals/img/buttons/{{dentist.image}}" on-error-src="modules/personals/img/buttons/default.png"
-                        style="width:80px;height:80px;">
-                    <!-- <i class="glyphicon glyphicon-user user-cust-list"></i >-->
-                    &nbsp;&nbsp;&nbsp;&nbsp; {{ dentist.fName + ' ' + dentist.lName + ', ' + dentist.qualification }}</h3>
+    <div layout="row" layout-xs="column" ng-controller="EventsCreateController as createEventCtrl">
+
+        <div flex="100" flex-gt-sm="33" class="panel panel-body panel-left book-text" style="background:#00A89C;margin-top:10px">
+
+            <br><br>
+            <p class="fName img-circle">
+                <img class="img-circle" 
+                ng-src="modules/personals/img/buttons/{{dentist.image}}" 
+                on-error-src="modules/personals/img/buttons/default.png">
+                
+                <h3>
+                    {{ dentist.fName + ' ' + dentist.lName + ', ' + dentist.qualification }}
+                </h3>
             </p>
-            <div class="selected-doctor">
-                <p class="experience"> <strong>Experience &nbsp;&nbsp; : </strong> {{ dentist.experience }}</p>
 
-                <p class="speciality"> <strong>Specialised &nbsp; : </strong> {{ dentist.speciality }}</p>
+            <br><br>
 
-                <p class="treatment"> <strong>Treatment  &nbsp;&nbsp;&nbsp;&nbsp;   : </strong> {{ treatment.description }}</p>
-
-                <p class="rating"> <strong>Rating  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;  : </strong> {{ dentist.rating }}/5</p>
-            </div>
+            <p class="experience"> <strong>Experience : </strong> {{ dentist.experience }}</p>
+            <p class="speciality"> <strong>Specialised : </strong> {{ dentist.speciality }}</p>
+            <p class="treatment"> <strong>Treatment : </strong> {{ treatment.description }}</p>
+            <p class="rating"> <strong>Rating : </strong> {{ dentist.rating }}/5</p>
         </div>
 
-        <h3 class="fill-more"> Please fill more information to book an appointment </h3>
 
-        <div flex-gt-sm="60" flex="100" layout-margin class="panel panel-body">
+        <div flex="100" flex-gt-sm="66" class="panel panel-body">
+            <h3 class="fill-more"> Please fill more information to book an appointment </h3>
 
             <form name="patientForm" class="patientForm">
 
@@ -34,26 +35,33 @@
                     <div class="col-sm-6 ">
                         <legend class="date-time heading">Appointment Date and Time</legend>
 
-                        <md-content class="pad-bottom">
-                            <b> <md-datepicker id="dateid" class="all-colors select-date" name="startDate" ng-model="$parent.event.startDate" md-placeholder="Select Date" 
-                        ng-change="createEventCtrl.updateTime()" md-min-date="minDate" md-max-date="maxDate">
-                </md-datepicker> </b>
-                            <div ng-message="required">
-                                {{notavailable}}
-                            </div>
+                        <md-datepicker class="select-date" 
+                            name="startDate" 
+                            ng-model="$parent.event.startDate" 
+                            md-placeholder="Select Date" 
+                            ng-change="createEventCtrl.updateTime()" 
+                            md-min-date="minDate" 
+                            md-max-date="maxDate">
+                        </md-datepicker> 
+                        <div ng-message="required">
+                            {{notavailable}}
+                        </div>
 
-                        </md-content>
-
-                        <md-input-container class="md-icon-float md-icon-right md-block time">
-                            <label class="control-label col-sm-3 all-colors " for="startTime">Select Time</label>
-                            <md-icon><i class="text-muted glyphicon glyphicon-time time-icon "></i></md-icon>
+                        <md-input-container class="md-icon-right md-block time" style="margin-left:20px">
+                            <label class="startTime-label" for="startTime">Select Time</label>
+                            <md-icon><i class="text-muted glyphicon glyphicon-time"></i></md-icon>
+                            
                             <div class="form-group" id="timePick">
-                                <input id="timeid" name="startTime" type="text" class="form-control time start" ng-model="$parent.event.startTime" id="startTime"
+                                <input name="startTime" type="text" 
+                                    class="form-control startTime" 
+                                    ng-model="$parent.event.startTime" 
+                                    id="startTime"
                                     ng-required="true">
                                 <div class="patientcolor" ng-show="patientForm.$submitted || patientForm.startTime.$touched">
-                                    <div ng-show="patientForm.startTime.$error.required"><b>Please fill the appointment Time</b></div>
+                                    <div ng-show="patientForm.startTime.$error.required">
+                                        <b>Please fill the appointment Time</b>
+                                    </div>
                                 </div>
-                                <!--<span class="red" ng-show="startTimeDisplay">{{errorMsgTime}}</span>-->
                             </div>
                         </md-input-container>
 
@@ -160,11 +168,11 @@
                 </div>
 
             </form>
-
+            <md-button class="md-primary submit all-colors" style="background-color:#2b3d4f;  color:white;" ng-click="createEventCtrl.addEvent()"
+                ng-enabled="patientForm.$invalid || patientForm.$pending"><b>Submit</b></md-button>
         </div>
-        <md-button class="md-primary submit all-colors" style="background-color:#2b3d4f;  color:white;" ng-click="createEventCtrl.addEvent()"
-            ng-enabled="patientForm.$invalid || patientForm.$pending"><b>Submit</b></md-button><br><br>
-        <br><br><br>
+
+
     </div>
 
 </section>

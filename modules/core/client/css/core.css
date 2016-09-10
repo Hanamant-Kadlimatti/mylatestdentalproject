@@ -50,20 +50,45 @@
  }
 
 .book-text {
-    margin: 0 auto;
-    max-width: 1100px;  /* 900px */
     text-align: center;
     color: #2b3d4f;
  }
 
  .input-search {
      padding: 5px;
- 
  }
 
+.md-datepicker-input-container {
+    margin-left: 10px;
+    width: 200px;
+}
 
+.md-datepicker-calendar-icon {
+    margin-left: 6px;
+    margin-top: 5px;
+}
 
+.startTime {
+    margin-left: 8px;
+    width: 200px !important;
+}
 
+.startTime-label {
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.glyphicon-time {
+    font-size: 20px;
+}
     
+.patientForm {
+    margin-top: 50px;
+}
+
+.img-circle {
+    text-align: center;
+}
+
 
 
