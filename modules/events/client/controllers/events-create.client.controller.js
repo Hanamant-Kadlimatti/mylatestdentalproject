@@ -91,6 +91,8 @@ eventCreateApp.controller('EventsCreateController',
                             'disableTextInput': true,
                             'timeFormat': 'H:i'
                         });
+
+                        break;
                     }
                     else {
                        $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
