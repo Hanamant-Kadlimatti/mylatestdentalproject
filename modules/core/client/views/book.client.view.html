@@ -34,22 +34,20 @@
 
                 <legend class="fill-more">Appointment Date and Time</legend>
 
-                <md-content>
-                    <md-datepicker 
+                <md-datepicker 
                     class="select-date" 
                     name="startDate" 
                     ng-model="$parent.event.startDate" 
                     md-placeholder="Select Date" 
                     ng-change="createEventCtrl.updateTime()"
                     md-min-date="minDate" md-max-date="maxDate">
-                    </md-datepicker>
-                    <br>
-                    <div class="patientMessage" ng-message="required">
-                        <b>{{notavailable}}</b>
-                    </div>
-                </md-content>
+                </md-datepicker>
+                <br>
+                <div class="patientMessage" ng-message="required">
+                    <b>{{notavailable}}</b>
+                </div>
 
-                <md-input-container layout="row" class="md-icon-right md-block time">
+                <md-input-container layout="row" class="time">
                     <label class="startTime-label" for="startTime">Select Time</label>
                     <md-icon><i class="text-muted glyphicon glyphicon-time"></i></md-icon>
 
