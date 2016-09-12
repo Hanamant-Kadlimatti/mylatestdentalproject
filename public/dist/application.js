@@ -761,11 +761,14 @@ eventCreateApp.controller('EventsCreateController',
                             'timeFormat': 'H:i'
                         });
 
+                        $scope.notavailable = '';
                         break;
                     }
                     else {
                         $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
+
+                    
 
                 }
 
