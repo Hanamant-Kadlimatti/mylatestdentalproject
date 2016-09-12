@@ -123,13 +123,16 @@
                         Medical Conditions : 
                     </label>
                     <div layout-xs="column" style="margin-left:30px;margin-top:20px">
-                        <md-checkbox class="md-primary" ng-model="$parent.event.medicalCondition"><label> Asthma </label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value2"><label> High Blood Presure </label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value3"><label> Bleeding Disorder </label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value4"><label> Heart Disease </label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value5"><label> Allergy </label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value6"><label>Diabetes</label></md-checkbox>
-                        <md-checkbox class="md-primary" ng-model="$parent.event.value7"><label> Others </label></md-checkbox>
+                        <fieldset class="standard">
+
+                            <div layout="row" layout-wrap="" flex="">
+                                <div flex="50" ng-repeat="item in items">
+                                    <md-checkbox ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                                        {{ item }}
+                                    </md-checkbox>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
 
                 </mde-list-item>

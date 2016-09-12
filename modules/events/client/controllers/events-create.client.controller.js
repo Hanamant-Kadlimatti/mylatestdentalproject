@@ -4,7 +4,7 @@ var eventCreateApp = angular.module('events');
 
 eventCreateApp.controller('EventsCreateController',
     ['$scope', '$googleCalendar', '$location', '$log', '$filter', '$compile', 'prsnlService', '$mdDialog', '$mdMedia', '$rootScope',
-        function($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia, $rootScope) {
+        function ($scope, $googleCalendar, $location, $log, $filter, $compile, prsnlService, $mdDialog, $mdMedia, $rootScope) {
 
             $scope.events = [];
 
@@ -26,11 +26,11 @@ eventCreateApp.controller('EventsCreateController',
                 buttonImage: 'calendar.gif',
                 buttonText: 'Calendar'
             });
-               
+
 
             //Book an appointment            
-            this.addEvent = function() {
-                
+            this.addEvent = function () {
+
                 console.log('Start Time:', $scope.event.startTime);
 
                 var time = $scope.event.startTime.match(/(\d+)(?::(\d\d))?\s*(p?)/);
@@ -49,24 +49,46 @@ eventCreateApp.controller('EventsCreateController',
                     contact: $scope.event.patientPhoneNumber,
                     emailId: $scope.event.patientEmail
                 };
-                
+
                 $rootScope.patient = $scope.patientInfo.patientName;
                 $rootScope.dateTime = $scope.event.startDate;
 
 
                 $googleCalendar.addEvent($scope.event.startDate, endDate, this.selectedDentist, $scope.patientInfo)
-                    .then(function(result) {
+                    .then(function (result) {
                         console.log('Add Event Result:', result);
                         $scope.showSuccess();
-                    
-                        
-                    }, function(result) {
+
+
+                    }, function (result) {
                         $scope.showFailed();
                     });
-                   
+
             };
 
-            this.updateTime = function() {
+            // Checkbox code
+
+            $scope.items = ['Asthma', 'High Blood Presure ', 'Bleeding Disorder', 'Heart Disease', 'Diabetes'];
+            $scope.selected = [];
+
+            $scope.toggle = function (item, list) {
+                var idx = list.indexOf(item);
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                }
+                else {
+                    list.push(item);
+                }
+            };
+
+            $scope.exists = function (item, list) {
+                return list.indexOf(item) > -1;
+            };
+            
+            
+            
+
+            this.updateTime = function () {
 
                 $scope.notavailable = '';
 
@@ -95,7 +117,7 @@ eventCreateApp.controller('EventsCreateController',
                         break;
                     }
                     else {
-                       $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
+                        $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
 
                 }
@@ -103,24 +125,24 @@ eventCreateApp.controller('EventsCreateController',
             };
 
             function DialogController($scope, $mdDialog, prsnlService) {
-                $scope.hide = function() {
+                $scope.hide = function () {
                     $mdDialog.hide();
                 };
-                $scope.cancel = function() {
+                $scope.cancel = function () {
                     $mdDialog.cancel();
                 };
-                $scope.answer = function(answer) {
+                $scope.answer = function (answer) {
                     $mdDialog.hide(answer);
                 };
                 $scope.selectedDentist = prsnlService.getDentist();
                 $scope.selectedTreatment = prsnlService.getTreatment();
-                
+
                 $scope.displayName = $rootScope.patient;
                 $scope.displayDateTime = $rootScope.dateTime;
-               
+
             }
 
-            $scope.showFailed = function() {
+            $scope.showFailed = function () {
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
                 $mdDialog.show({
                     controller: DialogController,
@@ -129,19 +151,19 @@ eventCreateApp.controller('EventsCreateController',
                     clickOutsideToClose: true,
                     fullscreen: useFullScreen
                 })
-                    .then(function(answer) {
+                    .then(function (answer) {
                         $location.path('/');
-                    }, function() {
+                    }, function () {
                         $location.path('/');
                     });
-                $scope.$watch(function() {
+                $scope.$watch(function () {
                     return $mdMedia('xs') || $mdMedia('sm');
-                }, function(wantsFullScreen) {
+                }, function (wantsFullScreen) {
                     $scope.customFullscreen = (wantsFullScreen === true);
                 });
             };
 
-            $scope.showSuccess = function() {
+            $scope.showSuccess = function () {
                 var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
                 $mdDialog.show({
                     controller: DialogController,
@@ -150,14 +172,14 @@ eventCreateApp.controller('EventsCreateController',
                     clickOutsideToClose: true,
                     fullscreen: useFullScreen
                 })
-                    .then(function(answer) {
+                    .then(function (answer) {
                         $location.path('/');
-                    }, function() {
+                    }, function () {
                         $location.path('/');
                     });
-                $scope.$watch(function() {
+                $scope.$watch(function () {
                     return $mdMedia('xs') || $mdMedia('sm');
-                }, function(wantsFullScreen) {
+                }, function (wantsFullScreen) {
                     $scope.customFullscreen = (wantsFullScreen === true);
                 });
             };
