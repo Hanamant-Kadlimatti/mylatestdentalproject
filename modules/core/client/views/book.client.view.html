@@ -118,30 +118,27 @@
                     </div>
                 </md-input-container>
 
-                <md-content class="text-muted" style="font-size:13px">
-                    <mde-list-item id="checkboxid" name="medicalCondition">
-                        <label layout="row" style="margin-left:25px;margin-top:0">  
+                <mde-list-item class="text-muted" id="checkboxid" name="medicalCondition">
+                    <label layout="row" style="margin-left:25px;margin-top:0">  
                         Medical Conditions : 
                     </label>
-                        <div layout-xs="column" style="margin-left:30px;margin-top:20px">
-                            <md-checkbox class="md-primary" ng-model="$parent.event.medicalCondition"><label> Asthma </label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value2"><label> High Blood Presure </label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value3"><label> Bleeding Disorder </label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value4"><label> Heart Disease </label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value5"><label> Allergy </label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value6"><label>Diabetes</label></md-checkbox>
-                            <md-checkbox class="md-primary" ng-model="$parent.event.value7"><label> Others </label></md-checkbox>
-                        </div>
+                    <div layout-xs="column" style="margin-left:30px;margin-top:20px">
+                        <md-checkbox class="md-primary" ng-model="$parent.event.medicalCondition"><label> Asthma </label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value2"><label> High Blood Presure </label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value3"><label> Bleeding Disorder </label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value4"><label> Heart Disease </label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value5"><label> Allergy </label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value6"><label>Diabetes</label></md-checkbox>
+                        <md-checkbox class="md-primary" ng-model="$parent.event.value7"><label> Others </label></md-checkbox>
+                    </div>
 
-                    </mde-list-item>
-                </md-content>
+                </mde-list-item>
 
 
                 <md-input-container class="complaint">
                     <label class="complaint" layout="row">Chief Complaint:</label>
-                    <textarea id="complaintid" name="patientComplaint" class="complaint" ng-model="$parent.event.patientComplaint" 
-                    md-maxlength="150"
-                    rows="3" md-select-on-focus required>
+                    <textarea id="complaintid" name="patientComplaint" class="complaint" ng-model="$parent.event.patientComplaint" md-maxlength="150"
+                        rows="3" md-select-on-focus required>
                     </textarea>
                 </md-input-container>
 
