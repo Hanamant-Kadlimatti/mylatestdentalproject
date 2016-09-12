@@ -72,7 +72,7 @@
 
 .md-datepicker-input-container {
     margin-top: 15px;
-    width: 200px;
+    width: 150px;
 }
 
 .md-datepicker-calendar-icon {
@@ -80,7 +80,7 @@
 }
 
 .startTime {
-    width: 200px !important;
+    width: 150px !important;
     margin-left: 27px;
 }
 
@@ -125,4 +125,18 @@
     width: 90% !important;
 }
 
+.submit {
+    background-color:#2b3d4f !important; 
+    color:white !important;
+    margin: 20px; 
+    width: 200px;
+    text-align: center;
+}
 
+.submit:disabled
+{
+  color: GrayText;
+  cursor: inherit;
+  background-color: #ddd !important;
+  background: #ddd !important;
+}

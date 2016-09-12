@@ -29,7 +29,7 @@
         <div flex-sm="70" flex-gt-sm="70" class="panel panel-body">
             <h3 class="fill-more"> Please fill more information to book an appointment </h3>
 
-            <div name="patientForm" class="patientForm">
+            <form name="patientForm" class="patientForm">
 
                 <legend class="fill-more">Appointment Date and Time</legend>
 
@@ -41,13 +41,13 @@
                     <b>{{notavailable}}</b>
                 </div>
 
-                <md-input-container layout="row" class="time">
+                <md-input-container class="time">
                     <md-icon><i class="text-muted glyphicon glyphicon-time"></i></md-icon>
                     <label class="startTime-label" for="startTime">Select Time</label>
                     <input id="timePick" name="startTime" type="text" class="time start startTime" ng-model="$parent.event.startTime" ng-required="true">
 
                     <div class="patientcolor" ng-show="patientForm.$submitted || patientForm.startTime.$touched">
-                        <div ng-show="patientForm.timePick.$error.required">
+                        <div ng-show="patientForm.startTime.$error.required">
                             <b>Please fill the appointment Time</b>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                 <md-input-container class="phonenumber" style="margin-left:25px;margin-top:0">
                     <label class="all-colors">Contact Number</label>
                     <md-icon><i class="text-muted glyphicon glyphicon-phone"></i></md-icon>
-                    <input id="phoneid" required name="patientPhoneNumber" type="number" ng-model="$parent.event.patientPhoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
+                    <input id="phoneid" required name="patientPhoneNumber" ng-model="$parent.event.patientPhoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/"
                         ng-required="true">
                     <div class="patientcolor" ng-show="patientForm.$submitted || patientForm.patientPhoneNumber.$touched">
                         <div ng-show="patientForm.patientPhoneNumber.$error.required"><b>Please fill phone number</b></div>
@@ -142,10 +142,11 @@
                     </textarea>
                 </md-input-container>
 
-            </div>
+            </form>
 
-            <md-button class="md-primary submit all-colors" style="background-color:#2b3d4f;  color:white;" ng-click="createEventCtrl.addEvent()"
-                ng-enabled="patientForm.$invalid || patientForm.$pending"><b>Submit</b></md-button>
+            <md-button class="md-primary submit" 
+                ng-click="createEventCtrl.addEvent()"
+                ng-disabled="patientForm.$invalid || patientForm.$pending"><b>Submit</b></md-button>
         </div>
 
 
