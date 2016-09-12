@@ -719,7 +719,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 var _date = $filter('date')(new Date($scope.event.startDate), 'EEEE');
 
-                $('#timePick .time').timepicker('remove');
+                $('#timePick').timepicker('remove');
 
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
@@ -730,7 +730,7 @@ eventCreateApp.controller('EventsCreateController',
                         $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
                         $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
 
-                        $('#timePick .time').timepicker({
+                        $('#timePick').timepicker({
                             'minTime': $filter('date')(new Date(slot.starttime), 'shortTime'),
                             'maxTime': $filter('date')(new Date(slot.endtime), 'shortTime'),
                             'showDuration': true,
