@@ -11,8 +11,8 @@ module.exports = {
   templateEngine: 'swig',
   sessionSecret: 'MEAN',
   sessionCollection: 'sessions',
-  logo: 'modules/core/img/brand/logo.png',
-  favicon: 'modules/core/img/brand/favicon.ico',
+  logo: 'modules/core/img/brand/confident_logo.png',
+  favicon: 'modules/core/img/brand/conf.ico',
   uploads: {
     profileUpload: {
       dest: './modules/users/img/profile/uploads/', // Profile upload destination path
