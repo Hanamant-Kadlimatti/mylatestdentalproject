@@ -1,4 +1,12 @@
 
+.container{
+    -webkit-box-shadow: 0 1px 1px #BDBDBD;
+    -moz-box-shadow: 0 1px 1px #BDBDBD;
+     box-shadow: 0 1px 1px #BDBDBD;
+     height:auto;
+     padding-bottom: 500px;
+}  
+
 /* Navigation Header*/
 
  .navbar-fixed-top  {
