@@ -48,14 +48,13 @@
                 </div>
 
                 <md-input-container layout="row" class="time">
-                    <label class="startTime-label" for="startTime">Select Time</label>
                     <md-icon><i class="text-muted glyphicon glyphicon-time"></i></md-icon>
-
-                    <div class="form-group" id="timePick">
+                    <div id="timePick">
+                        <label class="startTime-label" for="startTime">Select Time</label>
                         <input id="timeid" 
                         name="startTime" 
                         type="text" 
-                        class="form-control time start startTime" 
+                        class="time start startTime" 
                         ng-model="$parent.event.startTime"
                         ng-required="true">
                         

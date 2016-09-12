@@ -73,19 +73,17 @@
 
 .startTime {
     width: 200px !important;
+    margin-left: 30px;
 }
 
 .startTime-label {
-    margin-left: 12px;
+    margin-left: 63px;
     font-weight: normal;
-}
-
-.time {
-    margin: 15px;;
 }
 
 .glyphicon-time {
     font-size: 20px;
+    margin-left: 15px;
 }
     
 .patientForm {
