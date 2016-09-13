@@ -63,7 +63,7 @@ var PersonalSchema = new Schema({
     },
     image: {
         type: String,
-    default: 'modules/personals/client/img/buttons/default.png'
+    default: 'modules/personals/img/buttons/default.png'
     },
     
     treatments: [ApptTypeSchema],
