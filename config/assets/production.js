@@ -4,8 +4,6 @@ module.exports = {
   client: {
     lib: {
       css: [
-        'public/lib/bootstrap/dist/css/bootstrap.min.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
         'public/lib/fullcalendar/dist/fullcalendar.css',
         'public/lib/angular-motion/dist/angular-motion.css',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.css',
@@ -15,8 +13,6 @@ module.exports = {
         'public/lib/angularMultipleSelect/build/multiple-select.min.css'
       ],
       js: [
-        'public/lib/jquery/dist/jquery.min.js',
-        'public/lib/jquery-ui/jquery-ui.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-route/angular-route.js',
         'public/lib/angular-resource/angular-resource.js',
@@ -31,7 +27,6 @@ module.exports = {
         'public/lib/fullcalendar/dist/fullcalendar.js',
         'public/lib/angular-cookies/angular-cookies.js',
         'public/lib/angular-filter/dist/angular-filter.min.js',
-        'public/lib/angular-multi-select-alexandernst/dist/angular-multi-select.js',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.min.js',
         'public/lib/angular-jquery-timepicker/src/timepickerdirective.js',
         'public/lib/angular-aria/angular-aria.js',
