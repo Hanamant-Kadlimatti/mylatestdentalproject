@@ -196,12 +196,6 @@ exports.create = function (req, res, next) {
                     'responseStatus': 'needsAction'
                 },
                 {
-                    'email': req.body.contact.adminemailId,
-                    'organizer': true,
-                    'self': true,
-                    'responseStatus': 'needsAction'
-                },
-                {
                     'email': req.body.patient.emailId,
                     'organizer': false,
                     'responseStatus': 'needsAction'

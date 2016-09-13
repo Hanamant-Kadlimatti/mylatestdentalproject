@@ -1,9 +1,9 @@
 'use strict';
 
 
-angular.module('GoogleCalendarService', [], function($provide){
+angular.module('GoogleCalendarService', [], function ($provide) {
 
-	$provide.factory('$googleCalendar', function($http, $q, $location){
+	$provide.factory('$googleCalendar', function ($http, $q, $location) {
 
 		var $scope = angular.element(document).scope();
 
@@ -11,37 +11,18 @@ angular.module('GoogleCalendarService', [], function($provide){
 		var baseUrl = $location.protocol() + '://' + location.host;
 
 		return {
-			load: function(){
+			getEvents: function () {
 				var defer = $q.defer();
 
-				$http.get(baseUrl+'/api/loadprofile').then(function(response){
+				$http.get(baseUrl + '/api/events').then(function (response) {
 
-					if(response.status === 200){
-						$scope.$broadcast('GoogleEventsReceived', response.data.items);
-						defer.resolve(response.data.items);
-					}
-
-					else{
-						$scope.$broadcast('GoogleError', response.data);
-						defer.reject(response.data);
-					}
-
-				});
-
-				return defer.promise;
-			},
-			getEvents: function(){
-				var defer = $q.defer();
-
-				$http.get(baseUrl+'/api/events').then(function(response){
-
-					if(response.status === 200){
+					if (response.status === 200) {
 						$scope.$broadcast('GoogleEventsReceived', response.data.items);
 						defer.resolve(response.data.items);
 						console.log(response.data.items);
 					}
 
-					else{
+					else {
 						$scope.$broadcast('GoogleError', response.data);
 						defer.reject(response.data);
 					}
@@ -50,7 +31,7 @@ angular.module('GoogleCalendarService', [], function($provide){
 
 				return defer.promise;
 			},
-			addEvent: function(scheduledDate, endDate, contactInfo, patientInfo){
+			addEvent: function (scheduledDate, endDate, contactInfo, patientInfo) {
 				var defer = $q.defer();
 
 				var postData = {
@@ -60,24 +41,24 @@ angular.module('GoogleCalendarService', [], function($provide){
                     patient: patientInfo
 				};
 
-				$http.post(baseUrl+'/api/events', postData, {'Content-Type':  'application/json'})
-                .then(function(response){
+				$http.post(baseUrl + '/api/events', postData, { 'Content-Type': 'application/json' })
+					.then(function (response) {
 
-					if(response.status === 200){
-						$scope.$broadcast('eventAddedSuccess', response.data);
-						defer.resolve(response.data);
-					}
-					else{
+						if (response.status === 200) {
+							$scope.$broadcast('eventAddedSuccess', response.data);
+							defer.resolve(response.data);
+						}
+						else {
+							console.log(response.data);
+							$scope.$broadcast('GoogleError', response.data);
+							defer.reject(response.data);
+						}
+					},
+					function (response) {
 						console.log(response.data);
 						$scope.$broadcast('GoogleError', response.data);
 						defer.reject(response.data);
-					}
-				}, 
-                function(response) {
-                    console.log(response.data);
-                    $scope.$broadcast('GoogleError', response.data);
-                    defer.reject(response.data);
-                });
+					});
 
 				return defer.promise;
 			}

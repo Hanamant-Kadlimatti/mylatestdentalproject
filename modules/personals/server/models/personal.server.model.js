@@ -55,12 +55,6 @@ var PersonalSchema = new Schema({
         default: 0,
         trim: true
     },
-     adminemailId: {
-        type: String,
-        default: '',
-        required: 'Please fill Admin email id',
-        trim: true
-    },
     image: {
         type: String,
     default: 'modules/personals/img/buttons/default.png'

@@ -1344,7 +1344,6 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         rating: this.rating,
         treatments: this.selectedTreatments,
         slots: this.slots,
-        adminemailId: this.adminemailId,
         image: this.contact + '.png'
        // imageLocation: this.imageLocation
       });
@@ -1364,7 +1363,6 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.rating = null;
         $scope.selectedTreatments = null;
         $scope.slots = null;
-        $scope.adminemailId = '';
         $scope.image = null;
         Notify.sendMsg('NewPersonal', {'id': response._id});
         
