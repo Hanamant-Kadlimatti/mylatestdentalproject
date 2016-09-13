@@ -4,9 +4,6 @@ module.exports = {
   client: {
     lib: {
       css: [
-        'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap.min.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/fullcalendar/dist/fullcalendar.css',
         'public/lib/angular-motion/dist/angular-motion.css',
         'public/lib/angular-multi-select-alexandernst/dist/angular-multi-select.css',

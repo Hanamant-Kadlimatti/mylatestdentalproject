@@ -27,6 +27,25 @@ eventCreateApp.controller('EventsCreateController',
                 buttonText: 'Calendar'
             });
 
+            // Checkbox code
+
+            $scope.items = ['Asthma', 'High Blood Presure', 'Bleeding Disorder', 'Heart Disease', 'Diabetes'];
+            $scope.selected = [];
+
+            $scope.toggle = function (item, list) {
+                var idx = list.indexOf(item);
+                if (idx > -1) {
+                    list.splice(idx, 1);
+                }
+                else {
+                    list.push(item);
+                }
+            };
+
+            $scope.exists = function (item, list) {
+                return list.indexOf(item) > -1;
+            };
+
 
             //Book an appointment            
             this.addEvent = function () {
@@ -66,28 +85,6 @@ eventCreateApp.controller('EventsCreateController',
 
             };
 
-            // Checkbox code
-
-            $scope.items = ['Asthma', 'High Blood Presure ', 'Bleeding Disorder', 'Heart Disease', 'Diabetes'];
-            $scope.selected = [];
-
-            $scope.toggle = function (item, list) {
-                var idx = list.indexOf(item);
-                if (idx > -1) {
-                    list.splice(idx, 1);
-                }
-                else {
-                    list.push(item);
-                }
-            };
-
-            $scope.exists = function (item, list) {
-                return list.indexOf(item) > -1;
-            };
-            
-            
-            
-
             this.updateTime = function () {
 
                 $scope.notavailable = '';
@@ -121,7 +118,7 @@ eventCreateApp.controller('EventsCreateController',
                         $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
 
-                    
+
 
                 }
 
