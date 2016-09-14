@@ -55,7 +55,7 @@ function sendSms(contactNumber) {
     'text' : "Hi,  Your Appointment is Confirmed  Thank You", // Your SMS Text Message - English
     //'text' :  // Your SMS Text Message - Japanese
     //'text' : // Your SMS Text Message - French
-    'url' : "http://example.com/report/", // The URL to which with the status of the message is sent
+   'url' : "https://intense-brook-8241.herokuapp.com/report/", // The URL to which with the status of the message is sent
     'method' : "GET" // The method used to call the url
 };
 
