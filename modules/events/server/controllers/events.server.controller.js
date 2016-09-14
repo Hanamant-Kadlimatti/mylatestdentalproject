@@ -9,39 +9,65 @@ var oauth = require('oauth');
 var config = require(path.resolve('./config/config'));
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
-// Load the twilio module
-var twilio = require('twilio');
+// // Load the twilio module
+// var twilio = require('twilio');
 
-// Create a new REST API client to make authenticated requests against the twilio back end
-var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85cfa30f29acb55e21fd179db977');
+// // Create a new REST API client to make authenticated requests against the twilio back end
+// var client = new twilio.RestClient('AC1a0432d220e8240cae1acf4b39ff04b4', '28ad85cfa30f29acb55e21fd179db977');
+
+// function sendSms(contactNumber) {
+
+//     // Pass in parameters to the REST API using an object literal notation. The
+//     // REST client will handle authentication and response serialzation for you.
+//     client.sms.messages.create({
+//         to: '+91' + contactNumber,   // This is my original number
+//         from: '+17865286119', //I got this number from twilio
+//         body: ' Your Appointment is Confirmed  Thank You'
+//     }, function (error, message) {
+//         // The HTTP request to Twilio will run asynchronously. This callback
+//         // function will be called when a response is received from Twilio
+//         // The "error" variable will contain error information, if any.
+//         // If the request was successful, this value will be "falsy"
+//         if (!error) {
+//             // The second argument to the callback will contain the information
+//             // sent back by Twilio for the request. In this case, it is the
+//             // information about the text messsage you just sent:
+//             console.log('Success! The SID for this SMS message is:');
+//             console.log(message.sid);
+
+//             console.log('Message sent on:');
+//             console.log(message.dateCreated);
+//         } else {
+//             console.log('Oops! There was an error.');
+//         }
+//     });
+// }
+
+//
+
+var plivo = require('plivo');
+var p = plivo.RestAPI({  authId: 'MAY2NKNMU5MMEYZMQ4YW',  authToken: 'MjQ5NTI0NzBlYThlNmRjNjhiYTlhOWFkY2VkNTdl' });
 
 function sendSms(contactNumber) {
+    var params = {
+    'src': '+919845293868', // Sender's phone number with country code
+    'dst' : '+917019319961', // Receiver's phone Number with country code
+    'text' : "Hi,  Your Appointment is Confirmed  Thank You", // Your SMS Text Message - English
+    //'text' :  // Your SMS Text Message - Japanese
+    //'text' : // Your SMS Text Message - French
+    'url' : "http://example.com/report/", // The URL to which with the status of the message is sent
+    'method' : "GET" // The method used to call the url
+};
 
-    // Pass in parameters to the REST API using an object literal notation. The
-    // REST client will handle authentication and response serialzation for you.
-    client.sms.messages.create({
-        to: '+91' + contactNumber,   // This is my original number
-        from: '+17865286119', //I got this number from twilio
-        body: ' Your Appointment is Confirmed  Thank You'
-    }, function (error, message) {
-        // The HTTP request to Twilio will run asynchronously. This callback
-        // function will be called when a response is received from Twilio
-        // The "error" variable will contain error information, if any.
-        // If the request was successful, this value will be "falsy"
-        if (!error) {
-            // The second argument to the callback will contain the information
-            // sent back by Twilio for the request. In this case, it is the
-            // information about the text messsage you just sent:
-            console.log('Success! The SID for this SMS message is:');
-            console.log(message.sid);
-
-            console.log('Message sent on:');
-            console.log(message.dateCreated);
-        } else {
-            console.log('Oops! There was an error.');
-        }
-    });
+// Prints the complete response
+p.send_message(params, function (status, response) {
+    console.log('Status: ', status);
+    console.log('API Response:\n', response);
+    console.log('Message UUID:\n', response['message_uuid']);
+    console.log('Api ID:\n', response['api_id']);
+});
 }
+
 
 function authorize(refreshToken) {
     var deferred = q.defer();

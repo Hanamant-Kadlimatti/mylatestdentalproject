@@ -781,9 +781,11 @@ eventCreateApp.controller('EventsCreateController',
                                         'disableTimeRanges': eventArray
                                     });
 
-                                    $scope.notavailable = '';
+                                    
                                 });
                             });
+
+                        $scope.notavailable = '';
                         break;
                     }
                     else {
