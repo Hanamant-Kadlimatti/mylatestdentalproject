@@ -57,7 +57,7 @@ function authorize(refreshToken) {
             function (err, access_token, refresh_token, res) {
 
                 //lookup settings from database
-                User.findOne({ username: 'bhuvansalanke' }, function (findError, settings) {
+                User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
 
                     var expiresIn = parseInt(res.expires_in);
                     var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
@@ -88,7 +88,7 @@ function getAccessToken() {
     var accessToken;
 
 
-    User.findOne({ username: 'bhuvansalanke' }, function (findError, settings) {
+    User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
         //check if access token is still valid
         var today = new Date();
         var currentTime = today.getTime();
