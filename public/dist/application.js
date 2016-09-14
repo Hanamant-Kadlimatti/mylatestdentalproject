@@ -10,14 +10,17 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
+    'ui.utils',           //
     //'angularFileUpload',
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
+    'mgcrea.ngStrap',  //
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars'
+    'angular-input-stars',
+    'multipleSelect'  //
     ];
 
   // Add a new vertical module
@@ -665,7 +668,8 @@ eventCreateApp.controller('EventsCreateController',
             $scope.maxDate = new Date(
                 $scope.myDate.getFullYear(),
                 $scope.myDate.getMonth() + 2,
-                $scope.myDate.getDate());
+                $scope.myDate.getDate()
+            );
 
             $.datepicker.setDefaults({
                 showOn: 'both',
@@ -740,35 +744,54 @@ eventCreateApp.controller('EventsCreateController',
 
                 $('#timePick').timepicker('remove');
 
+                var startDate = new Date($scope.event.startDate);
+                startDate.setHours(0, 0, 0, 0);
+
+                var endDate = new Date($scope.event.startDate);
+                endDate.setHours(23, 59, 59, 999);
+
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
                     var slot = this.selectedDentist.slots[index];
 
+                    $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
+                    $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
+                    $scope.event.step = this.selectedTreatment.duration;
+
                     if (slot.day === _date) {
+                        $googleCalendar.getEventByUser(this.selectedDentist, startDate, endDate)
+                            .then(function (events) {
 
-                        $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
-                        $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
+                                var eventArray = [];
+                                var event = [];
+                                events.forEach(function (element) {
+                                    
+                                    event.push(new Date(element.start.dateTime).toLocaleTimeString());
+                                    event.push(new Date(element.end.dateTime).toLocaleTimeString());
+                                    eventArray.push(event);
+                                }, this);
 
-                        $('#timePick').timepicker({
-                            'minTime': $filter('date')(new Date(slot.starttime), 'shortTime'),
-                            'maxTime': $filter('date')(new Date(slot.endtime), 'shortTime'),
-                            'showDuration': true,
-                            'step': this.selectedTreatment.duration,
-                            'disableTextInput': true,
-                            'timeFormat': 'H:i'
-                        });
+                                var jsonData = JSON.stringify(event);
 
-                        $scope.notavailable = '';
+                                $(document).ready(function () {
+                                    $('#timePick').timepicker({
+                                        'minTime': $scope.event.minTime,
+                                        'maxTime': $scope.event.maxTime,
+                                        'step': $scope.event.step,
+                                        'disableTextInput': true,
+                                        'timeFormat': 'g:ia',
+                                        'disableTimeRanges': eventArray
+                                    });
+
+                                    $scope.notavailable = '';
+                                });
+                            });
                         break;
                     }
                     else {
                         $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
-
-
-
                 }
-
             };
 
             function DialogController($scope, $mdDialog, prsnlService) {
@@ -977,9 +1000,9 @@ angular.module('EventUtil', [])
 'use strict';
 
 
-angular.module('GoogleCalendarService', [], ["$provide", function($provide){
+angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 
-	$provide.factory('$googleCalendar', ["$http", "$q", "$location", function($http, $q, $location){
+	$provide.factory('$googleCalendar', ["$http", "$q", "$location", function ($http, $q, $location) {
 
 		var $scope = angular.element(document).scope();
 
@@ -987,37 +1010,47 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 		var baseUrl = $location.protocol() + '://' + location.host;
 
 		return {
-			load: function(){
+			getEventByUser: function (user, startDate, endDate) {
 				var defer = $q.defer();
 
-				$http.get(baseUrl+'/api/loadprofile').then(function(response){
-
-					if(response.status === 200){
-						$scope.$broadcast('GoogleEventsReceived', response.data.items);
-						defer.resolve(response.data.items);
+				var jsonData = {
+					params: {
+						startdate: startDate,
+						enddate: endDate,
+						user: user.fName + ' ' + user.lName
 					}
+				}
 
-					else{
-						$scope.$broadcast('GoogleError', response.data);
-						defer.reject(response.data);
-					}
+				$http.get(baseUrl + '/api/getEventByUser', jsonData)
+					.then(function (response) {
 
-				});
+						if (response.status === 200) {
+							$scope.$broadcast('GoogleEventsReceived', response.data.items);
+							defer.resolve(response.data.items);
+							console.log(response.data.items);
+						}
+
+						else {
+							$scope.$broadcast('GoogleError', response.data);
+							defer.reject(response.data);
+						}
+
+					});
 
 				return defer.promise;
 			},
-			getEvents: function(){
+			getEvents: function () {
 				var defer = $q.defer();
 
-				$http.get(baseUrl+'/api/events').then(function(response){
+				$http.get(baseUrl + '/api/events').then(function (response) {
 
-					if(response.status === 200){
+					if (response.status === 200) {
 						$scope.$broadcast('GoogleEventsReceived', response.data.items);
 						defer.resolve(response.data.items);
 						console.log(response.data.items);
 					}
 
-					else{
+					else {
 						$scope.$broadcast('GoogleError', response.data);
 						defer.reject(response.data);
 					}
@@ -1026,7 +1059,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
 
 				return defer.promise;
 			},
-			addEvent: function(scheduledDate, endDate, contactInfo, patientInfo){
+			addEvent: function (scheduledDate, endDate, contactInfo, patientInfo) {
 				var defer = $q.defer();
 
 				var postData = {
@@ -1036,24 +1069,24 @@ angular.module('GoogleCalendarService', [], ["$provide", function($provide){
                     patient: patientInfo
 				};
 
-				$http.post(baseUrl+'/api/events', postData, {'Content-Type':  'application/json'})
-                .then(function(response){
+				$http.post(baseUrl + '/api/events', postData, { 'Content-Type': 'application/json' })
+					.then(function (response) {
 
-					if(response.status === 200){
-						$scope.$broadcast('eventAddedSuccess', response.data);
-						defer.resolve(response.data);
-					}
-					else{
+						if (response.status === 200) {
+							$scope.$broadcast('eventAddedSuccess', response.data);
+							defer.resolve(response.data);
+						}
+						else {
+							console.log(response.data);
+							$scope.$broadcast('GoogleError', response.data);
+							defer.reject(response.data);
+						}
+					},
+					function (response) {
 						console.log(response.data);
 						$scope.$broadcast('GoogleError', response.data);
 						defer.reject(response.data);
-					}
-				}, 
-                function(response) {
-                    console.log(response.data);
-                    $scope.$broadcast('GoogleError', response.data);
-                    defer.reject(response.data);
-                });
+					});
 
 				return defer.promise;
 			}
