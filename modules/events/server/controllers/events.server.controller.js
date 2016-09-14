@@ -129,9 +129,7 @@ exports.getEventByUser = function (req, res, next) {
         
         calendar.events.list(calendarId, {
             'timeMin': startDate,
-            'timeMax': endDate,
-            'singleEvents': true,
-            'q': req.query.user
+            'timeMax': endDate
         },
             function (err, eventList) {
 
@@ -140,6 +138,7 @@ exports.getEventByUser = function (req, res, next) {
                         message: err
                     });
                 } else {
+
                     res.send(JSON.stringify(eventList, null, '\t'));
                 }
 

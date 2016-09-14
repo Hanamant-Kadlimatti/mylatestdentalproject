@@ -94,9 +94,11 @@ eventCreateApp.controller('EventsCreateController',
 
                 $('#timePick').timepicker('remove');
 
+                var startDate = new Date($scope.event.startDate);
+                startDate.setHours(0, 0, 0, 0);
+
                 var endDate = new Date($scope.event.startDate);
                 endDate.setHours(23, 59, 59, 999);
-
 
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
@@ -104,12 +106,22 @@ eventCreateApp.controller('EventsCreateController',
 
                     $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
                     $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
-                    $scope.event.step = this.selectedTreatment.duration
+                    $scope.event.step = this.selectedTreatment.duration;
 
                     if (slot.day === _date) {
-                        $googleCalendar.getEventByUser(this.selectedDentist, $scope.event.startDate, endDate)
+                        $googleCalendar.getEventByUser(this.selectedDentist, startDate, endDate)
                             .then(function (events) {
 
+                                var eventArray = [];
+
+                                events.forEach(function (element) {
+                                    var event = [];
+                                    event.push(new Date(element.start.dateTime).toLocaleTimeString());
+                                    event.push(new Date(element.end.dateTime).toLocaleTimeString());
+                                    eventArray.push(event);
+                                }, this);
+
+                                var jsonData = JSON.stringify(eventArray);
 
                                 $(document).ready(function () {
                                     $('#timePick').timepicker({
@@ -117,7 +129,8 @@ eventCreateApp.controller('EventsCreateController',
                                         'maxTime': $scope.event.maxTime,
                                         'step': $scope.event.step,
                                         'disableTextInput': true,
-                                        'timeFormat': 'H:i'
+                                        'timeFormat': 'g:ia',
+                                        'disableTimeRanges': jsonData
                                     });
 
                                     $scope.notavailable = '';
