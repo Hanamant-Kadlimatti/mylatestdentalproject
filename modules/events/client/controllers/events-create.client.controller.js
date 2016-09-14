@@ -113,15 +113,13 @@ eventCreateApp.controller('EventsCreateController',
                             .then(function (events) {
 
                                 var eventArray = [];
-                                var event = [];
+                                
                                 events.forEach(function (element) {
-                                    
+                                    var event = [];
                                     event.push(new Date(element.start.dateTime).toLocaleTimeString());
                                     event.push(new Date(element.end.dateTime).toLocaleTimeString());
                                     eventArray.push(event);
                                 }, this);
-
-                                var jsonData = JSON.stringify(event);
 
                                 $(document).ready(function () {
                                     $('#timePick').timepicker({
