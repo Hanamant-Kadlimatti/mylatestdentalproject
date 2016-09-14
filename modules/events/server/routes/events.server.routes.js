@@ -8,4 +8,7 @@ module.exports = function (app) {
   .get(event.list)
   .post(event.create);
 
+  app.route('/api/getEventByUser')
+  .get(event.getEventByUser)
+
 };

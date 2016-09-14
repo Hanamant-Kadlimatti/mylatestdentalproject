@@ -57,7 +57,7 @@ function authorize(refreshToken) {
             function (err, access_token, refresh_token, res) {
 
                 //lookup settings from database
-                User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
+                User.findOne({ username: 'bhuvansalanke' }, function (findError, settings) {
 
                     var expiresIn = parseInt(res.expires_in);
                     var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
@@ -88,7 +88,7 @@ function getAccessToken() {
     var accessToken;
 
 
-    User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
+    User.findOne({ username: 'bhuvansalanke' }, function (findError, settings) {
         //check if access token is still valid
         var today = new Date();
         var currentTime = today.getTime();
@@ -116,12 +116,37 @@ function getAccessToken() {
     return deferred.promise;
 }
 
-exports.login = function (req, res, next) {
-    if (!req.session.accessToken) {
-        res.send(401, 'Not logged in.');
-    } else {
-        next();
-    }
+exports.getEventByUser = function (req, res, next) {
+
+    getAccessToken().then(function (user) {
+
+        var accessToken = user.providerData.accessToken;
+        var calendarId = user.email;
+        var calendar = new gcal.GoogleCalendar(accessToken);
+
+        var startDate = new Date(req.query.startdate).toISOString();
+        var endDate = new Date(req.query.enddate).toISOString();
+        
+        calendar.events.list(calendarId, {
+            'timeMin': startDate,
+            'timeMax': endDate,
+            'singleEvents': true,
+            'q': req.query.user
+        },
+            function (err, eventList) {
+
+                if (err) {
+                    return res.status(400).send({
+                        message: err
+                    });
+                } else {
+                    res.send(JSON.stringify(eventList, null, '\t'));
+                }
+
+            });
+
+    });
+
 };
 
 exports.list = function (req, res, next) {
@@ -132,24 +157,19 @@ exports.list = function (req, res, next) {
         var calendarId = user.email;
         var calendar = new gcal.GoogleCalendar(accessToken);
 
-        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString() }, function (err, eventList) {
+        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString(), 'singleEvents': true }, function (err, eventList) {
 
             if (err) {
                 return res.status(400).send({
                     message: err
                 });
             } else {
-
-                var filtered = _.where(eventList.items, { summary: 'Bhuvan D' });
-                console.log(filtered);
-
                 res.send(JSON.stringify(eventList, null, '\t'));
             }
 
         });
 
     });
-
 
 };
 

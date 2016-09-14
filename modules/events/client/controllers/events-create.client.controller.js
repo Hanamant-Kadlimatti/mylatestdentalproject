@@ -18,7 +18,8 @@ eventCreateApp.controller('EventsCreateController',
             $scope.maxDate = new Date(
                 $scope.myDate.getFullYear(),
                 $scope.myDate.getMonth() + 2,
-                $scope.myDate.getDate());
+                $scope.myDate.getDate()
+            );
 
             $.datepicker.setDefaults({
                 showOn: 'both',
@@ -93,35 +94,41 @@ eventCreateApp.controller('EventsCreateController',
 
                 $('#timePick').timepicker('remove');
 
+                var endDate = new Date($scope.event.startDate);
+                endDate.setHours(23, 59, 59, 999);
+
+
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
                     var slot = this.selectedDentist.slots[index];
 
+                    $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
+                    $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
+                    $scope.event.step = this.selectedTreatment.duration
+
                     if (slot.day === _date) {
+                        $googleCalendar.getEventByUser(this.selectedDentist, $scope.event.startDate, endDate)
+                            .then(function (events) {
 
-                        $scope.event.minTime = $filter('date')(new Date(slot.starttime), 'shortTime');
-                        $scope.event.maxTime = $filter('date')(new Date(slot.endtime), 'shortTime');
 
-                        $('#timePick').timepicker({
-                            'minTime': $filter('date')(new Date(slot.starttime), 'shortTime'),
-                            'maxTime': $filter('date')(new Date(slot.endtime), 'shortTime'),
-                            'showDuration': true,
-                            'step': this.selectedTreatment.duration,
-                            'disableTextInput': true,
-                            'timeFormat': 'H:i'
-                        });
+                                $(document).ready(function () {
+                                    $('#timePick').timepicker({
+                                        'minTime': $scope.event.minTime,
+                                        'maxTime': $scope.event.maxTime,
+                                        'step': $scope.event.step,
+                                        'disableTextInput': true,
+                                        'timeFormat': 'H:i'
+                                    });
 
-                        $scope.notavailable = '';
+                                    $scope.notavailable = '';
+                                });
+                            });
                         break;
                     }
                     else {
                         $scope.notavailable = 'No Slots Available for the selected date';   //$scope.notavailable = '';
                     }
-
-
-
                 }
-
             };
 
             function DialogController($scope, $mdDialog, prsnlService) {

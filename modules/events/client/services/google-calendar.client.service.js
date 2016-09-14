@@ -11,6 +11,35 @@ angular.module('GoogleCalendarService', [], function ($provide) {
 		var baseUrl = $location.protocol() + '://' + location.host;
 
 		return {
+			getEventByUser: function (user, startDate, endDate) {
+				var defer = $q.defer();
+
+				var jsonData = {
+					params: {
+						startdate: startDate,
+						enddate: endDate,
+						user: user.fName + ' ' + user.lName
+					}
+				}
+
+				$http.get(baseUrl + '/api/getEventByUser', jsonData)
+					.then(function (response) {
+
+						if (response.status === 200) {
+							$scope.$broadcast('GoogleEventsReceived', response.data.items);
+							defer.resolve(response.data.items);
+							console.log(response.data.items);
+						}
+
+						else {
+							$scope.$broadcast('GoogleError', response.data);
+							defer.reject(response.data);
+						}
+
+					});
+
+				return defer.promise;
+			},
 			getEvents: function () {
 				var defer = $q.defer();
 
