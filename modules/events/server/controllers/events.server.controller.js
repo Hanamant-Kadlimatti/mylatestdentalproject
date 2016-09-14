@@ -129,7 +129,8 @@ exports.getEventByUser = function (req, res, next) {
         
         calendar.events.list(calendarId, {
             'timeMin': startDate,
-            'timeMax': endDate
+            'timeMax': endDate,
+            'q': req.query.user
         },
             function (err, eventList) {
 
