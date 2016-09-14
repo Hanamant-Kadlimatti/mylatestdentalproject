@@ -32,7 +32,9 @@ module.exports = {
         'public/lib/angular-aria/angular-aria.js',
         'public/lib/angular-material/angular-material.js',
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
-        'public/lib/angularMultipleSelect/build/multiple-select.min.js'
+        'public/lib/angularMultipleSelect/build/multiple-select.min.js',
+        'public/lib/angular-strap/dist/angular-strap.min.js', 
+        'public/lib/angular-strap/dist/angular-strap.tpl.min.js'
       ]
     },
     css: 'public/dist/application.min.css',

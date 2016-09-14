@@ -15,7 +15,6 @@
     "angular-cookies": "latest",
     "angular-motion": "latest",
     "jquery-ui": "latest",
-    "angular-strap": "*",
     "jt.timepicker": "latest",
     "angular-jquery-timepicker": "latest",
     "angular-material": "latest",
@@ -26,7 +25,8 @@
     "angularMultipleSelect": "angular-multiple-select#~1.1.1",
     "fullcalendar": "~2.9.0",
     "fullcalendar-scheduler": "latest",
-    "angular-ui-calendar": "latest"
+    "angular-ui-calendar": "latest",
+    "angular-strap": "latest"
   },
   "resolutions": {
     "angular": "1.5.8",
