@@ -71,7 +71,8 @@
     "twilio": "^2.9.1",
     "underscore": "*",
     "validator": "^5.5.0",
-    "xmlhttprequest": "*"
+    "xmlhttprequest": "*",
+    "plivo": "^0.3.3"
   },
   "devDependencies": {
     "grunt-concurrent": "^2.1.0",
