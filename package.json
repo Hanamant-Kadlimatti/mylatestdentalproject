@@ -65,14 +65,14 @@
     "passport-paypal-openidconnect": "*",
     "passport-twitter": "*",
     "phantomjs": "^2.1.7",
+    "plivo": "^0.3.3",
     "serve-favicon": "*",
     "socket.io": "*",
     "swig": "*",
     "twilio": "^2.9.1",
     "underscore": "*",
     "validator": "^5.5.0",
-    "xmlhttprequest": "*",
-    "plivo": "^0.3.3"
+    "xmlhttprequest": "*"
   },
   "devDependencies": {
     "grunt-concurrent": "^2.1.0",

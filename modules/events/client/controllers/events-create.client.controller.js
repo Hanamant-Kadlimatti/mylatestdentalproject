@@ -99,7 +99,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 var endDate = new Date($scope.event.startDate);
                 endDate.setHours(23, 59, 59, 999);
-
+                
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
                     var slot = this.selectedDentist.slots[index];
