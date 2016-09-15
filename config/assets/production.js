@@ -10,7 +10,8 @@ module.exports = {
         'public/lib/angular-material/angular-material.css',
         'public/lib/font-awesome/font-awesome.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
-        'public/lib/angularMultipleSelect/build/multiple-select.min.css'
+        'public/lib/angularMultipleSelect/build/multiple-select.min.css',
+        'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
         'public/lib/angular/angular.js',
@@ -34,7 +35,8 @@ module.exports = {
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
         'public/lib/angularMultipleSelect/build/multiple-select.min.js',
         'public/lib/angular-strap/dist/angular-strap.min.js', 
-        'public/lib/angular-strap/dist/angular-strap.tpl.min.js'
+        'public/lib/angular-strap/dist/angular-strap.tpl.min.js',
+        'public/lib/fullcalendar-scheduler/dist/scheduler.js'
       ]
     },
     css: 'public/dist/application.min.css',

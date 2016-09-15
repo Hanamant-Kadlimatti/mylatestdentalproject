@@ -12,7 +12,8 @@ module.exports = {
         'public/lib/angular-material/angular-material.css',
         'public/lib/font-awesome/font-awesome.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
-        'public/lib/angularMultipleSelect/build/multiple-select.min.css'
+        'public/lib/angularMultipleSelect/build/multiple-select.min.css',
+        'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
         'public/lib/jquery/dist/jquery.min.js',
@@ -38,7 +39,8 @@ module.exports = {
         'public/lib/angular-aria/angular-aria.js',
         'public/lib/angular-material/angular-material.js',
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
-        'public/lib/angularMultipleSelect/build/multiple-select.min.js'
+        'public/lib/angularMultipleSelect/build/multiple-select.min.js',
+        'public/lib/fullcalendar-scheduler/dist/scheduler.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

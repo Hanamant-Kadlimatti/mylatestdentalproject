@@ -23,13 +23,13 @@
     "font-awesome": "latest",
     "angular-input-stars-directive": "angular-input-stars#~1.5.5",
     "angularMultipleSelect": "angular-multiple-select#~1.1.1",
-    "fullcalendar": "~2.9.0",
-    "fullcalendar-scheduler": "latest",
+    "fullcalendar": "^3.0.0",
+    "fullcalendar-scheduler": "^1.4.0",
     "angular-ui-calendar": "latest",
     "angular-strap": "latest"
   },
   "resolutions": {
     "angular": "1.5.8",
-    "fullcalendar": ">=2.7.3"
+    "fullcalendar": ">=3.0.0"
   }
 }
