@@ -20,7 +20,7 @@ angular.module('GoogleCalendarService', [], function ($provide) {
 						enddate: endDate,
 						user: user.fName + ' ' + user.lName
 					}
-				}
+				};
 
 				$http.get(baseUrl + '/api/getEventByUser', jsonData)
 					.then(function (response) {

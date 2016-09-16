@@ -166,6 +166,7 @@ md-dialog md-dialog-actions .md-button{
   .fc-toolbar button:focus {
      position: relative;
     z-index: 0;
+     margin-top: -20px;
 }
 }
 
@@ -261,25 +262,21 @@ md-dialog md-dialog-actions .md-button{
 }
  
   
-/*  Calendar Height and Width 
-	#calendar {
-		max-width: 1200px;
-		margin: 10px  auto;
-	}
-    
-    .fc-license-message{
-      position:absolute;
-      z-index:0;
-      font-size: 0px;
-      }*/
-      
-    
-    /* Calendar padding bottom */
+
 .row {
    
     padding-bottom: 30px;
 }
-/* scroll */
-/*.fc-time-grid{
-  overflow-x: scroll; overflow-y: hidden; height: auto;
-}*/
+
+.fc-timeline .fc-cell-text {
+    font-size: 14px;
+}
+
+.fc-center, .appointments {
+  font-size: 20px;
+}
+
+.fc-toolbar h2 {
+    margin: 0;
+    font-size: 20px;
+}

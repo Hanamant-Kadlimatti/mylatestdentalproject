@@ -9,6 +9,6 @@ module.exports = function (app) {
   .post(event.create);
 
   app.route('/api/getEventByUser')
-  .get(event.getEventByUser)
+  .get(event.getEventByUser);
 
 };

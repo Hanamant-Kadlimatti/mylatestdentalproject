@@ -52,19 +52,19 @@ function sendSms(contactNumber) {
     var params = {
     'src': '+919845293868', // Sender's phone number with country code
     'dst' : '+917019319961', // Receiver's phone Number with country code
-    'text' : "Hi,  Your Appointment is Confirmed  Thank You", // Your SMS Text Message - English
+    'text' : 'Hi,  Your Appointment is Confirmed  Thank You', // Your SMS Text Message - English
     //'text' :  // Your SMS Text Message - Japanese
     //'text' : // Your SMS Text Message - French
-   'url' : "https://intense-brook-8241.herokuapp.com/report/", // The URL to which with the status of the message is sent
-    'method' : "GET" // The method used to call the url
+   'url' : 'https://intense-brook-8241.herokuapp.com/report/', // The URL to which with the status of the message is sent
+    'method' : 'GET' // The method used to call the url
 };
 
 // Prints the complete response
 p.send_message(params, function (status, response) {
     console.log('Status: ', status);
     console.log('API Response:\n', response);
-    console.log('Message UUID:\n', response['message_uuid']);
-    console.log('Api ID:\n', response['api_id']);
+    console.log('Message UUID:\n', response['message.uuid']);
+    console.log('Api ID:\n', response['api.id']);
 });
 }
 

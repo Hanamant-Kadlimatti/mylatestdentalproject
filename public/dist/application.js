@@ -10,17 +10,16 @@ var ApplicationConfiguration = (function () {
     'ngCookies',
     'ui.router', 
     'ui.bootstrap', 
-    'ui.utils',           //
-    //'angularFileUpload',
+    'ui.utils', 
     'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'mgcrea.ngStrap',  //
+    'mgcrea.ngStrap', 
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
     'angular-input-stars',
-    'multipleSelect'  //
+    'multipleSelect' 
     ];
 
   // Add a new vertical module
@@ -749,7 +748,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 var endDate = new Date($scope.event.startDate);
                 endDate.setHours(23, 59, 59, 999);
-
+                
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
                     var slot = this.selectedDentist.slots[index];
@@ -1027,7 +1026,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 						enddate: endDate,
 						user: user.fName + ' ' + user.lName
 					}
-				}
+				};
 
 				$http.get(baseUrl + '/api/getEventByUser', jsonData)
 					.then(function (response) {
