@@ -15,6 +15,9 @@ module.exports = {
         'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
+        'public/lib/angular-route/angular-route.js',
+        'public/lib/angular-resource/angular-resource.js',
+        'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
@@ -31,7 +34,6 @@ module.exports = {
         'public/lib/angular-strap/dist/angular-strap.min.js', 
         'public/lib/angular-strap/dist/angular-strap.tpl.min.js',
         'public/lib/fullcalendar-scheduler/dist/scheduler.js'
-        //'public/lib/angular-aria/angular-aria.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
