@@ -49,6 +49,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
      
         
                 resources: [
+                    { id: 'Dr Rajendra Kurady', name: 'Dr Rajendra Kurady', eventColor: 'green' },
                     { id: 'Dr. Saphal Shetty', name: 'Dr. Saphal Shetty', eventColor: 'green' },
                     { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: 'brown' },
                     { id: 'Dr. Siddharth K', name: 'Dr. Siddharth K', eventColor: 'orange' },
