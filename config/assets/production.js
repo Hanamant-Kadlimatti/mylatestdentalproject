@@ -5,18 +5,13 @@ module.exports = {
     lib: {
       css: [
         'public/lib/fullcalendar/dist/fullcalendar.css',
-        'public/lib/angular-motion/dist/angular-motion.css',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.css',
-        'public/lib/angular-material/angular-material.css',
         'public/lib/font-awesome/font-awesome.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
         'public/lib/angularMultipleSelect/build/multiple-select.min.css',
         'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
-        'public/lib/angular-route/angular-route.js',
-        'public/lib/angular-resource/angular-resource.js',
-        'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/dist/angular-file-upload.js',
@@ -28,7 +23,6 @@ module.exports = {
         'public/lib/angular-filter/dist/angular-filter.min.js',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.min.js',
         'public/lib/angular-jquery-timepicker/src/timepickerdirective.js',
-        'public/lib/angular-aria/angular-aria.js',
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
         'public/lib/angularMultipleSelect/build/multiple-select.min.js',
         'public/lib/angular-strap/dist/angular-strap.min.js', 
