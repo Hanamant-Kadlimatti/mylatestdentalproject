@@ -11,15 +11,12 @@ var ApplicationConfiguration = (function () {
     'ui.router',
     'ui.bootstrap',
     'ui.utils',
-    'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'mgcrea.ngStrap',
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars',
-    'multipleSelect'
+    'angular-input-stars'
   ];
 
   // Add a new vertical module
@@ -605,7 +602,7 @@ angular.module('core').service('Socket', ['Authentication', '$state', '$timeout'
 'use strict';
 
 // Configuring the Events module
-angular.module('events').run(['Menus',
+angular.module('events',['ui.calendar']).run(['Menus',
   function (Menus) {
     // Add the events dropdown item
     Menus.addMenuItem('topbar', {
@@ -1106,7 +1103,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 'use strict';
 
 // Configuring the Personals module
-angular.module('personals').run(['Menus',
+angular.module('personals',['multipleSelect','mgcrea.ngStrap']).run(['Menus',
   function (Menus) {
     // Add the personals dropdown item
     Menus.addMenuItem('topbar', {

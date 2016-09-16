@@ -8,7 +8,7 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
         'public/lib/fullcalendar/dist/fullcalendar.min.css',
         'public/lib/angular-motion/dist/angular-motion.min.css',
-        'public/lib/jquery-timepicker-jt/jquery.timepicker.min.css',
+        'public/lib/jquery-timepicker-jt/jquery.timepicker.css',
         'public/lib/angular-material/angular-material.min.css',
         'public/lib/font-awesome/font-awesome.min.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
