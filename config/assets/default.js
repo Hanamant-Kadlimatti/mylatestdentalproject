@@ -4,16 +4,15 @@ module.exports = {
   client: {
     lib: {
       css: [
-        'public/lib/bootstrap/dist/css/bootstrap.min.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
-        'public/lib/fullcalendar/dist/fullcalendar.css',
-        'public/lib/angular-motion/dist/angular-motion.css',
+        // 'public/lib/bootstrap/dist/css/bootstrap.min.css',
+        // 'public/lib/bootstrap/dist/css/bootstrap-theme.min.css',
+        //'public/lib/fullcalendar/dist/fullcalendar.css',
         'public/lib/jquery-timepicker-jt/jquery.timepicker.css',
         'public/lib/angular-material/angular-material.css',
-        'public/lib/font-awesome/font-awesome.css',
+        //'public/lib/font-awesome/font-awesome.css',
         'public/lib/angular-input-stars-directive/angular-input-stars.css',
-        'public/lib/angularMultipleSelect/build/multiple-select.min.css',
-        'public/lib/fullcalendar-scheduler/dist/scheduler.css'
+        //'public/lib/angularMultipleSelect/build/multiple-select.min.css',
+        //'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
         'public/lib/jquery/dist/jquery.min.js',
@@ -36,7 +35,6 @@ module.exports = {
         'public/lib/angular-strap/dist/angular-strap.tpl.min.js', 
         'public/lib/jquery-timepicker-jt/jquery.timepicker.min.js',
         'public/lib/angular-jquery-timepicker/src/timepickerdirective.js',
-        'public/lib/angular-aria/angular-aria.js',
         'public/lib/angular-material/angular-material.js',
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
         'public/lib/angularMultipleSelect/build/multiple-select.min.js',

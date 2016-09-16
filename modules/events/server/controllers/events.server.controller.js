@@ -222,11 +222,11 @@ exports.create = function (req, res, next) {
                 'overrides': [
                     {
                         'method': 'email',
-                        'minutes': '40320'
+                        'minutes': '1440'
                     },
                     {
                         'method': 'popup',
-                        'minutes': '40320'
+                        'minutes': '1440'
                     }
                 ]
             },
@@ -255,7 +255,8 @@ exports.create = function (req, res, next) {
 
         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
-        calendar.events.insert(profile.email, addEventBody, function (err, response) {
+        calendar.events.insert({calendarId: profile.email, resource: addEventBody, sendNotifications: true}
+        , function (err, response) {
 
             if (err) {
                 return res.status(400).send({
