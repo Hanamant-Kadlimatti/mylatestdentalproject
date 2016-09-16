@@ -222,11 +222,11 @@ exports.create = function (req, res, next) {
                 'overrides': [
                     {
                         'method': 'email',
-                        'minutes': '1440'
+                        'minutes': '40320'
                     },
                     {
                         'method': 'popup',
-                        'minutes': '1140'
+                        'minutes': '40320'
                     }
                 ]
             },
