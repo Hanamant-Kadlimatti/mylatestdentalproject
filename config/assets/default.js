@@ -15,12 +15,12 @@ module.exports = {
         'public/lib/fullcalendar-scheduler/dist/scheduler.css'
       ],
       js: [
-        'public/lib/jquery/dist/jquery.min.js',
-        'public/lib/jquery-ui/jquery-ui.js',
-        'public/lib/angular/angular.js',
+        //'public/lib/jquery/dist/jquery.min.js',
+        //'public/lib/jquery-ui/jquery-ui.js',
+        //'public/lib/angular/angular.js',
         'public/lib/angular-route/angular-route.js',
         'public/lib/angular-resource/angular-resource.js',
-        'public/lib/angular-animate/angular-animate.js',
+        //'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-ui-router/release/angular-ui-router.js',
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -39,7 +39,7 @@ module.exports = {
         'public/lib/angular-input-stars-directive/angular-input-stars.js',
         'public/lib/angularMultipleSelect/build/multiple-select.min.js',
         'public/lib/fullcalendar-scheduler/dist/scheduler.js',
-        'public/lib/angular-aria/angular-aria.js'
+        //'public/lib/angular-aria/angular-aria.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
