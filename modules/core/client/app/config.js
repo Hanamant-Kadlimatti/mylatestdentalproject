@@ -11,15 +11,12 @@ var ApplicationConfiguration = (function () {
     'ui.router',
     'ui.bootstrap',
     'ui.utils',
-    'ui.calendar',
     'GoogleCalendarService',
     'EventUtil',
-    'mgcrea.ngStrap',
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars',
-    'multipleSelect'
+    'angular-input-stars'
   ];
 
   // Add a new vertical module
