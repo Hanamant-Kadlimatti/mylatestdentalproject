@@ -9,7 +9,7 @@ module.exports = {
         'public/lib/jquery-timepicker-jt/jquery.timepicker.min.css',
         'public/lib/angular-material/angular-material.min.css',
         'public/lib/font-awesome/font-awesome.min.css',
-        'public/lib/angular-input-stars-directive/angular-input-stars.min.css',
+        'public/lib/angular-input-stars-directive/angular-input-stars.css',
         'public/lib/angularMultipleSelect/build/multiple-select.min.css',
         'public/lib/fullcalendar-scheduler/dist/scheduler.min.css'
       ],
