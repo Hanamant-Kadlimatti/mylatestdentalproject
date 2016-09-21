@@ -31,7 +31,7 @@ eventCreateApp.controller('EventsCreateController',
             // Checkbox code
 
             $scope.items = ['Asthma', 'High Blood Presure', 'Bleeding Disorder', 'Heart Disease', 'Diabetes'];
-            $scope.selected = [];
+            $scope.patientSelectedMedicalCondition = [];
 
             $scope.toggle = function (item, list) {
                 var idx = list.indexOf(item);
@@ -66,15 +66,24 @@ eventCreateApp.controller('EventsCreateController',
 
                 $scope.patientInfo = {
                     patientName: $scope.event.patientName,
+                    patientAge: $scope.event.patientAge,
+                    patientGender: $scope.event.patientGender,
+                    patientPlace: $scope.event.patientPlace,
                     contact: $scope.event.patientPhoneNumber,
-                    emailId: $scope.event.patientEmail
+                    emailId: $scope.event.patientEmail,
+                    patientSelectedMedicalCondition: $scope.patientSelectedMedicalCondition,
+                    patientChiefComplaint: $scope.event.patientChiefComplaint,
                 };
 
                 $rootScope.patient = $scope.patientInfo.patientName;
                 $rootScope.dateTime = $scope.event.startDate;
 
-
-                $googleCalendar.addEvent($scope.event.startDate, endDate, this.selectedDentist, $scope.patientInfo)
+                var contactInfo = {
+                    doctorName: this.selectedDentist.fName + ' ' + this.selectedDentist.lName,
+                    emailId: this.selectedDentist.emailId
+                };
+                
+                $googleCalendar.addEvent($scope.event.startDate, endDate, contactInfo, $scope.patientInfo)
                     .then(function (result) {
                         console.log('Add Event Result:', result);
                         $scope.showSuccess();

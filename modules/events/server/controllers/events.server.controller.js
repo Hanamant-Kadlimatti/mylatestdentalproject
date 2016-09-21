@@ -46,26 +46,26 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
 //
 
 var plivo = require('plivo');
-var p = plivo.RestAPI({  authId: 'MAY2NKNMU5MMEYZMQ4YW',  authToken: 'MjQ5NTI0NzBlYThlNmRjNjhiYTlhOWFkY2VkNTdl' });
+var p = plivo.RestAPI({ authId: 'MAY2NKNMU5MMEYZMQ4YW', authToken: 'MjQ5NTI0NzBlYThlNmRjNjhiYTlhOWFkY2VkNTdl' });
 
 function sendSms(contactNumber) {
     var params = {
-    'src': '+919845293868', // Sender's phone number with country code
-    'dst' : '+919972095929', // Receiver's phone Number with country code
-    'text' : 'Hi,  Your Appointment is Confirmed  Thank You', // Your SMS Text Message - English
-    //'text' :  // Your SMS Text Message - Japanese
-    //'text' : // Your SMS Text Message - French
-   'url' : 'https://intense-brook-8241.herokuapp.com/report/', // The URL to which with the status of the message is sent
-    'method' : 'GET' // The method used to call the url
-};
+        'src': '+919845293868', // Sender's phone number with country code
+        'dst': '+917019319961', //+919845293868', // Receiver's phone Number with country code
+        'text': 'Hi,  Your Appointment is Confirmed  Thank You', // Your SMS Text Message - English
+        //'text' :  // Your SMS Text Message - Japanese
+        //'text' : // Your SMS Text Message - French
+        'url': 'https://intense-brook-8241.herokuapp.com/report/', // The URL to which with the status of the message is sent
+        'method': 'GET' // The method used to call the url
+    };
 
-// Prints the complete response
-p.send_message(params, function (status, response) {
-    console.log('Status: ', status);
-    console.log('API Response:\n', response);
-    console.log('Message UUID:\n', response['message.uuid']);
-    console.log('Api ID:\n', response['api.id']);
-});
+    // Prints the complete response
+    p.send_message(params, function(status, response) {
+        console.log('Status: ', status);
+        console.log('API Response:\n', response);
+        console.log('Message UUID:\n', response['message.uuid']);
+        console.log('Api ID:\n', response['api.id']);
+    });
 }
 
 
@@ -80,24 +80,26 @@ function authorize(refreshToken) {
 
     if (refreshToken) {
         oa.getOAuthAccessToken(refreshToken, { grant_type: 'refresh_token', client_id: config.google.clientID, client_secret: config.google.clientSecret },
-            function (err, access_token, refresh_token, res) {
+            function(err, access_token, refresh_token, res) {
 
                 //lookup settings from database
-                User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
+                User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings) {
+                    if (res !== undefined) {
+                        var expiresIn = parseInt(res.expires_in);
+                        var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
 
-                    var expiresIn = parseInt(res.expires_in);
-                    var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
+                        //add refresh token if it is returned
+                        if (refresh_token !== undefined) settings.providerData.refreshToken = refresh_token;
 
-                    //add refresh token if it is returned
-                    if (refresh_token !== undefined) settings.providerData.refreshToken = refresh_token;
+                        //update access token in database
+                        settings.providerData.accessToken = access_token;
+                        settings.google_access_token_expiration = accessTokenExpiration;
 
-                    //update access token in database
-                    settings.providerData.accessToken = access_token;
-                    settings.google_access_token_expiration = accessTokenExpiration;
+                        settings.save();
 
-                    settings.save();
+                        deferred.resolve(settings);
+                    }
 
-                    deferred.resolve(settings);
                 });
             });
 
@@ -114,7 +116,7 @@ function getAccessToken() {
     var accessToken;
 
 
-    User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
+    User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings) {
         //check if access token is still valid
         var today = new Date();
         var currentTime = today.getTime();
@@ -125,11 +127,11 @@ function getAccessToken() {
             }
             else {
                 //refresh the access token
-                authorize(settings.providerData.refreshToken).then(function (settings) {
+                authorize(settings.providerData.refreshToken).then(function(settings) {
 
                     deferred.resolve(settings);
 
-                }, function (error) {
+                }, function(error) {
 
                     deferred.reject(error);
 
@@ -142,9 +144,9 @@ function getAccessToken() {
     return deferred.promise;
 }
 
-exports.getEventByUser = function (req, res, next) {
+exports.getEventByUser = function(req, res, next) {
 
-    getAccessToken().then(function (user) {
+    getAccessToken().then(function(user) {
 
         var accessToken = user.providerData.accessToken;
         var calendarId = user.email;
@@ -152,15 +154,15 @@ exports.getEventByUser = function (req, res, next) {
 
         var startDate = new Date(req.query.startdate).toISOString();
         var endDate = new Date(req.query.enddate).toISOString();
-        
+
         calendar.events.list(calendarId, {
             'timeMin': startDate,
             'timeMax': endDate,
             'q': req.query.user,
             'singleEvents': true,
-            orderBy : 'startTime'
+            orderBy: 'startTime'
         },
-            function (err, eventList) {
+            function(err, eventList) {
 
                 if (err) {
                     return res.status(400).send({
@@ -177,15 +179,15 @@ exports.getEventByUser = function (req, res, next) {
 
 };
 
-exports.list = function (req, res, next) {
+exports.list = function(req, res, next) {
 
-    getAccessToken().then(function (user) {
+    getAccessToken().then(function(user) {
 
         var accessToken = user.providerData.accessToken;
         var calendarId = user.email;
         var calendar = new gcal.GoogleCalendar(accessToken);
 
-        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString(), 'singleEvents': true }, function (err, eventList) {
+        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString(), 'singleEvents': true }, function(err, eventList) {
 
             if (err) {
                 return res.status(400).send({
@@ -201,18 +203,19 @@ exports.list = function (req, res, next) {
 
 };
 
-exports.create = function (req, res, next) {
+exports.create = function(req, res, next) {
     //map request body to google calendar data structure
 
-    getAccessToken().then(function (user) {
+    getAccessToken().then(function(user) {
 
 
         var profile = user._doc;
 
         var addEventBody = {
             'status': 'confirmed',
-            'summary': req.body.contact.fName + ' ' + req.body.contact.lName,
-            'description': req.body.patient.patientName + '\n' + req.body.patient.emailId + '\n' + req.body.patient.contact,
+            'summary': req.body.personal.doctorName,
+            'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n'
+            + req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
             'organizer': {
                 'email': profile.email,
                 'self': true
@@ -238,7 +241,7 @@ exports.create = function (req, res, next) {
             },
             'attendees': [
                 {
-                    'email': req.body.contact.emailId,
+                    'email': req.body.personal.emailId,
                     'organizer': true,
                     'self': true,
                     'responseStatus': 'needsAction'
@@ -253,9 +256,18 @@ exports.create = function (req, res, next) {
             ]
         };
 
+        console.log(req.body.patient.patientName);
+        console.log(req.body.patient.patientAge);
+        console.log(req.body.patient.patientGender);
+        console.log(req.body.patient.patientPlace);
+        console.log(req.body.patient.contact);
+        console.log(req.body.patient.emailId);
+        console.log(req.body.patient.patientSelectedMedicalCondition);
+        console.log(req.body.patient.patientChiefComplaint);
+
         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
-        calendar.events.insert(profile.email, addEventBody, function (err, response) {
+        calendar.events.insert(profile.email, addEventBody, function(err, response) {
 
             if (err) {
                 return res.status(400).send({

@@ -66,7 +66,7 @@ angular.module('GoogleCalendarService', [], function ($provide) {
 				var postData = {
 					startdate: scheduledDate,
 					enddate: endDate,
-					contact: contactInfo,
+					personal: contactInfo,
                     patient: patientInfo
 				};
 
