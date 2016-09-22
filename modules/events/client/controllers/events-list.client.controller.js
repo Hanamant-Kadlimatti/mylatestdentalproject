@@ -48,28 +48,28 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
 			resourceLabelText: 'Doctors',
      
         
-                resources: [
-                    { id: 'Dr Rajendra Kurady', name: 'Dr Rajendra Kurady', eventColor: 'green' },
-                    { id: 'Dr. Saphal Shetty', name: 'Dr. Saphal Shetty', eventColor: 'green' },
-                    { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: 'brown' },
-                    { id: 'Dr. Siddharth K', name: 'Dr. Siddharth K', eventColor: 'orange' },
-                    { id: 'Prof. Dr. Shiva Shanakar', name: 'Prof. Dr. Shiva Shanakar', eventColor: 'red' },
-                    { id: 'Prof. Dr. Ponnanna A A', name: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
-                    { id: 'Prof. Dr. Anjan Shah', title: 'Prof. Dr. Anjan Shah', eventColor: 'purple' },
-                    { id: 'Dr. Sudarshan Pujari', title: 'Dr. Sudarshan Pujari', eventColor: '#9ACD32' },
-                    { id: 'Dr. Sudarshan A', title: 'Dr. Sudarshan A', eventColor: 'maroon' },
-                     { id: 'Dr. Manjunath Hegde', title: 'Dr. Manjunath Hegde', eventColor: 'black' },
-                     { id: 'Dr. Pallavi Urs', title: 'Dr. Pallavi Urs', eventColor: '#FF00FF' },
-                     { id: 'Dr. Veena Aralli', title: 'Dr. Veena Aralli', eventColor: '#0000FF' },
-                     { id: 'Prof. Dr. Dharma M Hinduja', title: 'Prof. Dr. Dharma M Hinduja', eventColor: '#00FFFF' },
-                     { id: 'Prof. Dr. Nanda Kishor', title: 'Prof. Dr. Nanda Kishor', eventColor: '#FFC0CB' },
-                     { id: 'Prof. Dr. Sunil Rao', title: 'Prof. Dr. Sunil Rao', eventColor: '#BDB76B' },
-                  
-                     { id: 'Dr.Aparna Srinivas', title: 'Dr.Aparna Srinivas', eventColor: '#00BFFF' },
-                     { id: 'Dr. Harish Sampath', title: 'Dr. Harish Sampath', eventColor: '#9ACD32' },
-                     { id: 'Dr.Ranjitha Shetty', title: 'Dr.Ranjitha Shetty', eventColor: '#FFFFE0' },
-                     { id: 'Dr. Syed Mutheei Ulla', title: 'Dr. Syed Mutheei Ulla', eventColor: '#B8860B' },
-                ],
+            resources: [
+                { id: 'Dr Rajendra Kurady', name: 'Dr Rajendra Kurady', eventColor: 'green' },
+                { id: 'Dr. Saphal Shetty', name: 'Dr. Saphal Shetty', eventColor: 'green' },
+                { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: 'brown' },
+                { id: 'Dr. Siddharth K', name: 'Dr. Siddharth K', eventColor: 'orange' },
+                { id: 'Prof. Dr. Shiva Shanakar', name: 'Prof. Dr. Shiva Shanakar', eventColor: 'red' },
+                { id: 'Prof. Dr. Ponnanna A A', name: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
+                { id: 'Prof. Dr. Anjan Shah', title: 'Prof. Dr. Anjan Shah', eventColor: 'purple' },
+                { id: 'Dr. Sudarshan Pujari', title: 'Dr. Sudarshan Pujari', eventColor: '#9ACD32' },
+                { id: 'Dr. Sudarshan A', title: 'Dr. Sudarshan A', eventColor: 'maroon' },
+                { id: 'Dr. Manjunath Hegde', title: 'Dr. Manjunath Hegde', eventColor: 'black' },
+                { id: 'Dr. Pallavi Urs', title: 'Dr. Pallavi Urs', eventColor: '#FF00FF' },
+                { id: 'Dr. Veena Aralli', title: 'Dr. Veena Aralli', eventColor: '#0000FF' },
+                { id: 'Prof. Dr. Dharma M Hinduja', title: 'Prof. Dr. Dharma M Hinduja', eventColor: '#00FFFF' },
+                { id: 'Prof. Dr. Nanda Kishor', title: 'Prof. Dr. Nanda Kishor', eventColor: '#FFC0CB' },
+                { id: 'Prof. Dr. Sunil Rao', title: 'Prof. Dr. Sunil Rao', eventColor: '#BDB76B' },
+
+                { id: 'Dr.Aparna Srinivas', title: 'Dr.Aparna Srinivas', eventColor: '#00BFFF' },
+                { id: 'Dr. Harish Sampath', title: 'Dr. Harish Sampath', eventColor: '#9ACD32' },
+                { id: 'Dr.Ranjitha Shetty', title: 'Dr.Ranjitha Shetty', eventColor: '#FFFFE0' },
+                { id: 'Dr. Syed Mutheei Ulla', title: 'Dr. Syed Mutheei Ulla', eventColor: '#B8860B' },
+            ],
 
 
 

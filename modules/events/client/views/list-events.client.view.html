@@ -14,8 +14,16 @@
                 <input type="text" class="form-control" ng-model="event.description" placeholder="Search by Patient name or Contact number...">
                 <td>{{event.summary}}</td>
                 <td>{{event.start.dateTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}} to {{event.end.dateTime | amDateFormat: 'h:mm:ss a'}}</td>
-                <td style="text-align:left"><strong>Name:</strong> {{event.description.split('\n')[0]}}<br/><strong>Age:</strong> {{event.description.split('\n')[1]}}<br/><strong>male:</strong> {{event.description.split('\n')[2]}}<br/><strong>Place:</strong> {{event.description.split('\n')[3]}}
-                <br/><strong> Contact:</strong> {{event.description.split('\n')[4]}}<br/><strong>EmailId:</strong> {{event.description.split('\n')[5]}}<br/><strong>MedicalCondition: </strong> {{event.description.split('\n')[6]}}<br/><strong>ChiefComplaint:</strong> {{event.description.split('\n')[7]}}</td>
+                <td style="text-align:left">
+                    <strong>Name:</strong> {{event.description.split('\n')[0]}}<br/>
+                    <strong>Age:</strong> {{event.description.split('\n')[1]}}<br/>
+                    <strong>Gender:</strong> {{event.description.split('\n')[2]}}<br/>
+                    <strong>Place:</strong> {{event.description.split('\n')[3]}}<br/>
+                    <strong> Contact:</strong> {{event.description.split('\n')[4]}}<br/>
+                    <strong>Email Id:</strong> {{event.description.split('\n')[5]}}<br/>
+                    <strong>Medical Condition: </strong> {{event.description.split('\n')[6]}}<br/>
+                    <strong>Chief Complaint:</strong> {{event.description.split('\n')[7]}}
+                 </td>
             </tr>
         </tbody>
     

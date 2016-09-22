@@ -280,3 +280,13 @@ md-dialog md-dialog-actions .md-button{
     margin: 0;
     font-size: 20px;
 }
+
+.table-striped {
+    font-size: 13px;
+    font-weight: normal;
+    background: ghostwhite;
+    border-top: 4px solid ghostwhite;
+    border-bottom: 1px solid #fff;
+    color: #248dc9;
+    padding: 8px;
+}
