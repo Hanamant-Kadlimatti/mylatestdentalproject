@@ -256,15 +256,6 @@ exports.create = function(req, res, next) {
             ]
         };
 
-        console.log(req.body.patient.patientName);
-        console.log(req.body.patient.patientAge);
-        console.log(req.body.patient.patientGender);
-        console.log(req.body.patient.patientPlace);
-        console.log(req.body.patient.contact);
-        console.log(req.body.patient.emailId);
-        console.log(req.body.patient.patientSelectedMedicalCondition);
-        console.log(req.body.patient.patientChiefComplaint);
-
         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
         calendar.events.insert(profile.email, addEventBody, function(err, response) {

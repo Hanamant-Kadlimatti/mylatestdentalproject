@@ -885,7 +885,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
             calendar: {
                 schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
                 editable: false,
-                
+
                 aspectRatio: 1.5,
 
                 header: {
@@ -934,6 +934,20 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     { id: 'Dr. Syed Mutheei Ulla', title: 'Dr. Syed Mutheei Ulla', eventColor: '#B8860B' },
                 ],
 
+                eventRender: function (event, element) {
+
+                    var view = $('#calendar').fullCalendar('getView');
+                    
+                    if (view.name == 'verticalResourceView') {
+                        element.find('.fc-title').empty();
+                        element.find('.fc-title').append(event.description.split('\n')[0]);
+                    }
+                    else {
+                        element.find('.fc-title').empty();
+                        element.find('.fc-title').append(event.title);
+                    }
+
+                },
                 eventClick: $scope.alertOnEventClick
             }
         };
@@ -960,7 +974,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
         //================================================================================
 
         $scope.getEvents = function () {
-            $googleCalendar.getEvents().then(function (events) {
+            $googleCalendar.getEvents().then(function (events, eventRender) {
 
                 $scope.events = events;
 
@@ -973,7 +987,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                         'end': event.end.dateTime,
                         'description': event.description,
                         'resourceId': event.summary,
-                        'stick': 'true'
+                        'stick': 'true',
                     };
                     console.log(event.summary);
                 }

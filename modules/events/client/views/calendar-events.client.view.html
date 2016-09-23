@@ -1,7 +1,7 @@
 <section ng-controller="EventsController as eventCtrl">
 
     <div class="row" ng-init="getEvents()">
-        <div class="row pad-bottom" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
+        <div id="calendar" class="row pad-bottom" ui-calendar="uiConfig.calendar" ng-model="eventSources"></div>
 
         <md-sidenav flex="70" md-component-id="right" md-is-open="isSidenavOpen" class="md-sidenav-right">
             <div class="well side-well" ng-show="currentEvent">
