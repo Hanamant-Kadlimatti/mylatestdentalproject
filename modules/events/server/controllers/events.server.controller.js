@@ -214,8 +214,8 @@ exports.create = function(req, res, next) {
         var addEventBody = {
             'status': 'confirmed',
             'summary': req.body.personal.doctorName,
-            'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n'
-            + req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+            'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
+             req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
             'organizer': {
                 'email': profile.email,
                 'self': true
