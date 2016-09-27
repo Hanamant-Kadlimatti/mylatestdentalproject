@@ -912,12 +912,12 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                 resourceLabelText: 'Doctors',
 
                 resources: [
-                    { id: 'Dr Rajendra Kurady', name: 'Dr Rajendra Kurady', eventColor: 'green' },
-                    { id: 'Dr. Saphal Shetty', name: 'Dr. Saphal Shetty', eventColor: 'green' },
-                    { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: 'brown' },
-                    { id: 'Dr. Siddharth K', name: 'Dr. Siddharth K', eventColor: 'orange' },
-                    { id: 'Prof. Dr. Shiva Shanakar', name: 'Prof. Dr. Shiva Shanakar', eventColor: 'red' },
-                    { id: 'Prof. Dr. Ponnanna A A', name: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
+                    { id: 'Dr. Rajendra Kurady', title: 'Dr Rajendra Kurady', eventColor: 'maroon' },
+                    { id: 'Dr. Saphal Shetty', title: 'Dr. Saphal Shetty', eventColor: 'green' },
+                    { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: '#FF00FF' },
+                    { id: 'Dr. Siddharth K', title: 'Dr. Siddharth K', eventColor: 'orange' },
+                    { id: 'Prof. Dr. Shiva Shanakar', title: 'Prof. Dr. Shiva Shanakar', eventColor: 'red' },
+                    { id: 'Prof. Dr. Ponnanna A A', title: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
                     { id: 'Prof. Dr. Anjan Shah', title: 'Prof. Dr. Anjan Shah', eventColor: 'purple' },
                     { id: 'Dr. Sudarshan Pujari', title: 'Dr. Sudarshan Pujari', eventColor: '#9ACD32' },
                     { id: 'Dr. Sudarshan A', title: 'Dr. Sudarshan A', eventColor: 'maroon' },
@@ -927,7 +927,6 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     { id: 'Prof. Dr. Dharma M Hinduja', title: 'Prof. Dr. Dharma M Hinduja', eventColor: '#00FFFF' },
                     { id: 'Prof. Dr. Nanda Kishor', title: 'Prof. Dr. Nanda Kishor', eventColor: '#FFC0CB' },
                     { id: 'Prof. Dr. Sunil Rao', title: 'Prof. Dr. Sunil Rao', eventColor: '#BDB76B' },
-
                     { id: 'Dr.Aparna Srinivas', title: 'Dr.Aparna Srinivas', eventColor: '#00BFFF' },
                     { id: 'Dr. Harish Sampath', title: 'Dr. Harish Sampath', eventColor: '#9ACD32' },
                     { id: 'Dr.Ranjitha Shetty', title: 'Dr.Ranjitha Shetty', eventColor: '#FFFFE0' },
@@ -944,7 +943,13 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     }
                     else {
                         element.find('.fc-title').empty();
-                        element.find('.fc-title').append(event.title);
+                        
+                        if(event.description === 'On Vacation') {
+                            element.find('.fc-title').append( 'On Vacation - ' + event.title);
+                        } else {
+                            element.find('.fc-title').append(event.title);
+                        }
+                        
                     }
 
                 },
@@ -1120,7 +1125,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 'use strict';
 
 // Configuring the Personals module
-angular.module('personals',['multipleSelect','mgcrea.ngStrap']).run(['Menus',
+angular.module('personals',['multipleSelect','mgcrea.ngStrap', 'ngMaterial']).run(['Menus',
   function (Menus) {
     // Add the personals dropdown item
     Menus.addMenuItem('topbar', {
@@ -1278,6 +1283,30 @@ personalsApp.controller('ApptSlotController', ['$scope', 'slotService',
 
     }
 ]);
+'use strict';
+
+var personalsApp = angular.module('personals');
+
+personalsApp.controller('ApptSlotBlockController', ['$scope', function ($scope) {
+
+    //Calendar
+    $scope.myDate = new Date();
+    $scope.minDate = new Date(
+        $scope.myDate.getFullYear(),
+        $scope.myDate.getMonth(),
+        $scope.myDate.getDate());
+
+    //BlockSlots
+    //  $scope.slot = [];
+
+    $scope.blockCalendar = function () {
+        $scope.slot.push({
+            startdate: $scope.slot.startdate,
+            enddate: $scope.slot.enddate
+        });
+    };
+}]);
+
 'use strict';
 
 var personalsApp = angular.module('personals');
@@ -1479,20 +1508,20 @@ personalsApp.controller('PersonalsUpdateController', ['$scope',
 
 var personalsApp = angular.module('personals');
 
-personalsApp.directive('onErrorSrc', function() {
+personalsApp.directive('onErrorSrc', function () {
     return {
-        link: function(scope, element, attrs) {
-          element.bind('error', function() {
-            if (attrs.src !== attrs.onErrorSrc) {
-              attrs.$set('src', attrs.onErrorSrc);
-            }
-          });
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src !== attrs.onErrorSrc) {
+                    attrs.$set('src', attrs.onErrorSrc);
+                }
+            });
         }
     };
 });
 
-personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Personals', '$uibModal', '$log', '$q', 'slotService',
-    function($scope, $stateParams, Personals, $uibModal, $log, $q, slotService) {
+personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Personals', '$uibModal', '$log', '$q', 'slotService', '$mdDialog', '$mdMedia', '$googleCalendar',
+    function ($scope, $stateParams, Personals, $uibModal, $log, $q, slotService, $mdDialog, $mdMedia, $googleCalendar) {
 
         // Find a list of Personals
         this.personals = Personals.query();
@@ -1501,19 +1530,19 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
 
         // Open a modal window to create a single personal record
 
-        this.modelCreate = function(size) {
+        this.modelCreate = function (size) {
 
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'modules/personals/views/create-personal.client.view.html',
 
-                controller: function($scope, $uibModalInstance) {
+                controller: function ($scope, $uibModalInstance) {
 
-                    $scope.ok = function() {
+                    $scope.ok = function () {
                         $uibModalInstance.close($scope.personal);
                     };
 
-                    $scope.cancel = function() {
+                    $scope.cancel = function () {
                         $uibModalInstance.dismiss('cancel');
                     };
 
@@ -1521,15 +1550,15 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                 size: size
             });
 
-            modalInstance.result.then(function(selectedItem)
-            { $scope.selected = selectedItem; }, function() {
+            modalInstance.result.then(function (selectedItem)
+            { $scope.selected = selectedItem; }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
 
         };
 
         // Open a modal window to update a single personal record
-        this.modelUpdate = function(size, selectedPersonal) {
+        this.modelUpdate = function (size, selectedPersonal) {
 
             var elements = [];
             for (var index = 0; index < selectedPersonal.treatments.length; index++) {
@@ -1550,30 +1579,30 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'modules/personals/views/edit-personal.client.view.html',
-                controller: function($scope, $uibModalInstance, selectedPersonal) {
+                controller: function ($scope, $uibModalInstance, selectedPersonal) {
 
                     $scope.personal = selectedPersonal;
 
-                    $scope.ok = function() {
+                    $scope.ok = function () {
                         $uibModalInstance.close($scope.personal);
                     };
 
-                    $scope.cancel = function() {
+                    $scope.cancel = function () {
                         $uibModalInstance.dismiss('cancel');
                     };
 
                 },
                 size: size,
                 resolve: {
-                    selectedPersonal: function() {
+                    selectedPersonal: function () {
                         return selectedPersonal;
                     }
                 }
             });
 
-            modalInstance.result.then(function(selectedItem) {
+            modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-            }, function() {
+            }, function () {
 
             });
 
@@ -1581,7 +1610,7 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
         };
 
         // Open a modal window to update a single personal record
-        this.modelSchedule = function(size, selectedPersonal) {
+        this.modelSchedule = function (size, selectedPersonal) {
 
             var modalInstance = $uibModal.open({
 
@@ -1589,18 +1618,18 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
 
                 templateUrl: 'modules/personals/views/list-apptslots.client.view.html',
 
-                controller: function($scope, $uibModalInstance, selectedPersonal, slotService) {
+                controller: function ($scope, $uibModalInstance, selectedPersonal, slotService) {
 
                     $scope.personal = selectedPersonal;
                     slotService.slotList = selectedPersonal.slots;
 
                     //console.log($scope.slotList);
 
-                    $scope.ok = function() {
+                    $scope.ok = function () {
                         $uibModalInstance.close($scope.personal);
                     };
 
-                    $scope.cancel = function() {
+                    $scope.cancel = function () {
                         $uibModalInstance.dismiss('cancel');
                     };
 
@@ -1609,21 +1638,21 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                 size: size,
 
                 resolve: {
-                    selectedPersonal: function() {
+                    selectedPersonal: function () {
                         return selectedPersonal;
                     }
                 }
             });
 
-            modalInstance.result.then(function(selectedItem) {
+            modalInstance.result.then(function (selectedItem) {
                 $scope.selected = selectedItem;
-            }, function() {
+            }, function () {
 
             });
         };
 
         // Remove existing Personal
-        this.remove = function(personal) {
+        this.remove = function (personal) {
 
             if (confirm('Are you sure you want to delete this user?')) {
                 if (personal) {
@@ -1637,9 +1666,80 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                     }
 
                 } else {
-                    this.personal.$remove(function() { });
+                    this.personal.$remove(function () { });
                 }
             }
+        };
+
+        // Open a modal window to block slot a single personal record
+
+        this.modelBlock = function (selectedPersonal) {
+
+            function DialogController($scope, $mdDialog, personal, $googleCalendar) {
+                
+                $scope.personal = personal;
+                
+                $scope.myDate = new Date();
+
+                $scope.minDate = new Date(
+                    $scope.myDate.getFullYear(),
+                    $scope.myDate.getMonth(),
+                    $scope.myDate.getDate());
+
+                $scope.hide = function () {
+                    $mdDialog.hide();
+                };
+
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+
+                $scope.blockCalendar = function (personal) {
+                    console.log(personal);
+                    $mdDialog.hide();
+                    
+                    var startDate = new Date($scope.startDate);
+                    startDate.setHours(0, 0, 0, 0);
+                    
+                     var endDate = new Date($scope.endDate);
+                    endDate.setHours(23, 59, 59, 999);
+                  
+                     $googleCalendar.addEvent(startDate, endDate, personal, null)
+                    .then(function (result) { 
+                        
+                        
+                        console.log('Add Event Result:', result);
+                       // $scope.showSuccess();
+
+
+                    }, function (result) {
+                         console.log('Failed Event Result:', result);
+                       // $scope.showFailed();
+                    });
+
+                };
+
+            }
+            DialogController.$inject = ["$scope", "$mdDialog", "personal", "$googleCalendar"];
+
+            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
+            
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/personals/views/list-apptslotsblock.client.view.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen,
+                locals: {
+                    personal: selectedPersonal
+                }
+            });
+
+            $scope.$watch(function () {
+                return $mdMedia('xs') || $mdMedia('sm');
+            }, function (wantsFullScreen) {
+                $scope.customFullscreen = (wantsFullScreen === true);
+            });
         };
 
     }

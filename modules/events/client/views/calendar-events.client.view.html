@@ -9,7 +9,8 @@
                 <pre> {{currentEvent.title}}<br/></pre>
                 <strong>When:</strong>
                 <br/>
-                <pre>{{currentEvent.start | amDateFormat: 'dddd, MMMM Do YYYY'}} <br>{{currentEvent.start | amDateFormat: 'h:mm:ss a'}} to {{currentEvent.end | amDateFormat: 'h:mm:ss a'}}</pre>
+                <pre>{{currentEvent.start | amDateFormat: 'dddd, MMMM Do YYYY'}} {{currentEvent.start | amDateFormat: 'h:mm:ss a'}}
+                     to <br>{{currentEvent.end | amDateFormat: 'dddd, MMMM Do YYYY'}} {{currentEvent.end | amDateFormat: 'h:mm:ss a'}}</pre>
                 <strong>Patient Details:</strong>
                 <p>
                     <pre>

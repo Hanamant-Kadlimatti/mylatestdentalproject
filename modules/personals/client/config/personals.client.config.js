@@ -1,7 +1,7 @@
 'use strict';
 
 // Configuring the Personals module
-angular.module('personals',['multipleSelect','mgcrea.ngStrap']).run(['Menus',
+angular.module('personals',['multipleSelect','mgcrea.ngStrap', 'ngMaterial']).run(['Menus',
   function (Menus) {
     // Add the personals dropdown item
     Menus.addMenuItem('topbar', {

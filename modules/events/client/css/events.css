@@ -261,6 +261,10 @@ md-dialog md-dialog-actions .md-button{
     border-bottom: 0;
 }
  
+ /* md-sid nva width  */
+ .flex-70, .layout-row>.flex-70 {
+    width: 19%;
+}
   
 
 .row {

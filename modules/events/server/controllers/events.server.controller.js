@@ -158,7 +158,7 @@ exports.getEventByUser = function(req, res, next) {
         calendar.events.list(calendarId, {
             'timeMin': startDate,
             'timeMax': endDate,
-            'q': req.query.user,
+            'summary': req.query.user,
             'singleEvents': true,
             orderBy: 'startTime'
         },
@@ -211,54 +211,96 @@ exports.create = function(req, res, next) {
 
         var profile = user._doc;
 
-        var addEventBody = {
-            'status': 'confirmed',
-            'summary': req.body.personal.doctorName,
-            'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
-             req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
-            'organizer': {
-                'email': profile.email,
-                'self': true
-            },
-            'reminders': {
-                'useDefault': false,
-                'overrides': [
+        var eventBody = [];
+
+        if (req.body.patient === null) {
+            eventBody = {
+                'status': 'confirmed',
+                'summary': req.body.personal.fName + ' ' + req.body.personal.lName,
+                'description': 'On Vacation',
+                'organizer': {
+                    'email': profile.email,
+                    'self': true
+                },
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {
+                            'method': 'email',
+                            'minutes': '40320'
+                        },
+                        {
+                            'method': 'popup',
+                            'minutes': '40320'
+                        }
+                    ]
+                },
+                'start': {
+                    'dateTime': req.body.startdate,
+                },
+                'end': {
+                    'dateTime': req.body.enddate
+                },
+                'attendees': [
                     {
-                        'method': 'email',
-                        'minutes': '40320'
-                    },
-                    {
-                        'method': 'popup',
-                        'minutes': '40320'
+                        'email': req.body.personal.emailId,
+                        'organizer': true,
+                        'self': true
                     }
                 ]
-            },
-            'start': {
-                'dateTime': req.body.startdate,
-            },
-            'end': {
-                'dateTime': req.body.enddate
-            },
-            'attendees': [
-                {
-                    'email': req.body.personal.emailId,
-                    'organizer': true,
-                    'self': true,
-                    'responseStatus': 'needsAction'
+            };
+        }
+        else {
+            eventBody = {
+                'status': 'confirmed',
+                'summary': req.body.personal.doctorName,
+                'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
+                req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+                'organizer': {
+                    'email': profile.email,
+                    'self': true
                 },
-                {
-                    'email': req.body.patient.emailId,
-                    'organizer': false,
-                    'responseStatus': 'needsAction'
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {
+                            'method': 'email',
+                            'minutes': '40320'
+                        },
+                        {
+                            'method': 'popup',
+                            'minutes': '40320'
+                        }
+                    ]
                 },
+                'start': {
+                    'dateTime': req.body.startdate,
+                },
+                'end': {
+                    'dateTime': req.body.enddate
+                },
+                'attendees': [
+                    {
+                        'email': req.body.personal.emailId,
+                        'organizer': true,
+                        'self': true,
+                        'responseStatus': 'needsAction'
+                    },
+                    {
+                        'email': req.body.patient.emailId,
+                        'organizer': false,
+                        'responseStatus': 'needsAction'
+                    },
 
 
-            ]
-        };
+                ]
+            };
+        }
+
 
         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
-        calendar.events.insert(profile.email, addEventBody, function(err, response) {
+        calendar.events.insert(profile.email, eventBody, function(err, response) {
 
             if (err) {
                 return res.status(400).send({
@@ -266,7 +308,6 @@ exports.create = function(req, res, next) {
                 });
             } else {
                 res.send(response);
-                sendSms(req.body.patient.contact);
             }
 
         });
