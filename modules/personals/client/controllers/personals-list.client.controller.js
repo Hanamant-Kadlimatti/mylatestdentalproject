@@ -16,8 +16,8 @@ personalsApp.directive('onErrorSrc', function () {
     };
 });
 
-personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Personals', '$uibModal', '$log', '$q', 'slotService', '$mdDialog', '$mdMedia', '$googleCalendar',
-    function ($scope, $stateParams, Personals, $uibModal, $log, $q, slotService, $mdDialog, $mdMedia, $googleCalendar) {
+personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Personals', '$uibModal', '$log', '$q', 'slotService', '$mdDialog', '$mdMedia', '$googleCalendar', '$mdToast',
+    function ($scope, $stateParams, Personals, $uibModal, $log, $q, slotService, $mdDialog, $mdMedia, $googleCalendar, $mdToast) {
 
         // Find a list of Personals
         this.personals = Personals.query();
@@ -171,10 +171,10 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
 
         this.modelBlock = function (selectedPersonal) {
 
-            function DialogController($scope, $mdDialog, personal, $googleCalendar) {
-                
+            function DialogController($scope, $mdDialog, personal, $googleCalendar, $mdToast) {
+
                 $scope.personal = personal;
-                
+
                 $scope.myDate = new Date();
 
                 $scope.minDate = new Date(
@@ -191,34 +191,49 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                 };
 
                 $scope.blockCalendar = function (personal) {
-                    console.log(personal);
-                    $mdDialog.hide();
-                    
+
                     var startDate = new Date($scope.startDate);
                     startDate.setHours(0, 0, 0, 0);
-                    
-                     var endDate = new Date($scope.endDate);
+
+                    var endDate = new Date($scope.endDate);
                     endDate.setHours(23, 59, 59, 999);
-                  
-                     $googleCalendar.addEvent(startDate, endDate, personal, null)
-                    .then(function (result) { 
-                        
-                        
-                        console.log('Add Event Result:', result);
-                       // $scope.showSuccess();
+
+                    $googleCalendar.addEvent(startDate, endDate, personal, null)
+                        .then(function (result) {
+
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent('Successfully Appointment Slot Blocked!')
+                                    .position('top right')
+                                    .hideDelay(3000)
+                            );
 
 
-                    }, function (result) {
-                         console.log('Failed Event Result:', result);
-                       // $scope.showFailed();
-                    });
+                            console.log('Add Event Result:', result);
+                            // $scope.showSuccess();
+
+
+                        }, function (result) {
+                            
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent('Unable to block the Appointment Slot!')
+                                    .position('top right')
+                                    .hideDelay(3000)
+                            );
+                            
+                            console.log('Failed Event Result:', result);
+                            // $scope.showFailed();
+                        });
+
+                    $mdDialog.hide();
 
                 };
 
             }
 
             var useFullScreen = ($mdMedia('sm') || $mdMedia('xs')) && $scope.customFullscreen;
-            
+
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'modules/personals/views/list-apptslotsblock.client.view.html',

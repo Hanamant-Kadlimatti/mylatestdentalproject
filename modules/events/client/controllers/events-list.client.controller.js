@@ -53,7 +53,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     { id: 'Dr. Saphal Shetty', title: 'Dr. Saphal Shetty', eventColor: 'green' },
                     { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: '#FF00FF' },
                     { id: 'Dr. Siddharth K', title: 'Dr. Siddharth K', eventColor: 'orange' },
-                    { id: 'Prof. Dr. Shiva Shanakar', title: 'Prof. Dr. Shiva Shanakar', eventColor: 'red' },
+                    { id: 'Prof. Dr. Shiva Shankar', title: 'Prof. Dr. Shiva Shankar', eventColor: 'red' },
                     { id: 'Prof. Dr. Ponnanna A A', title: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
                     { id: 'Prof. Dr. Anjan Shah', title: 'Prof. Dr. Anjan Shah', eventColor: 'purple' },
                     { id: 'Dr. Sudarshan Pujari', title: 'Dr. Sudarshan Pujari', eventColor: '#9ACD32' },
@@ -64,29 +64,29 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     { id: 'Prof. Dr. Dharma M Hinduja', title: 'Prof. Dr. Dharma M Hinduja', eventColor: '#00FFFF' },
                     { id: 'Prof. Dr. Nanda Kishor', title: 'Prof. Dr. Nanda Kishor', eventColor: '#FFC0CB' },
                     { id: 'Prof. Dr. Sunil Rao', title: 'Prof. Dr. Sunil Rao', eventColor: '#BDB76B' },
-                    { id: 'Dr.Aparna Srinivas', title: 'Dr.Aparna Srinivas', eventColor: '#00BFFF' },
+                    { id: 'Dr. Aparna Srinivas', title: 'Dr. Aparna Srinivas', eventColor: '#00BFFF' },
                     { id: 'Dr. Harish Sampath', title: 'Dr. Harish Sampath', eventColor: '#9ACD32' },
-                    { id: 'Dr.Ranjitha Shetty', title: 'Dr.Ranjitha Shetty', eventColor: '#FFFFE0' },
+                    { id: 'Dr. Ranjitha Shetty', title: 'Dr. Ranjitha Shetty', eventColor: '#FFFFE0' },
                     { id: 'Dr. Syed Mutheei Ulla', title: 'Dr. Syed Mutheei Ulla', eventColor: '#B8860B' },
                 ],
 
                 eventRender: function (event, element) {
 
                     var view = $('#calendar').fullCalendar('getView');
-                    
+
                     if (view.name == 'verticalResourceView') {
                         element.find('.fc-title').empty();
                         element.find('.fc-title').append(event.description.split('\n')[0]);
                     }
                     else {
                         element.find('.fc-title').empty();
-                        
-                        if(event.description === 'On Vacation') {
-                            element.find('.fc-title').append( 'On Vacation - ' + event.title);
+
+                        if (event.description === 'On Vacation') {
+                            element.find('.fc-title').append('On Vacation - ' + event.title);
                         } else {
                             element.find('.fc-title').append(event.title);
                         }
-                        
+
                     }
 
                 },
@@ -141,6 +141,10 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
 
         $scope.setCurrentEvent = function (event) {
             $scope.currentEvent = event;
+        };
+
+        $scope.myFilter = function (event) {
+            return  event.description !== 'On Vacation';
         };
 
 

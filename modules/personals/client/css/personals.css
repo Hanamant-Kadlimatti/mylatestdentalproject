@@ -114,4 +114,14 @@
      }          
  }
  
- 
+ /* Toast color and position   */
+ md-toast {
+    position: fixed !important;
+}
+/*.md-toast.error {
+    background-color: red !important;
+}
+
+.md-toast {
+    background-color: green !important;
+}*/
