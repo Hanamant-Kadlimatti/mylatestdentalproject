@@ -723,12 +723,13 @@ eventCreateApp.controller('EventsCreateController',
 
                 $rootScope.patient = $scope.patientInfo.patientName;
                 $rootScope.dateTime = $scope.event.startDate;
+                $rootScope.endTime = endDate;
 
                 var contactInfo = {
                     doctorName: this.selectedDentist.fName + ' ' + this.selectedDentist.lName,
                     emailId: this.selectedDentist.emailId
                 };
-                
+
                 $googleCalendar.addEvent($scope.event.startDate, endDate, contactInfo, $scope.patientInfo)
                     .then(function (result) {
                         console.log('Add Event Result:', result);
@@ -754,7 +755,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 var endDate = new Date($scope.event.startDate);
                 endDate.setHours(23, 59, 59, 999);
-                
+
                 for (var index = 0; index < this.selectedDentist.slots.length; index++) {
 
                     var slot = this.selectedDentist.slots[index];
@@ -768,7 +769,7 @@ eventCreateApp.controller('EventsCreateController',
                             .then(function (events) {
 
                                 var eventArray = [];
-                                
+
                                 events.forEach(function (element) {
                                     var event = [];
                                     event.push(new Date(element.start.dateTime).toLocaleTimeString());
@@ -786,7 +787,7 @@ eventCreateApp.controller('EventsCreateController',
                                         'disableTimeRanges': eventArray
                                     });
 
-                                    
+
                                 });
                             });
 
@@ -814,7 +815,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 $scope.displayName = $rootScope.patient;
                 $scope.displayDateTime = $rootScope.dateTime;
-
+                $scope.displayTime = $rootScope.endTime;
             }
             DialogController.$inject = ["$scope", "$mdDialog", "prsnlService"];
 

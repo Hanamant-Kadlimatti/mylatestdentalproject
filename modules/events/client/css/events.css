@@ -294,3 +294,10 @@ md-dialog md-dialog-actions .md-button{
     color: #248dc9;
     padding: 8px;
 }
+
+/* Events line breaking */
+span.fc-title{
+    padding:5px !important;
+    text-overflow:ellipses;
+    white-space:pre-line;
+}
