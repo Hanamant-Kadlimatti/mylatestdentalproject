@@ -60,12 +60,12 @@ function sendSms(contactNumber) {
     };
 
     // Prints the complete response
-    p.send_message(params, function(status, response) {
-        console.log('Status: ', status);
-        console.log('API Response:\n', response);
-        console.log('Message UUID:\n', response['message.uuid']);
-        console.log('Api ID:\n', response['api.id']);
-    });
+    // p.send_message(params, function (status, response) {
+    //     console.log('Status: ', status);
+    //     console.log('API Response:\n', response);
+    //     console.log('Message UUID:\n', response['message.uuid']);
+    //     console.log('Api ID:\n', response['api.id']);
+    // });
 }
 
 
@@ -80,10 +80,10 @@ function authorize(refreshToken) {
 
     if (refreshToken) {
         oa.getOAuthAccessToken(refreshToken, { grant_type: 'refresh_token', client_id: config.google.clientID, client_secret: config.google.clientSecret },
-            function(err, access_token, refresh_token, res) {
+            function (err, access_token, refresh_token, res) {
 
                 //lookup settings from database
-                User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings) {
+                User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
                     if (res !== undefined) {
                         var expiresIn = parseInt(res.expires_in);
                         var accessTokenExpiration = new Date().getTime() + (expiresIn * 1000);
@@ -116,7 +116,7 @@ function getAccessToken() {
     var accessToken;
 
 
-    User.findOne({ username: 'hanamantrkadlimatti' }, function(findError, settings) {
+    User.findOne({ username: 'hanamantrkadlimatti' }, function (findError, settings) {
         //check if access token is still valid
         var today = new Date();
         var currentTime = today.getTime();
@@ -127,11 +127,11 @@ function getAccessToken() {
             }
             else {
                 //refresh the access token
-                authorize(settings.providerData.refreshToken).then(function(settings) {
+                authorize(settings.providerData.refreshToken).then(function (settings) {
 
                     deferred.resolve(settings);
 
-                }, function(error) {
+                }, function (error) {
 
                     deferred.reject(error);
 
@@ -144,9 +144,9 @@ function getAccessToken() {
     return deferred.promise;
 }
 
-exports.getEventByUser = function(req, res, next) {
+exports.getEventByUser = function (req, res, next) {
 
-    getAccessToken().then(function(user) {
+    getAccessToken().then(function (user) {
 
         var accessToken = user.providerData.accessToken;
         var calendarId = user.email;
@@ -162,7 +162,7 @@ exports.getEventByUser = function(req, res, next) {
             'singleEvents': true,
             orderBy: 'startTime'
         },
-            function(err, eventList) {
+            function (err, eventList) {
 
                 if (err) {
                     return res.status(400).send({
@@ -179,15 +179,15 @@ exports.getEventByUser = function(req, res, next) {
 
 };
 
-exports.list = function(req, res, next) {
+exports.list = function (req, res, next) {
 
-    getAccessToken().then(function(user) {
+    getAccessToken().then(function (user) {
 
         var accessToken = user.providerData.accessToken;
         var calendarId = user.email;
         var calendar = new gcal.GoogleCalendar(accessToken);
 
-        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString(), 'singleEvents': true }, function(err, eventList) {
+        calendar.events.list(calendarId, { 'timeMin': new Date().toISOString(), 'singleEvents': true }, function (err, eventList) {
 
             if (err) {
                 return res.status(400).send({
@@ -203,10 +203,10 @@ exports.list = function(req, res, next) {
 
 };
 
-exports.create = function(req, res, next) {
+exports.create = function (req, res, next) {
     //map request body to google calendar data structure
 
-    getAccessToken().then(function(user) {
+    getAccessToken().then(function (user) {
 
 
         var profile = user._doc;
@@ -251,56 +251,97 @@ exports.create = function(req, res, next) {
             };
         }
         else {
-            eventBody = {
-                'status': 'confirmed',
-                'summary': req.body.personal.doctorName,
-                'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
-                req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
-                'organizer': {
-                    'email': profile.email,
-                    'self': true
-                },
-                'reminders': {
-                    'useDefault': false,
-                    'overrides': [
+
+            if (req.body.patient.emailId) {
+                eventBody = {
+                    'status': 'confirmed',
+                    'summary': req.body.personal.doctorName,
+                    'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
+                    req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+                    'organizer': {
+                        'email': profile.email,
+                        'self': true
+                    },
+                    'reminders': {
+                        'useDefault': false,
+                        'overrides': [
+                            {
+                                'method': 'email',
+                                'minutes': '40320'
+                            },
+                            {
+                                'method': 'popup',
+                                'minutes': '40320'
+                            }
+                        ]
+                    },
+                    'start': {
+                        'dateTime': req.body.startdate,
+                    },
+                    'end': {
+                        'dateTime': req.body.enddate
+                    },
+                    'attendees': [
                         {
-                            'method': 'email',
-                            'minutes': '40320'
+                            'email': req.body.personal.emailId,
+                            'organizer': true,
+                            'self': true,
+                            'responseStatus': 'needsAction'
                         },
                         {
-                            'method': 'popup',
-                            'minutes': '40320'
+                            'email': req.body.patient.emailId,
+                            'organizer': false,
+                            'responseStatus': 'needsAction'
                         }
                     ]
-                },
-                'start': {
-                    'dateTime': req.body.startdate,
-                },
-                'end': {
-                    'dateTime': req.body.enddate
-                },
-                'attendees': [
-                    {
-                        'email': req.body.personal.emailId,
-                        'organizer': true,
-                        'self': true,
-                        'responseStatus': 'needsAction'
+                };
+            }
+            else {
+                eventBody = {
+                    'status': 'confirmed',
+                    'summary': req.body.personal.doctorName,
+                    'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
+                    req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+                    'organizer': {
+                        'email': profile.email,
+                        'self': true
                     },
-                    {
-                        'email': req.body.patient.emailId,
-                        'organizer': false,
-                        'responseStatus': 'needsAction'
+                    'reminders': {
+                        'useDefault': false,
+                        'overrides': [
+                            {
+                                'method': 'email',
+                                'minutes': '40320'
+                            },
+                            {
+                                'method': 'popup',
+                                'minutes': '40320'
+                            }
+                        ]
                     },
+                    'start': {
+                        'dateTime': req.body.startdate,
+                    },
+                    'end': {
+                        'dateTime': req.body.enddate
+                    },
+                    'attendees': [
+                        {
+                            'email': req.body.personal.emailId,
+                            'organizer': true,
+                            'self': true,
+                            'responseStatus': 'needsAction'
+                        }
+                    ]
+                };
+            }
 
-
-                ]
-            };
         }
 
 
         var calendar = new gcal.GoogleCalendar(profile.providerData.accessToken);
 
-        calendar.events.insert(profile.email, eventBody, function(err, response) {
+        calendar.events.insert(profile.email, eventBody, function (err, response) {
 
             if (err) {
                 return res.status(400).send({

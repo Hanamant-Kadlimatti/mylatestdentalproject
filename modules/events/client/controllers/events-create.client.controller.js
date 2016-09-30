@@ -53,9 +53,44 @@ eventCreateApp.controller('EventsCreateController',
 
                 console.log('Start Time:', $scope.event.startTime);
 
-                var time = $scope.event.startTime.match(/(\d+)(?::(\d\d))?\s*(p?)/);
-                $scope.event.startDate.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
-                $scope.event.startDate.setMinutes(parseInt(time[2]) || 0);
+                // var time = $scope.event.startTime.match(/^(\d+)([:\.](\d\d))?\s*((a|(p))m?)?$/i);
+
+                // $scope.event.startDate.setHours(parseInt(time[1]) + (time[3] ? 12 : 0));
+                // $scope.event.startDate.setMinutes(parseInt(time[2]) || 0);
+
+                var time = $scope.event.startTime.match(/^(\d+)([:\.](\d\d))?\s*((a|(p))m?)?$/i);
+
+                if (time == null) return null;
+
+                var m = parseInt(time[3], 10) || 0;
+                var hours = parseInt(time[1], 10);
+
+                if (time[4]) time[4] = time[4].toLowerCase();
+
+                // 12 hour time
+                if (hours == 12 && !time[4]) {
+                    hours = 12;
+                }
+                else if (hours == 12 && (time[4] == "am" || time[4] == "a")) {
+                    hours += 12;
+                }
+                else if (hours < 12 && (time[4] != "am" && time[4] != "a")) {
+                    hours += 12;
+                }
+                // 24 hour time
+                else if (hours > 24 && hours.toString().length >= 3) {
+                    if (hours.toString().length == 3) {
+                        m = parseInt(hours.toString().substring(1, 3), 10);
+                        hours = parseInt(hours.toString().charAt(0), 10);
+                    }
+                    else if (hours.toString().length == 4) {
+                        m = parseInt(hours.toString().substring(2, 4), 10);
+                        hours = parseInt(hours.toString().substring(0, 2), 10);
+                    }
+                }
+
+                $scope.event.startDate.setHours(hours);
+                $scope.event.startDate.setMinutes(m);
 
                 console.log('Start Date:', $scope.event.startDate);
 
