@@ -60,7 +60,7 @@ eventCreateApp.controller('EventsCreateController',
 
                 var time = $scope.event.startTime.match(/^(\d+)([:\.](\d\d))?\s*((a|(p))m?)?$/i);
 
-                if (time == null) return null;
+                if (time === null) return null;
 
                 var m = parseInt(time[3], 10) || 0;
                 var hours = parseInt(time[1], 10);
@@ -68,22 +68,22 @@ eventCreateApp.controller('EventsCreateController',
                 if (time[4]) time[4] = time[4].toLowerCase();
 
                 // 12 hour time
-                if (hours == 12 && !time[4]) {
+                if (hours === 12 && !time[4]) {
                     hours = 12;
                 }
-                else if (hours == 12 && (time[4] == "am" || time[4] == "a")) {
+                else if (hours === 12 && (time[4] === 'am' || time[4] === 'a')) {
                     hours += 12;
                 }
-                else if (hours < 12 && (time[4] != "am" && time[4] != "a")) {
+                else if (hours < 12 && (time[4] !== 'am' && time[4] !== 'a')) {
                     hours += 12;
                 }
                 // 24 hour time
                 else if (hours > 24 && hours.toString().length >= 3) {
-                    if (hours.toString().length == 3) {
+                    if (hours.toString().length === 3) {
                         m = parseInt(hours.toString().substring(1, 3), 10);
                         hours = parseInt(hours.toString().charAt(0), 10);
                     }
-                    else if (hours.toString().length == 4) {
+                    else if (hours.toString().length === 4) {
                         m = parseInt(hours.toString().substring(2, 4), 10);
                         hours = parseInt(hours.toString().substring(0, 2), 10);
                     }

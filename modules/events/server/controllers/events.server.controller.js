@@ -60,12 +60,12 @@ function sendSms(contactNumber) {
     };
 
     // Prints the complete response
-    // p.send_message(params, function (status, response) {
-    //     console.log('Status: ', status);
-    //     console.log('API Response:\n', response);
-    //     console.log('Message UUID:\n', response['message.uuid']);
-    //     console.log('Api ID:\n', response['api.id']);
-    // });
+    p.send_message(params, function (status, response) {
+        console.log('Status: ', status);
+        console.log('API Response:\n', response);
+        console.log('Message UUID:\n', response['message.uuid']);
+        console.log('Api ID:\n', response['api.id']);
+    });
 }
 
 
@@ -335,7 +335,7 @@ exports.create = function (req, res, next) {
                     ]
                 };
             }
-
+            
         }
 
 
@@ -349,7 +349,11 @@ exports.create = function (req, res, next) {
                 });
             } else {
                 res.send(response);
-                sendSms(req.body.patient.contact);
+                if(req.body.patient)
+                {
+                   sendSms(req.body.patient.contact); 
+                }
+                    
             }
 
         });

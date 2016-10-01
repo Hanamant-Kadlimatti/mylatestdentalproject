@@ -74,7 +74,7 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
 
                     var view = $('#calendar').fullCalendar('getView');
 
-                    if (view.name == 'verticalResourceView') {
+                    if (view.name === 'verticalResourceView') {
                         element.find('.fc-title').empty();
                         element.find('.fc-title').append(event.description.split('\n')[0]);
                     }
