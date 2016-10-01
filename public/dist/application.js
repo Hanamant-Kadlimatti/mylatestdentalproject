@@ -929,7 +929,8 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                     center: 'title',
                     right: 'today prev,next'
                 },
-
+                eventLimit: true,
+                navLinks: true,
                 views: {
                     verticalResourceView: {
                         type: 'timeline',
