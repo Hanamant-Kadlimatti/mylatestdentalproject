@@ -816,7 +816,10 @@ eventCreateApp.controller('EventsCreateController',
                                     $('#timePick').timepicker({
                                         'minTime': $scope.event.minTime,
                                         'maxTime': $scope.event.maxTime,
-                                        'step': $scope.event.step,
+                                        'step': '15',
+                                        // 'step': function (i) {
+                                        //     return (i % 2) ? 15 : 15;
+                                        // },
                                         'disableTextInput': true,
                                         'timeFormat': 'g:ia',
                                         'disableTimeRanges': eventArray

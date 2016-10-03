@@ -301,3 +301,6 @@ span.fc-title{
     text-overflow:ellipses;
     white-space:pre-line;
 }
+.ui-timepicker-wrapper {
+    z-index: 1;
+}
