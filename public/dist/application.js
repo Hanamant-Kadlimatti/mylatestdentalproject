@@ -1377,7 +1377,8 @@ personalsApp.controller('ApptTypeController', ['$scope', 'ApptTypes',
             var apptType = new ApptTypes({
                 description: $scope.procedure.description,
                 duration: $scope.procedure.duration,
-                price: $scope.procedure.price
+                price: $scope.procedure.price,
+                longDescription: $scope.procedure.longDescription,
 
             });
 
@@ -1388,6 +1389,7 @@ personalsApp.controller('ApptTypeController', ['$scope', 'ApptTypes',
                 $scope.procedure.description = '';
                 $scope.procedure.duration = '';
                 $scope.procedure.price = '';
+                $scope.procedure.longDescription = '';
 
                 refresh();
 
@@ -1612,6 +1614,7 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                     description: element.description,
                     duration: element.duration,
                     price: element.price,
+                    longDescription: element.longDescription,
                     checked: true
                 };
             }

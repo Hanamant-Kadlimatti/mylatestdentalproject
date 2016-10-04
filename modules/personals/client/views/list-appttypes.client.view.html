@@ -7,6 +7,7 @@
             <th>Procedure</th>
             <th>Duration (min)</th>
             <th>Cost</th>
+            <th>Description</th>
             <th>Action</th>
             <th>&nbsp;</th>
             </tr>
@@ -23,6 +24,9 @@
                     <td>
                         <input type="number" class="form-control" ng-model="procedure.price">
                     </td>
+                     <td>
+                        <input type="text" class="form-control" ng-model="procedure.longDescription">
+                    </td>
                     <td>
                         <button class="btn btn-primary" ng-click="addProcedure()" ng-disabled="disabled"><i class="glyphicon glyphicon-plus"></i></button>
                     </td>
@@ -36,6 +40,7 @@
                     <td>{{procedure.description}}</td>
                     <td>{{procedure.duration}}</td>
                     <td>{{procedure.price}}</td>
+                    <td>{{procedure.longDescription}}</td>
                     <td>
                         <button class="btn btn-warning" ng-click="edit(procedure)"><i class="glyphicon glyphicon-pencil"></i></button>
                     </td>

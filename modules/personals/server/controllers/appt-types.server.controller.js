@@ -42,6 +42,7 @@ exports.update = function (req, res) {
   apptType.description = req.body.description;
   apptType.duration = req.body.duration;
   apptType.price = req.body.price;
+   apptType.longDescription = req.body.longDescription;
 
   apptType.save(function (err) {
     if (err) {

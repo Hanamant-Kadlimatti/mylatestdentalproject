@@ -64,6 +64,7 @@ personalsApp.controller('PersonalsController', ['$scope', '$stateParams', 'Perso
                     description: element.description,
                     duration: element.duration,
                     price: element.price,
+                    longDescription: element.longDescription,
                     checked: true
                 };
             }

@@ -125,3 +125,7 @@
 .md-toast {
     background-color: green !important;
 }*/
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn  {
+      margin-right: -10% !important;
+}

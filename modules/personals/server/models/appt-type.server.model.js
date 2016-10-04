@@ -14,6 +14,11 @@ var ApptTypeSchema = new Schema({
     price: {
         type: Number
     },
+    longDescription: {
+        type: String,
+        default: '',
+        trim: true
+    },
     appttypeid: {
         type: Schema.ObjectId,
         ref: 'ApptTypeId'
