@@ -130,7 +130,7 @@
       margin-right: -10% !important;
 }
 
-/* save and cancel button in adding new doctors
+/* save and cancel button in adding new doctors */
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
     margin-right: 0 !important;
 }
