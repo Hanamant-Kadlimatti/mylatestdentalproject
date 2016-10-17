@@ -129,3 +129,16 @@
 .btn.disabled, .btn[disabled], fieldset[disabled] .btn  {
       margin-right: -10% !important;
 }
+
+/* save and cancel button in adding new doctors
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    margin-right: 0 !important;
+}
+
+/* photo upload */
+ #filepicker_shade {
+    position: relative;
+    z-index: 99999;
+    height: 100%;
+    background: rgb(238, 238, 238);
+}

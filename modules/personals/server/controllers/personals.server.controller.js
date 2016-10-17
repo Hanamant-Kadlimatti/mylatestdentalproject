@@ -50,7 +50,7 @@ exports.update = function (req, res) {
   personal.rating = req.body.rating;
   personal.treatments = req.body.treatments;
   personal.slots = req.body.slots;
-  personal.image = req.body.contact + '.png';
+  personal.picture = req.body.picture;
   
   personal.save(function (err) {
     if (err) {

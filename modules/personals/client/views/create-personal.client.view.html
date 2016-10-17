@@ -22,9 +22,19 @@
         </div>
         <div class="row">
           <div class="col-sm-6 text-center form-group">
-            <!-- <i class="glyphicon glyphicon-user prsnl-profile"
-               ng-class="{'text-primary': createPrsnlCtrl.isConsultant, 'text-danger': !createPrsnlCtrl.isConsultant}">
-            </i>-->
+             <div class="text-center">
+              <button type="button" class="btn btn-default" ng-click="upload()">Upload <span class="caret"></span> </button>
+              <div style="margin-top:10px;">
+                <!-- Show the thumbnail only when the picture is uploaded -->
+                <!--<a href="{{createPrsnlCtrl.picture.url}}" class="thumbnail" ng-if="createPrsnlCtrl.picture"  on-error-src="modules/personals/img/buttons/default.png">-->
+                <!-- the picture is rendered with width: 500 and sharpened -->
+                <!--<img class="thumbnail" ng-src="{{createPrsnlCtrl.picture.url | fpConvert: {filter:'sharpen'} }}" style="margin-left:36%;">-->
+                
+                  <img class="prsnl-image" ng-src="{{createPrsnlCtrl.picture.url}}" ng-if="createPrsnlCtrl.picture.url" />
+                  <img class="prsnl-image" ng-src="modules/personals/img/buttons/default.png" ng-if="!createPrsnlCtrl.picture.url" />
+                <!--</a>-->
+              </div>
+            </div>
 
           </div>
 

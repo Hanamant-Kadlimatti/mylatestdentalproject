@@ -16,11 +16,14 @@
         </div>
         <div class="row">
           <div class="col-sm-6 text-center">
-            <!-- <i class="glyphicon glyphicon-user prsnl-profile"
-               ng-class="{'text-primary': createPrsnlCtrl.isConsultant, 'text-danger': !createPrsnlCtrl.isConsultant}">
-            </i>-->
-
-          </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-default" ng-click="upload()"> Upload <span class="caret"></span>  </button>
+              <div>
+                <img class="thumbnail" ng-src="{{personal.picture.url}}" ng-if="personal.picture.url" style="margin-left:36%; margin-top: 10px;"/>
+                <img class="thumbnail" ng-src="modules/personals/img/buttons/default.png" ng-if="!personal.picture.url" style="margin-left:36%; margin-top: 10px;"/>
+              </div>
+             </div>
+           </div>
 
           <div class="col-sm-6">
             <div class="form-group">

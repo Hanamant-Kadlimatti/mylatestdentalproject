@@ -9,7 +9,8 @@
             <br>
             <br>
             <p class="fName img-circle">
-                <img class="img-circle" ng-src="modules/personals/img/buttons/{{dentist.image}}" on-error-src="modules/personals/img/buttons/default.png">
+               <img class="img-circle" ng-src="{{dentist.picture.url}}" ng-if="dentist.picture.url">
+                <img class="img-circle" ng-src="modules/personals/img/buttons/default.png" ng-if="!dentist.picture.url">
 
                 <h3>
                     {{ dentist.fName + ' ' + dentist.lName + ', ' + dentist.qualification }}

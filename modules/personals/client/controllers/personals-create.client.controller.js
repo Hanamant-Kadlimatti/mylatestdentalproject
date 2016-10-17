@@ -4,8 +4,8 @@
 
 var personalsApp = angular.module('personals');
 
-personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'Notify', 
-  function ($scope, Personals, Notify) {
+personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'Notify', 'filepickerService',
+  function ($scope, Personals, Notify, filepickerService) {
     
     // Create new Personal
     this.CreatePrsnl = function () {
@@ -23,8 +23,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         rating: this.rating,
         treatments: this.selectedTreatments,
         slots: this.slots,
-        image: this.contact + '.png'
-       // imageLocation: this.imageLocation
+        picture: this.picture
       });
 
       // Redirect after save
@@ -42,31 +41,32 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.rating = null;
         $scope.selectedTreatments = null;
         $scope.slots = null;
-        $scope.image = null;
+        $scope.picture = null;
         Notify.sendMsg('NewPersonal', {'id': response._id});
         
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };
+    
+    //photo upload
+    $scope.upload = function () {
+      filepicker.setKey('ACJvoNUISuSuMS7Xhkqu2z');
+      filepickerService.pick(
+        {
+          mimetype: 'image/*',
+          language: 'en',
+          services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE', 'IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+          openTo: 'IMAGE_SEARCH'
+        },
+        function (Blob) {
+          console.log(JSON.stringify(Blob));
+          $scope.createPrsnlCtrl.picture = Blob;
+          $scope.$apply();
+        }
+      );
+    };
+    
   }
 ]);
 
-// Choose image
-/*function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#blah')
-                    .attr('src', e.target.result)
-                    .width(125)
-                    .height(110);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $("#imgInp").change(function(){
-    readURL(this);
-});*/

@@ -19,7 +19,8 @@
         <div class="panel panel-body popup success-popup">
             <p>Your appointment request has been <strong>received.</strong> Please check your email for confirmation.</p>
        <div class="center">
-   <img class="img-circle poto" ng-src="modules/personals/img/buttons/{{selectedDentist.image}}" on-error-src="modules/personals/img/buttons/default.png">
+             <img class="img-circle poto" ng-src="{{selectedDentist.picture.url}}" ng-if="selectedDentist.picture.url">
+             <img class="img-circle poto" ng-src="modules/personals/img/buttons/default.png" ng-if="!selectedDentist.picture.url"> 
           <!-- <p><strong>Your booking details</strong></p>-->
            <p class="confirm-detail"><strong>Dentist Name:</strong> {{ selectedDentist.fName + ' ' + selectedDentist.lName + ' ' + selectedDentist.qualification}} </p>
            <p class="confirm-detail"><strong>Treatment: </strong>{{ selectedTreatment.description }}</p>
