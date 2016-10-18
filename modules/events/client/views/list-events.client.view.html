@@ -15,14 +15,15 @@
                 <td>{{event.summary}}</td>
                 <td>{{event.start.dateTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}} to {{event.end.dateTime | amDateFormat: 'h:mm:ss a'}}</td>
                 <td style="text-align:left">
-                    <strong>Name:</strong> {{event.description.split('\n')[0]}}<br/>
-                    <strong>Age:</strong> {{event.description.split('\n')[1]}}<br/>
-                    <strong>Gender:</strong> {{event.description.split('\n')[2]}}<br/>
-                    <strong>Place:</strong> {{event.description.split('\n')[3]}}<br/>
-                    <strong> Contact:</strong> {{event.description.split('\n')[4]}}<br/>
-                    <strong>Email Id:</strong> {{event.description.split('\n')[5]}}<br/>
-                    <strong>Medical Condition: </strong> {{event.description.split('\n')[6]}}<br/>
-                    <strong>Chief Complaint:</strong> {{event.description.split('\n')[7]}}
+                    <span ng-show="event.description.split('\n')[0]">{{event.description.split('\n')[0]}}<br></span>
+                    <span ng-show="event.description.split('\n')[1]">{{event.description.split('\n')[1]}}<br></span>
+                    <span ng-show="event.description.split('\n')[2]">{{event.description.split('\n')[2]}}<br></span>
+                    <span ng-show="event.description.split('\n')[3]">{{event.description.split('\n')[3]}}<br></span>
+                    <span ng-show="event.description.split('\n')[4]">{{event.description.split('\n')[4]}}<br></span>
+                    <span ng-show="event.description.split('\n')[5]">{{event.description.split('\n')[5]}}<br></span>
+                    <span ng-show="event.description.split('\n')[6]">{{event.description.split('\n')[6]}}<br></span>
+                    <span ng-show="event.description.split('\n')[7]">{{event.description.split('\n')[7]}}<br></span>
+                    <span ng-show="event.description.split('\n')[8]">{{event.description.split('\n')[8]}}<br></span>
                  </td>
             </tr>
         </tbody>

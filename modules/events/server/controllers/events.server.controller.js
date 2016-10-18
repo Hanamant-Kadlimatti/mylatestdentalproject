@@ -252,12 +252,37 @@ exports.create = function (req, res, next) {
         }
         else {
 
+            var description = '';
+            if (req.body.patient.patientName) {
+                description += ' Name: ' + req.body.patient.patientName;
+            }
+            if (req.body.patient.patientAge) {
+                description += '\n Age: ' + req.body.patient.patientAge;
+            }
+            if (req.body.patient.patientGender) {
+                description += '\n Gender: ' + req.body.patient.patientGender;
+            }
+            if (req.body.patient.patientPlace) {
+                description += '\n Place: ' + req.body.patient.patientPlace;
+            }
+            if (req.body.patient.contact) {
+                description += '\n Contact: ' + req.body.patient.contact;
+            }
+            if (req.body.patient.emailId) {
+                description += '\n Email Id: ' + req.body.patient.emailId;
+            }
+            if (req.body.patient.patientSelectedMedicalCondition.length) {
+                description += '\n Medical Condition: ' + req.body.patient.patientSelectedMedicalCondition;
+            }
+            if (req.body.patient.patientChiefComplaint) {
+                description += '\n Chief Complaint: ' + req.body.patient.patientChiefComplaint;
+            }
+
             if (req.body.patient.emailId) {
                 eventBody = {
                     'status': 'confirmed',
                     'summary': req.body.personal.doctorName,
-                    'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
-                    req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+                    'description': description,
                     'organizer': {
                         'email': profile.email,
                         'self': true
@@ -281,6 +306,7 @@ exports.create = function (req, res, next) {
                     'end': {
                         'dateTime': req.body.enddate
                     },
+                    'guestsCanModify': true,
                     'attendees': [
                         {
                             'email': req.body.personal.emailId,
@@ -300,8 +326,7 @@ exports.create = function (req, res, next) {
                 eventBody = {
                     'status': 'confirmed',
                     'summary': req.body.personal.doctorName,
-                    'description': req.body.patient.patientName + '\n' + req.body.patient.patientAge + '\n' + req.body.patient.patientGender + '\n' + req.body.patient.patientPlace + '\n' +
-                    req.body.patient.contact + '\n' + req.body.patient.emailId + '\n' + req.body.patient.patientSelectedMedicalCondition + '\n' + req.body.patient.patientChiefComplaint,
+                    'description': description,
                     'organizer': {
                         'email': profile.email,
                         'self': true
@@ -335,7 +360,7 @@ exports.create = function (req, res, next) {
                     ]
                 };
             }
-            
+
         }
 
 
@@ -349,11 +374,10 @@ exports.create = function (req, res, next) {
                 });
             } else {
                 res.send(response);
-                if(req.body.patient)
-                {
-                   sendSms(req.body.patient.contact); 
+                if (req.body.patient) {
+                    sendSms(req.body.patient.contact);
                 }
-                    
+
             }
 
         });
