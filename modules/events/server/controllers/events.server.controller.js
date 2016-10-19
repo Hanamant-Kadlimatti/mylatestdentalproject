@@ -277,6 +277,9 @@ exports.create = function (req, res, next) {
             if (req.body.patient.patientChiefComplaint) {
                 description += '\n Chief Complaint: ' + req.body.patient.patientChiefComplaint;
             }
+             if (req.body.personal.treatment) {
+                description += '\n Treatment: ' + req.body.personal.treatment;
+            }
 
             if (req.body.patient.emailId) {
                 eventBody = {

@@ -25,7 +25,7 @@
            <p class="confirm-detail"><strong>Dentist Name:</strong> {{ selectedDentist.fName + ' ' + selectedDentist.lName + ' ' + selectedDentist.qualification}} </p>
            <p class="confirm-detail"><strong>Treatment: </strong>{{ selectedTreatment.description }}</p>
            <p class="confirm-detail"><strong>Patient Name:</strong> {{ displayName}} </p>
-           <p class="confirm-detail"><strong> Appointment Date and Time: </strong>{{displayDateTime  | date: 'medium'}} to {{displayTime | date: 'medium'}}</p>
+           <p class="confirm-detail"><strong> Appointment Date and Time: </strong>{{displayDateTime  | date: 'medium'}} to {{displayTime | amDateFormat: 'h:mm:ss A'}}</p>
       </div>
         </div>
       </div>

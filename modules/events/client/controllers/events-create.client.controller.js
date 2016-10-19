@@ -116,7 +116,8 @@ eventCreateApp.controller('EventsCreateController',
 
                 var contactInfo = {
                     doctorName: this.selectedDentist.fName + ' ' + this.selectedDentist.lName,
-                    emailId: this.selectedDentist.emailId
+                    emailId: this.selectedDentist.emailId,
+                    treatment: this.selectedTreatment.description
                 };
 
                 $googleCalendar.addEvent($scope.event.startDate, endDate, contactInfo, $scope.patientInfo)
