@@ -60,12 +60,12 @@
                 <md-input-container class="pname" style="margin-left:25px;margin-top:0">
                     <label class="all-colors">Patient Name</label>
                     <md-icon><i class="text-muted glyphicon glyphicon-user"></i></md-icon>
-                    <input id="patientid" required name="patientName" type="text" ng-model="$parent.event.patientName" ng-pattern="/^[a-zA-Z ]{1,25}$/"
+                    <input id="patientid" required name="patientName" type="text" ng-model="$parent.event.patientName" 
                     ng-required="true">
 
                     <div class="patientcolor" ng-show="patientForm.$submitted || patientForm.patientName.$touched">
                         <div ng-show="patientForm.patientName.$error.required"><b>Please fill the patient name</b></div>
-                        <div ng-show="patientForm.patientName.$error.pattern"><b>Please fill the letters only</b></div>
+                        <!--<div ng-show="patientForm.patientName.$error.pattern"><b>Please fill the letters only</b></div> ng-pattern="/^[a-zA-Z ]{1,25}$/"--> 
                     </div>
                 </md-input-container>
 
