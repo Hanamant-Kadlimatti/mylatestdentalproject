@@ -1133,7 +1133,25 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 			},
 			addEvent: function (scheduledDate, endDate, contactInfo, patientInfo) {
 				var defer = $q.defer();
+				
+				/*
+				$scope.patientInfo = {
+                    patientName: $scope.event.patientName,
+                    patientAge: $scope.event.patientAge,
+                    patientGender: $scope.event.patientGender,
+                    patientPlace: $scope.event.patientPlace,
+                    contact: $scope.event.patientPhoneNumber,
+                    emailId: $scope.event.patientEmail,
+                    patientSelectedMedicalCondition: $scope.patientSelectedMedicalCondition,
+                    patientChiefComplaint: $scope.event.patientChiefComplaint,
+                };
 
+                var contactInfo = {
+                    doctorName: this.selectedDentist.fName + ' ' + this.selectedDentist.lName,
+                    emailId: this.selectedDentist.emailId,
+                    treatment: this.selectedTreatment.description
+                };*/
+				
 				var postData = {
 					startdate: scheduledDate,
 					enddate: endDate,
