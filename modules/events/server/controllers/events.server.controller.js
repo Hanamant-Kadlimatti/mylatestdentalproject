@@ -50,7 +50,7 @@ var p = plivo.RestAPI({ authId: 'MAY2NKNMU5MMEYZMQ4YW', authToken: 'MjQ5NTI0NzBl
 
 function sendSms(contactNumber) {
     var params = {
-        'src': '+919845293868', // Sender's phone number with country code
+        'src': '+919972095929', // Sender's phone number with country code
         'dst': '+91' + contactNumber, //+919972095929', // Receiver's phone Number with country code
         'text': 'Hi,  Your Appointment is Confirmed  Thank You', // Your SMS Text Message - English
         //'text' :  // Your SMS Text Message - Japanese
