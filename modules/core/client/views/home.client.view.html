@@ -5,8 +5,7 @@
 
     <div class="container" ng-controller="HomeController as ctrl" layout="column" ng-cloak>
         <div class="body-main">
-            <img class="confident-logo" itemprop="logo" src="modules/core/img/brand/confident_logo.png" alt="Confident Dental Care"
-                title="Confident Dental Care">
+            <img class="confident-logo" itemprop="logo" src="modules/core/img/brand/confident_logo.png" alt="Confident Dental Care" title="Confident Dental Care">
         </div>
         <form ng-submit="$event.preventDefault()" name="searchForm">
             <div layout-gt-sm="row" class="panel-heading">
@@ -33,8 +32,8 @@
                         md-selected-item-change="ctrl.selectedPrsnlChange(prsnl)" md-search-text="ctrl.searchPrsnl" md-items="prsnl in ctrl.queryPrsnlSearch(ctrl.searchPrsnl)"
                         md-item-text="prsnl.fName  + ' ' + prsnl.lName" placeholder="Search dentist">
                         <md-item-template>
-                            <img class="img-circle" ng-src="{{prsnl.picture.url}}" ng-if="prsnl.picture.url"style="width:40px;height:35px;">
-                            <img class="img-circle" ng-src="modules/personals/img/buttons/default.png" ng-if="!prsnl.picture.url"style="width:40px;height:35px;">
+                            <img class="img-circle" ng-src="{{prsnl.picture.url}}" ng-if="prsnl.picture.url" style="width:40px;height:35px;">
+                            <img class="img-circle" ng-src="modules/personals/img/buttons/default.png" ng-if="!prsnl.picture.url" style="width:40px;height:35px;">
                             <span md-highlight-text="ctrl.searchPrsnl"> {{ prsnl.fName + ' ' + prsnl.lName + ' , ' +prsnl.qualification + ' , ' +prsnl.speciality}}</span>
                         </md-item-template>
                         <md-not-found>
@@ -55,7 +54,7 @@
 
     </div>
 
-    <div data-ng-include="'/modules/core/views/footer.client.view.html'" ></div>
+    <div data-ng-include="'/modules/core/views/footer.client.view.html'"></div>
 
 
 </body>
