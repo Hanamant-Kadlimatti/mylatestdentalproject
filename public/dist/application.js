@@ -1134,7 +1134,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 			},
 			addEvent: function (scheduledDate, endDate, contactInfo, patientInfo) {
 				var defer = $q.defer();
-				
+
 				/*
 				$scope.patientInfo = {
                     patientName: $scope.event.patientName,
@@ -1152,7 +1152,7 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
                     emailId: this.selectedDentist.emailId,
                     treatment: this.selectedTreatment.description
                 };*/
-				
+
 				var postData = {
 					startdate: scheduledDate,
 					enddate: endDate,
