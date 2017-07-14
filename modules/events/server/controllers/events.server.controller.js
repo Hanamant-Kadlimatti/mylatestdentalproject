@@ -8,7 +8,7 @@ var q = require('q');
 var oauth = require('oauth');
 var config = require(path.resolve('./config/config'));
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-
+var patientController = require(path.resolve('./modules/patients/server/controllers/patients.server.controller'));
 // // Load the twilio module
 // var twilio = require('twilio');
 
@@ -378,6 +378,7 @@ exports.create = function (req, res, next) {
             } else {
                 res.send(response);
                 if (req.body.patient) {
+                     patientController.create(req.body.patient);
                     sendSms(req.body.patient.contact);
                 }
 

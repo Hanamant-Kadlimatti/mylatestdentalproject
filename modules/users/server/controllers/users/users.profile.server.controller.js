@@ -70,7 +70,7 @@ exports.changeProfilePicture = function (req, res) {
         });
       } else {
         user.profileImageURL = './modules/users/img/profile/uploads/' + req.file.filename;
-        
+
         user.save(function (saveError) {
           if (saveError) {
             return res.status(400).send({
