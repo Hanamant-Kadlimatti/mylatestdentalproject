@@ -960,10 +960,10 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
                 resourceLabelText: 'Doctors',
 
                 resources: [
-                    { id: 'Dr. Rajendra Kurady', title: 'Dr Rajendra Kurady', eventColor: 'maroon' },
-                    { id: 'Dr. Saphal Shetty', title: 'Dr. Saphal Shetty', eventColor: 'green' },
+                    { id: 'Dr. Saphal Shetty', title: 'Dr. Saphal Shetty', eventColor: 'maroon' },
+                    { id: 'Dr. Sunil Rao', title: 'Dr. Sunil Rao', eventColor: 'green' },
                     { id: 'Dr. Satish K', title: 'Dr. Satish K', eventColor: '#FF00FF' },
-                    { id: 'Dr. Siddharth K', title: 'Dr. Siddharth K', eventColor: 'orange' },
+                    { id: 'Dr. Satish K', title: 'Dr. Satish Kr', eventColor: 'orange' },
                     { id: 'Prof. Dr. Shiva Shankar', title: 'Prof. Dr. Shiva Shankar', eventColor: 'red' },
                     { id: 'Prof. Dr. Ponnanna A A', title: 'Prof. Dr. Ponnanna A A', eventColor: 'lime' },
                     { id: 'Prof. Dr. Anjan Shah', title: 'Prof. Dr. Anjan Shah', eventColor: 'purple' },
@@ -1306,7 +1306,7 @@ angular.module('personals',['multipleSelect','mgcrea.ngStrap', 'ngMaterial', 'an
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'personals', {
-      title: 'Dentists',
+      title: 'Dentist Lists',
       state: 'personals.list'
     });
 
