@@ -16,7 +16,8 @@ var ApplicationConfiguration = (function () {
     'ui.timepicker',
     'ngMaterial',
     'angularMoment',
-    'angular-input-stars'
+    'angular-input-stars',
+    'angularFileUpload'
   ];
 
   // Add a new vertical module

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Module dependencies
+ * Module dependencies.
  */
 var _ = require('lodash'),
   fs = require('fs'),
@@ -9,10 +9,8 @@ var _ = require('lodash'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   multer = require('multer'),
-  crypto = require('crypto'),
   config = require(path.resolve('./config/config')),
-  User = mongoose.model('User'),
-  mime = require('mime');
+  User = mongoose.model('User');
 
 /**
  * Update user details
@@ -57,32 +55,22 @@ exports.update = function (req, res) {
  */
 exports.changeProfilePicture = function (req, res) {
   var user = req.user;
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads/');
-    },
-    filename: function (req, file, cb) {
-      crypto.pseudoRandomBytes(16, function (err, raw) {
-        cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
-      });
-    }
-  });
-  var upload = multer({ storage: storage }).single('newProfilePicture');
-  //var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
+  var message = null;
+  var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-
+  
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
   if (user) {
     upload(req, res, function (uploadError) {
-      if (uploadError) {
+      if(uploadError) {
         return res.status(400).send({
           message: 'Error occurred while uploading profile picture'
         });
       } else {
-        user.profileImageURL = config.uploads.profileUpload.dest + req.file.filename;
-
+        user.profileImageURL = './modules/users/img/profile/uploads/' + req.file.filename;
+        
         user.save(function (saveError) {
           if (saveError) {
             return res.status(400).send({

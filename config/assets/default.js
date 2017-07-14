@@ -25,7 +25,7 @@ module.exports = {
         'public/lib/angular-ui-router/release/angular-ui-router.min.js',
         'public/lib/angular-ui-utils/ui-utils.min.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-        'public/lib/angular-file-upload/angular-file-upload.min.js',
+        'public/lib/angular-file-upload/dist/angular-file-upload.min.js',
         'public/lib/angular-ui-calendar/src/calendar.js',
         'public/lib/moment/min/moment.min.js',
         'public/lib/angular-moment/angular-moment.min.js',
@@ -42,7 +42,7 @@ module.exports = {
         'public/lib/angularMultipleSelect/build/multiple-select.min.js',
         'public/lib/fullcalendar-scheduler/dist/scheduler.min.js',
         'public/lib/filepicker-js/filepicker.min.js',
-        'public/lib/angular-filepicker/dist/angular_filepicker.min.js'
+        'public/lib/angular-filepicker/dist/angular_filepicker.min.js',
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
@@ -61,7 +61,8 @@ module.exports = {
       'modules/*/client/*.js',
       'modules/*/client/**/*.js'
     ],
-    views: ['modules/*/client/views/**/*.html']
+    views: ['modules/*/client/views/**/*.html'],
+    templates: ['build/templates.js']
   },
   server: {
     gruntConfig: 'gruntfile.js',
