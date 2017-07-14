@@ -6,13 +6,13 @@
   "author": "Bhuvan",
   "license": "MIT",
   "engines": {
-    "node": ">=4.5.0",
-    "npm": ">=2.15.9"
+    "node": "4.5.0",
+    "npm": "2.15.9"
   },
   "scripts": {
     "start": "grunt",
     "test": "grunt test",
-    "postinstall": "bower install --config.interactive=false"
+    "postinstall": "bower install"
   },
   "dependencies": {
     "acl": "*",
@@ -53,9 +53,11 @@
     "mongoose": "*",
     "morgan": "*",
     "multer": "*",
+    "node-gyp": "*",
     "node-pre-gyp": "*",
     "node-sass-middleware": "*",
     "nodemailer": "*",
+    "npm": "*",
     "passport": "*",
     "passport-facebook": "*",
     "passport-github": "*",
@@ -66,15 +68,19 @@
     "passport-twitter": "*",
     "phantomjs": "*",
     "plivo": "*",
+    "rebuild": "*",
     "serve-favicon": "*",
     "socket.io": "*",
     "swig": "*",
     "twilio": "*",
     "underscore": "*",
     "validator": "*",
-    "xmlhttprequest": "*"
+    "xmlhttprequest": "*",
+    "q": "*",
+    "oauth": "*"
   },
   "devDependencies": {
+    "grunt": "*",
     "grunt-concurrent": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-csslint": "*",
