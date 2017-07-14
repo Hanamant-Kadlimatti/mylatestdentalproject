@@ -27,7 +27,8 @@
     "fullcalendar-scheduler": "*",
     "angular-ui-calendar": "*",
     "angular-strap": "*",
-    "ng-file-upload": "*"
+    "ng-file-upload": "*",
+    "angular-filepicker": "*"
   },
   "resolutions": {
     "angular": ">=1.6.2",
