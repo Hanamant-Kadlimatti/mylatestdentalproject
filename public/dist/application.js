@@ -1592,7 +1592,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         lName: this.lName,
         emailId: this.emailId,
         contact: this.contact,
-        isConsultant: this.isConsultant,
+        //isConsultant: this.isConsultant,
         speciality: this.speciality,
         qualification: this.qualification,
         experience: this.experience,
@@ -1610,7 +1610,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.lName = '';
         $scope.emailId = '';
         $scope.contact = '';
-        $scope.isConsultant = '';
+        //$scope.isConsultant = '';
         $scope.speciality = '';
         $scope.qualification = '';
         $scope.experience = '';
@@ -2295,7 +2295,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.authentication.user = response.data;
 
         // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'events.main', $state.previous.params);
+        $state.go('events.main');
       }, function (response) {
         $scope.error = response.data.message;
       });
