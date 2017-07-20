@@ -32,9 +32,9 @@ var PersonalSchema = new Schema({
         required: 'Please fill your contact number',
         trim: true
     },
-    isConsultant: {
-        type: Boolean
-    },
+    // isConsultant: {
+    //     type: Boolean
+    // },
     speciality: {
         type: String,
         default: '',

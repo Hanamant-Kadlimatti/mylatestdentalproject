@@ -16,7 +16,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         lName: this.lName,
         emailId: this.emailId,
         contact: this.contact,
-        isConsultant: this.isConsultant,
+        //isConsultant: this.isConsultant,
         speciality: this.speciality,
         qualification: this.qualification,
         experience: this.experience,
@@ -34,7 +34,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.lName = '';
         $scope.emailId = '';
         $scope.contact = '';
-        $scope.isConsultant = '';
+        //$scope.isConsultant = '';
         $scope.speciality = '';
         $scope.qualification = '';
         $scope.experience = '';
