@@ -391,4 +391,33 @@ exports.create = function (req, res, next) {
 };
 
 
+// Delete Events
 
+exports.deleteEvent = function (req, res, next) {
+
+    getAccessToken().then(function (user) {
+
+        var accessToken = user.providerData.accessToken;
+        var calendarId = user.email;
+        var calendar = new gcal.GoogleCalendar(accessToken);
+
+        var params = {
+            calendarId: calendarId,
+            eventId: req.params._id,
+        };
+
+        calendar.events.delete(calendarId, req.params._id, function (err, response) {
+
+            if (err) {
+                return res.status(400).send({
+                    message: errorHandler.getErrorMessage(err)
+                });
+            } else {
+                res.send(response);
+
+            }
+
+        });
+
+    });
+}

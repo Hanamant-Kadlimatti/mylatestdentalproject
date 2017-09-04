@@ -25,6 +25,7 @@
                     <span ng-show="event.description.split('\n')[7]">{{event.description.split('\n')[7]}}<br></span>
                     <span ng-show="event.description.split('\n')[8]">{{event.description.split('\n')[8]}}<br></span>
                     <span ng-show="event.description.split('\n')[8]">{{event.description.split('\n')[9]}}<br></span>
+                    <button class="btn btn-danger"ng-click="remove(event.id)">Delete</button>
                  </td>
             </tr>
         </tbody>

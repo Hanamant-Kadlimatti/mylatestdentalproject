@@ -8,6 +8,10 @@ module.exports = function (app) {
   .get(event.list)
   .post(event.create);
 
+  app.route('/api/events/:_id')
+  .delete(event.deleteEvent);
+
+
   app.route('/api/getEventByUser')
   .get(event.getEventByUser);
 

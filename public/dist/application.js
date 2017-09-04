@@ -1058,6 +1058,16 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
             return  event.description !== 'On Vacation';
         };
 
+         // Delete Events
+
+         $scope.remove=function(id){
+            console.log(id);
+            //var currentId = id;
+            $googleCalendar.deleteEvent(id).then(function () {
+                 $scope.getEvents();
+            });
+		};
+
 
     }]);
 
@@ -1138,6 +1148,23 @@ angular.module('GoogleCalendarService', [], ["$provide", function ($provide) {
 
 				return defer.promise;
 			},
+
+			  // delete events
+				deleteEvent: function (eventId) {	
+				var defer = $q.defer();
+				console.log(eventId)
+				$http.delete(baseUrl + '/api/events/' + eventId).then(function (response) {
+					if (response.status === 200) {
+						defer.resolve(response);
+					} else {
+						$scope.$broadcast('GoogleError', response.data);
+						defer.reject(response);
+					}
+				});
+
+				return defer.promise;
+			},
+			
 			addEvent: function (scheduledDate, endDate, contactInfo, patientInfo) {
 				var defer = $q.defer();
 

@@ -148,6 +148,16 @@ eventsApp.controller('EventsController', ['$scope', '$googleCalendar', '$uibModa
             return  event.description !== 'On Vacation';
         };
 
+         // Delete Events
+
+         $scope.remove=function(id){
+            console.log(id);
+            //var currentId = id;
+            $googleCalendar.deleteEvent(id).then(function () {
+                 $scope.getEvents();
+            });
+		};
+
 
     }]);
 
