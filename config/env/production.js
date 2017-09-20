@@ -4,7 +4,7 @@ module.exports = {
   secure: true,
   port: process.env.PORT || 8443,
   db: {
-    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://mylatestdentelproject:mylatestdentelproject@ds139994.mlab.com:39994/mylatestdentelproject',
+    uri: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://confident:confident13@ds147167.mlab.com:47167/confident',
     options: {
       user: '',
       pass: ''
