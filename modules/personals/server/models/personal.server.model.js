@@ -50,6 +50,11 @@ var PersonalSchema = new Schema({
         default: '',
         trim: true
     },
+    hospitalName: {
+        type: String,
+        default: '',
+        trim: true
+    },
      rating: {
         type: Number,
         default: 0,

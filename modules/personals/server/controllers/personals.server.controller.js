@@ -47,6 +47,7 @@ exports.update = function (req, res) {
   //personal.isConsultant = req.body.isConsultant;
   personal.qualification = req.body.qualification;
   personal.experience = req.body.experience;
+  personal.hospitalName = req.body.hospitalName;
   personal.rating = req.body.rating;
   personal.treatments = req.body.treatments;
   personal.slots = req.body.slots;

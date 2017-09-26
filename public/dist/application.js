@@ -761,6 +761,12 @@ eventCreateApp.controller('EventsCreateController',
                     emailId: $scope.event.patientEmail,
                     patientSelectedMedicalCondition: $scope.patientSelectedMedicalCondition,
                     patientChiefComplaint: $scope.event.patientChiefComplaint,
+                    treatment: this.selectedTreatment.description,
+                    startTime : $scope.event.startDate,
+                    endTime : endDate.setMinutes(endDate.getMinutes()),
+                    dentist: this.selectedDentist.fName + ' ' + this.selectedDentist.lName,
+                    dentist_id: this.selectedDentist._id,
+                    hospitalName : this.selectedDentist.hospitalName
                 };
 
                 $rootScope.patient = $scope.patientInfo.patientName;
@@ -1623,6 +1629,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         speciality: this.speciality,
         qualification: this.qualification,
         experience: this.experience,
+        hospitalName: this.hospitalName,
         rating: this.rating,
         treatments: this.selectedTreatments,
         slots: this.slots,
@@ -1641,6 +1648,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.speciality = '';
         $scope.qualification = '';
         $scope.experience = '';
+        $scope.hospitalName = '';
         $scope.rating = null;
         $scope.selectedTreatments = null;
         $scope.slots = null;

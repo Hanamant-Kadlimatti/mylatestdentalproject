@@ -20,6 +20,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         speciality: this.speciality,
         qualification: this.qualification,
         experience: this.experience,
+        hospitalName: this.hospitalName,
         rating: this.rating,
         treatments: this.selectedTreatments,
         slots: this.slots,
@@ -38,6 +39,7 @@ personalsApp.controller('PersonalsCreateController', ['$scope', 'Personals', 'No
         $scope.speciality = '';
         $scope.qualification = '';
         $scope.experience = '';
+        $scope.hospitalName = '';
         $scope.rating = null;
         $scope.selectedTreatments = null;
         $scope.slots = null;
