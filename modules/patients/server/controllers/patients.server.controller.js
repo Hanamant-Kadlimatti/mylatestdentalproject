@@ -87,7 +87,8 @@ exports.delete = function(req, res) {
  * List of Patients
  */
 exports.list = function(req, res) {
-    Patient.find().sort('-created').populate('user', 'displayName').exec(function(err, patients) {
+    Patient.find().limit(1).sort('-created').populate('user', 'displayName').exec(function(err, patients) {
+         //limit(1).sort('-created')
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
