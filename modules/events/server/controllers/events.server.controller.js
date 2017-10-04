@@ -9,6 +9,7 @@ var oauth = require('oauth');
 var config = require(path.resolve('./config/config'));
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 var patientController = require(path.resolve('./modules/patients/server/controllers/patients.server.controller'));
+var patientlsController = require(path.resolve('./modules/patients/server/controllers/patientsl.server.controller'));
 // // Load the twilio module
 // var twilio = require('twilio');
 
@@ -281,6 +282,8 @@ exports.create = function (req, res, next) {
                 description += '\n Treatment: ' + req.body.personal.treatment;
             }
 
+           // description+='\n PatId: ' + new Date().valueOf()+1;
+
             if (req.body.patient.emailId) {
                 eventBody = {
                     'status': 'confirmed',
@@ -379,6 +382,8 @@ exports.create = function (req, res, next) {
                 res.send(response);
                 if (req.body.patient) {
                      patientController.create(req.body.patient);
+                     patientlsController.create(req.body.patient);
+                     // Mallik APi Hit
                     sendSms(req.body.patient.contact);
                 }
 

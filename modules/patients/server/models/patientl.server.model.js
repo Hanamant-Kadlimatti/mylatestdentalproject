@@ -2,10 +2,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var PatientSchema = new Schema({
-
-   _id: { type: String, default: Date.now},
- 
+var PatientlSchema = new Schema({
+     _id: { type: String, default: Date.now},
     created: {
         type: Date,
         default: Date.now
@@ -73,6 +71,4 @@ var PatientSchema = new Schema({
     },
 });
 
-mongoose.model('Patient', PatientSchema);
-
-
+mongoose.model('Patientl', PatientlSchema);

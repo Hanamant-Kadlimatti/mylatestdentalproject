@@ -10,12 +10,12 @@ var _ = require('lodash'),
     mongoose = require('mongoose'),
     multer = require('multer'),
     config = require(path.resolve('./config/config')),
-    Patient = mongoose.model('Patient');
+    Patientl = mongoose.model('Patientl');
 /**
  * Create a patient
  */
 exports.create = function(req, res) {
-    var patient = new Patient(req);
+    var patient = new Patientl(req);
 
     patient.save(function(err) {
         if (err) {
@@ -87,7 +87,7 @@ exports.delete = function(req, res) {
  * List of Patients
  */
 exports.list = function(req, res) {
-    Patient.find().sort('-created').populate('user', 'displayName').exec(function(err, patients) {
+    Patientl.find().limit(1).sort('-created').populate('user', 'displayName').exec(function(err, patients) {
          //limit(1).sort('-created')
         if (err) {
             return res.status(400).send({
@@ -110,7 +110,7 @@ exports.patientByID = function(req, res, next, id) {
         });
     }
 
-    Patient.findById(id).populate('user', 'displayName').exec(function(err, patient) {
+    Patientl.findById(id).populate('user', 'displayName').exec(function(err, patient) {
         if (err) {
             return next(err);
         } else if (!patient) {

@@ -13,10 +13,16 @@ angular.module('patients').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('patients.main', {
-        url: '/main',
+      .state('patients.list', {
+        url: '',
         templateUrl: 'modules/patients/views/list-patients.client.view.html'
       })
+
+      .state('patients.patientlslist',
+                {
+                    url: '/patientls',
+                    templateUrl: 'modules/patients/views/list-patientsl.client.view.html'
+                });
     //   .state('events.list', {
     //     templateUrl: 'modules/events/views/list-events.client.view.html'
     //   })

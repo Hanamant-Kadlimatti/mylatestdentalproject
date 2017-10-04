@@ -14,4 +14,16 @@ angular.module('patients')
                     }
                 });
         }
+    ])
+    
+    .factory('Patientls', ['$resource',
+        function($resource) {
+            return $resource('api/patientls/:patientId', {
+                patientId: '@_id'
+            }, {
+                    update: {
+                        method: 'PUT'
+                    }
+                });
+        }
     ]);

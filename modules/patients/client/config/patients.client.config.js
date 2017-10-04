@@ -6,7 +6,21 @@ angular.module('patients',['multipleSelect','mgcrea.ngStrap', 'ngMaterial', 'ui.
     // Add the patients dropdown item
     Menus.addMenuItem('topbar', {
       title: 'Patient Information',
-      state: 'patients.main',
+      state: 'patients',
+      type: 'dropdown',
+      roles: ['user']
+    });
+     // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'patients', {
+      title: 'Patient Information',
+      state: 'patients.list'
+    });
+     Menus.addSubMenuItem('topbar', 'patients', {
+      title: 'Patients Latest',
+      state: 'patients.patientlslist'
     });
   }
 ]);
+
+
+

@@ -1,0 +1,47 @@
+
+<section class="container" data-ng-controller="PatientslController" ng-init="showData()">
+    <br>
+    <div class="table-responsive" data-pattern="priority-columns">
+    <table cellspacing="0" class="table table-hover table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Place</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Medical Condition</th>
+                <th>Chief Complaint</th>
+                <th>Treatment</th>
+                <th>Dr.Name</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="patient in patients | orderBy: 'startTime' | filter: searchText">
+                <div class="col-sm-4">
+                <input type="text" class="form-control col-sm-2" placeholder="Search by Contact or Patient Name..." ng-model="searchText">
+                </div>
+                <td> {{patient.patientName}}</td>
+                <td>{{patient.patientAge}}</td>
+                <td>{{patient.patientGender}}</td>
+                <td>{{patient.patientPlace}}</td>
+                <td>{{patient.contact}}</td>
+                <td>{{patient.emailId}}</td>
+                <td>{{patient.patientSelectedMedicalCondition}}</td>
+                <td>{{patient.patientChiefComplaint}}</td>
+                <td>{{patient.treatment}}</td>
+                <td>{{patient.dentist}}</td>
+                <td>{{patient.startTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}}</td> <!--<td>{{patient.startTime | amDateFormat: 'DD/MM/YYYY, h:mm:ss a'}}</td>-->
+                <td>{{patient.endTime | amDateFormat: 'dddd, MMMM Do YYYY, h:mm:ss a'}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+     <ul uib-pagination class="pull-right" total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></ul uib-pagination>
+   
+</section>

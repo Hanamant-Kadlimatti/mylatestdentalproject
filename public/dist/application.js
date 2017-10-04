@@ -1233,10 +1233,24 @@ angular.module('patients',['multipleSelect','mgcrea.ngStrap', 'ngMaterial', 'ui.
     // Add the patients dropdown item
     Menus.addMenuItem('topbar', {
       title: 'Patient Information',
-      state: 'patients.main',
+      state: 'patients',
+      type: 'dropdown',
+      roles: ['user']
+    });
+     // Add the dropdown list item
+    Menus.addSubMenuItem('topbar', 'patients', {
+      title: 'Patient Information',
+      state: 'patients.list'
+    });
+     Menus.addSubMenuItem('topbar', 'patients', {
+      title: 'Patients Latest',
+      state: 'patients.patientlslist'
     });
   }
 ]);
+
+
+
 
 'use strict';
 
@@ -1253,10 +1267,16 @@ angular.module('patients').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
-      .state('patients.main', {
-        url: '/main',
+      .state('patients.list', {
+        url: '',
         templateUrl: 'modules/patients/views/list-patients.client.view.html'
       })
+
+      .state('patients.patientlslist',
+                {
+                    url: '/patientls',
+                    templateUrl: 'modules/patients/views/list-patientsl.client.view.html'
+                });
     //   .state('events.list', {
     //     templateUrl: 'modules/events/views/list-events.client.view.html'
     //   })
@@ -1305,6 +1325,41 @@ patientApp.controller('PatientsController', ['$scope', 'Patients', function ($sc
     }
 
 }]);
+'use strict';
+
+var patientApp = angular.module('patients');
+
+patientApp.controller('PatientslController', ['$scope', 'Patientls', function ($scope, Patientls) {
+
+    var patients;
+
+    Patientls.query(function(result){
+        $scope.patients = result;
+        patients = $scope.patients;
+        $scope.totalItems = $scope.patients.length;
+        $scope.currentPage = 1;
+        $scope.itemsPerPage = 20;
+    });    
+
+
+    $scope.$watch("currentPage", function () {
+        setPagingData($scope.currentPage);
+    });
+
+    function setPagingData(page) {
+
+        if (patients && patients.length > 0) {
+            var pagedData = patients.slice(
+                (page - 1) * $scope.itemsPerPage,
+                page * $scope.itemsPerPage
+            );
+
+            $scope.patients = pagedData;
+        }
+
+    }
+
+}]);
 
 'use strict';
 
@@ -1315,6 +1370,18 @@ angular.module('patients')
     .factory('Patients', ['$resource',
         function($resource) {
             return $resource('api/patients/:patientId', {
+                patientId: '@_id'
+            }, {
+                    update: {
+                        method: 'PUT'
+                    }
+                });
+        }
+    ])
+    
+    .factory('Patientls', ['$resource',
+        function($resource) {
+            return $resource('api/patientls/:patientId', {
                 patientId: '@_id'
             }, {
                     update: {
