@@ -10,6 +10,7 @@ var config = require(path.resolve('./config/config'));
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 var patientController = require(path.resolve('./modules/patients/server/controllers/patients.server.controller'));
 var patientlsController = require(path.resolve('./modules/patients/server/controllers/patientsl.server.controller'));
+var http = require('http');
 // // Load the twilio module
 // var twilio = require('twilio');
 
@@ -62,10 +63,10 @@ function sendSms(contactNumber) {
 
     // Prints the complete response
     p.send_message(params, function (status, response) {
-        console.log('Status: ', status);
-        console.log('API Response:\n', response);
-        console.log('Message UUID:\n', response['message.uuid']);
-        console.log('Api ID:\n', response['api.id']);
+        // console.log('Status: ', status);
+        // console.log('API Response:\n', response);
+        // console.log('Message UUID:\n', response['message.uuid']);
+        // console.log('Api ID:\n', response['api.id']);
     });
 }
 
@@ -282,7 +283,7 @@ exports.create = function (req, res, next) {
                 description += '\n Treatment: ' + req.body.personal.treatment;
             }
 
-           // description+='\n PatId: ' + new Date().valueOf()+1;
+            // description+='\n PatId: ' + new Date().valueOf()+1;
 
             if (req.body.patient.emailId) {
                 eventBody = {
@@ -380,10 +381,36 @@ exports.create = function (req, res, next) {
                 });
             } else {
                 res.send(response);
+                console.log('Response:' + response);
                 if (req.body.patient) {
-                     patientController.create(req.body.patient);
-                     patientlsController.create(req.body.patient);
-                     // Mallik APi Hit
+                    patientController.create(req.body.patient);
+                    patientlsController.create(req.body.patient);
+
+                    // Mallik APi Hit
+                    // options for GET
+                    var optionsget = {
+                        host: 'localhost', // here only the domain name
+                        // (no http/https !)
+                        port: 8080,
+                        path: '/apricotapi/appointmentapi.html', // the rest of the url with parameters if needed
+                        method: 'GET' // do GET
+                    };
+                    console.info('Options prepared:');
+                    console.info(optionsget);
+                    console.info('Do the GET call');
+
+                    // do the GET request
+                    var reqGet = http.request(optionsget, function (res) {
+                        console.log("statusCode: ", res.statusCode);
+                        // uncomment it for header details
+                          console.log("headers: ", res.headers);
+                    });
+
+                    reqGet.end();
+                    reqGet.on('error', function (e) {
+                        console.error(e);
+                    });
+
                     sendSms(req.body.patient.contact);
                 }
 
